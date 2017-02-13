@@ -21,7 +21,6 @@
 <body>
 
 	<nav class="navbar navbar-default">
-    <div style="width:80%;">
 	  <div class="container-fluid">
 	    <!-- Brand and toggle get grouped for better mobile display -->
 	    <div class="navbar-header">
@@ -32,7 +31,7 @@
 	        <span class="icon-bar"></span>
 	      </button>
 	    </div>
-    </div>
+
 
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -60,77 +59,96 @@
 }</style>
 
 	<!-- Page Content -->
-	<div class="container-fluid container-body">
+	<div class="container-fluid container-body" style="padding-top: 20px;">
 		<div class="title">
 			<h2>Simulation Setup</h2>
 		</div>
 		<div class="row">
-			<div class="col-sm-6">
-				<label for="pdbSearch">Protein Data Bank Search</label>
-    		<div class="input-group" style="width: 300px;">
-      		<input id="pdbSearch" type="text" class="form-control" placeholder="Search for..."disabled="true">
-      		<span class="input-group-btn">
-        		<button class="btn btn-default" type="button">Search</button>
-      		</span>
-    		</div><!-- /input-group -->
-  		</div>
-		</div>
-		<div class="row">
-				<div class="col-lg-12">
+				<div class="col-lg-6">
 					<form>
-						<div class="form-group">
-							<label for="pdbCustom">Upload Custom PDB File</label>
-							<input type="file" class="form-control-file" id="pdbCustom" aria-describedby="fileHelp">
-						</div>
-						<div id="mutantList">
-							<div class="form-group">
-								<label for="mutant">Specify Mutants</label>
-								<input type="text" class="form-control" id="mutant1" aria-describedby="mutantHelp" placeholder="mutant 1">
-								<small id="emailHelp" class="form-text text-muted">Example "Y213A, Y216A, F144A"</small>
+						<fieldset class="form-group">
+							<legend>PDB File</legend>
+							<div class="form-check">
+								<label class="form-check-label">
+									<input type="radio" class="form-check-input" name="pdbOption" id="pdbSearchOption" value="search" checked>
+									<!--Search Option-->
+									<label for="pdbSearchOption">Protein Data Bank Search</label>
+									<div class="input-group" style="width: 300px;">
+										<input id="pdbSearch" type="text" class="form-control" placeholder="Search for...">
+										<span class="input-group-btn">
+											<button id="searchButton" class="btn btn-default" type="button">Search</button>
+										</span>
+									</div>
+								</label>
 							</div>
-						</div>
-						<button class="btn btn-default" type="button" onclick="addMutantField()">+ Add Mutant</button>
-						<div class="form-group">
-					    <label for="exampleInputEmail1">Email address</label>
-					    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-					    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-					  </div>
-					  <div class="form-group">
-					    <label for="exampleInputPassword1">Password</label>
-					    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-					  </div>
-					  <div class="form-group">
-					    <label for="exampleTextarea">Example textarea</label>
-					    <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-					  </div>
+							<div class="form-check">
+							<label class="form-check-label">
+									<input type="radio" class="form-check-input" name="pdbOption" id="pdbUploadOption" value="upload">
+									<!--Upload Option-->
+									<label for="pdbUploadOption">Upload Custom PDB File</label>
+									<div class="form-group">
 
-					  <fieldset class="form-group">
-					    <legend>Radio buttons</legend>
-					    <div class="form-check">
-					      <label class="form-check-label">
-					        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-					        Option one is this and that&mdash;be sure to include why it's great
-					      </label>
-					    </div>
-					    <div class="form-check">
-					    <label class="form-check-label">
-					        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
-					        Option two can be something else and selecting it will deselect option one
-					      </label>
-					    </div>
-					    <div class="form-check disabled">
-					    <label class="form-check-label">
-					        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios3" value="option3" disabled>
-					        Option three is disabled
-					      </label>
-					    </div>
-					  </fieldset>
-					  <div class="form-check">
-					    <label class="form-check-label">
-					      <input type="checkbox" class="form-check-input">
-					      Check me out
-					    </label>
-					  </div>
+										<input type="file" class="form-control-file" id="pdbUpload" aria-describedby="fileHelp">
+									</div>
+								</label>
+							</div>
+						</fieldset>
+						<fieldset class="form-group">
+							<legend>Specify Mutants</legend>
+							<div class="form-check">
+								<label class="form-check-label">
+									<input type="radio" class="form-check-input" name="optionsRadios" id="mutantListOption" value="list" checked>
+									<!--List Option-->
+									<label for="mutantListOption">List of Mutants</label>
+									<div id="mutantList">
+										<div class="form-group">
+											<input type="text" class="form-control" id="mutant1" aria-describedby="mutantHelp" placeholder="mutant 1">
+											<small id="emailHelp" class="form-text text-muted">Example "Y213A, Y216A, F144A"</small>
+										</div>
+									</div>
+									<button id="addMutantButton" class="btn btn-default" type="button" onclick="addMutantField()">+ Add Mutant</button>
+								</label>
+							</div>
+							<div class="form-check">
+							<label class="form-check-label">
+									<input type="radio" class="form-check-input" name="optionsRadios" id="mutantRangeOption" value="range">
+									<!--Range Option-->
+									<label for="mutantRangeOption">Range of Mutants</label>
+									<div class="form-group">
+										<label for="mutant">Mutant</label>
+										<input type="text" class="form-control" id="mutant" aria-describedby="mutantHelp">
+										<small id="residueSpacingHelp" class="form-text text-muted">Replacement residue. Example: "A"</small>
+									</div>
+									<div class="form-group">
+										<label for="residueRangeStart">First Residue</label>
+										<input type="text" class="form-control" id="residueRangeStart" aria-describedby="fisrtResidueHelp">
+									</div>
+									<div class="form-group">
+										<label for="residueRangeEnd">Last Residue</label>
+										<input type="text" class="form-control" id="residueRangeEnd" aria-describedby="lastResidueHelp">
+									</div>
+							</div>
+						</fieldset>
+
+						<fieldset class="form-group">
+							<legend>Additional Information</legend>
+						  <div class="form-group">
+						    <label for="username">Your Name</label>
+						    <input type="text" class="form-control" id="username" placeholder="First and Last">
+						  </div>
+							<div class="form-group">
+						    <label for="simulationName">Your Email</label>
+						    <input type="email" class="form-control" id="simulationName">
+						  </div>
+							<div class="form-group">
+						    <label for="simulationName">Simulation Name</label>
+						    <input type="text" class="form-control" id="simulationName">
+						  </div>
+						  <div class="form-group">
+						    <label for="exampleTextarea">Description</label>
+						    <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+						  </div>
+						</fieldset>
 					  <button type="submit" class="btn btn-primary">Submit</button>
 					</form>
 				</div>
