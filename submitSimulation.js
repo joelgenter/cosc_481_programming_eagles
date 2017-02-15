@@ -46,6 +46,10 @@ $(document).ready(function() {
         $("#residueRangeStart").prop("disabled", false);
         $("#residueRangeEnd").prop("disabled", false);
         //Disable List
+        mutants = 1;
+        $("#mutantList").html("<div class=\"form-group\">" +
+          "<input type=\"text\" class=\"form-control\" id=\"mutant1\" aria-describedby=\"mutantHelp\" placeholder=\"mutant 1\">" +
+          "<small id=\"mutantHelp\" class=\"form-text text-muted\">Example \"Y213A, Y216A, F144A\"</small></div>");
         $("#mutant1").prop("disabled", true);
         $("#addMutantButton").prop("disabled", true);
     });
