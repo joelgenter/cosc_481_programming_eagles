@@ -50,3 +50,31 @@ $(document).ready(function() {
         $("#addMutantButton").prop("disabled", true);
     });
 });
+
+//Saves selected option to database
+function submitPdbSearch(){
+var content = "<iframe src=\"http://www.rcsb.org/pdb/results/results.do?tabtoshow=Current&qrid=D4A306CD\" width=\"100%\" height=\"900px\"></iframe>";
+  BootstrapDialog.show({
+            title: 'Select PDB File',
+            message: content,
+            cssClass: 'login-dialog',
+            buttons: [{
+                label: 'Submit',
+                cssClass: 'btn-primary',
+                action: function(dialog){
+                  document.getElementById("myForm").submit();
+                    dialog.close();
+                }
+            },
+            {
+                label: 'Cancel',
+                cssClass: 'btn-primary',
+                action: function(dialog){
+                    dialog.close();
+                }
+            }
+          ]
+
+
+        });
+}
