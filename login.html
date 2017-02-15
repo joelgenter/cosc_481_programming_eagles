@@ -7,9 +7,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Home</title>
+<title>Login</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -51,29 +52,62 @@
 	  </div><!-- /.container-fluid -->
 	</nav>
 
-<style>
-.form-control-inline {
-    min-width: 0;
-    width: auto;
-    display: inline;
-}
-.thumbnail {
-  padding: 30px;
-}
-.container-body{
-  padding: 10%;
-}</style>
-	<!-- Page Content -->
-	<div class="container-fluid container-body">
-		<div class="row">
-				<div class="col-lg-12">
-					<div class="title">
-						<h2>Title</h2>
-						<span class="byline">Subtitle</span>
-					</div>
-				</div>
-		</div>
-	</div>
+	<style>
+	h2 {
+		text-align: center;
+		padding-top: 15px;
+	}
+
+	input[type=text], input[type=password] {
+	    width: 100%;
+	    padding: 12px 20px;
+	    margin: 8px 0;
+	    display: inline-block;
+	    border: 1px solid #ccc;
+	    box-sizing: border-box;
+	}
+
+	button {
+	    background-color: rgb(0, 102, 51);
+	    color: white;
+	    padding: 14px 20px;
+	    margin: 8px 0;
+	    border: none;
+	    cursor: pointer;
+	    width: 100%;
+	}
+
+	.container {
+	    padding: 30px;
+	}
+
+	span.psw {
+	    float: right;
+	}
+
+	label {
+		padding-top: 5px;
+	}
+
+	</style>
+
+	<h2>Optional Page Title</h2>
+
+	<form action="action_page.php">
+	  <div class="container">
+	    <label><b>Username</b></label>
+	    <input type="text" placeholder="Enter Username" name="uname" required>
+
+	    <label><b>Password</b></label>
+	    <input type="password" placeholder="Enter Password" name="psw" required>
+
+	    <button type="submit">Login</button>
+	    <input type="checkbox" checked="checked"> Remember me
+			<span class="psw">Forgot <a href="#">password?</a></span>
+	  </div>
+
+	</form>
+
 	<footer>
 			<div class="row text-center">
 					<div class="col-lg-12">
