@@ -53,7 +53,7 @@ $(document).ready(function() {
 
 //Saves selected option to database
 function submitPdbSearch(){
-var content = "<iframe src=\"http://www.rcsb.org/pdb/results/results.do?tabtoshow=Current&qrid=D4A306CD\" width=\"100%\" height=\"900px\"></iframe>";
+var content = "<iframe src=\"http://www.rcsb.org/pdb/results/results.do?tabtoshow=Current&qrid=D4A306CD\" width=\"100%\" height=\"500px\"></iframe>";
   BootstrapDialog.show({
             title: 'Select PDB File',
             message: content,
