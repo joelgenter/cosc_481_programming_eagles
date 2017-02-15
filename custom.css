@@ -1,0 +1,43 @@
+/*html, body {
+  height: 100%;
+}*/
+.form-control-inline {
+  min-width: 0;
+  width: auto;
+  display: inline;
+}
+.thumbnail {
+  padding: 30px;
+}
+.container-body {
+  padding-right: 10%;
+  padding-left: 10%;
+  padding-top: 35px;
+  padding-bottom: 30px;
+}
+.container-fluid .row {
+margin-left: 0px;
+margin-right: 0px;
+}
+
+.navbar{
+  margin-bottom: 0;
+}
+
+.banner{
+  background-color: rgb(3, 117, 81);
+  text-align: center;
+  color: white;
+  height: 110px;
+}
+.footer{
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  bottom: 0px;
+  height: 30px;
+}
+
+.login-dialog .modal-dialog {
+                width: 80%;
+            }
