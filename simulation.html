@@ -16,6 +16,7 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="bootstrap-dialog.min.js"></script>
 	<script src="submitSimulation.js"></script>
+	<link rel="stylesheet" href="custom.css">
 </head>
 
 <body>
@@ -43,24 +44,6 @@
 		</div>
 		<!-- /.container-fluid -->
 	</nav>
-	<style>
-		.form-control-inline {
-			min-width: 0;
-			width: auto;
-			display: inline;
-		}
-
-		.thumbnail {
-			padding: 30px;
-		}
-
-		.container-body {
-			padding: 10%;
-		}
-    .login-dialog .modal-dialog {
-                width: 70%;
-    }
-	</style>
 	<!-- Page Content -->
 	<div class="container-fluid container-body" style="padding-top: 20px;">
 		<div class="title">
@@ -105,7 +88,7 @@
 							<div id="mutantList">
 								<div class="form-group">
 									<input type="text" class="form-control" id="mutant1" aria-describedby="mutantHelp" placeholder="mutant 1">
-									<small id="emailHelp" class="form-text text-muted">Example "Y213A, Y216A, F144A"</small>
+									<small id="mutantHelp" class="form-text text-muted">Example "Y213A, Y216A, F144A"</small>
 								</div>
 							</div>
 							<button id="addMutantButton" class="btn btn-default" type="button" onclick="addMutantField()">+ Add Mutant</button>
@@ -155,14 +138,13 @@
 			</div>
 		</div>
 	</div>
-	<footer>
-		<div class="row text-center">
-			<div class="col-lg-12">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-12 text-center">
 				<p>Copyright &copy; Programming Eagles 2017
 				</p>
 			</div>
 		</div>
-	</footer>
+	</div>
 </body>
-
 </html>
