@@ -78,7 +78,5 @@ var content = "<iframe src=\"http://www.rcsb.org/pdb/results/results.do?tabtosho
                 }
             }
           ]
-
-
         });
 }
