@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Home</title>
+	<title>Queue</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -31,9 +31,9 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="index.html">Home<span class="sr-only">(current)</span></a></li>
+					<li><a href="index.html">Home</a></li>
 					<li><a href="simulation.html">Simulation</a></li>
-					<li><a href="queue.html">Queue</a></li>
+					<li class="active"><a href="queue.html">Queue<span class="sr-only">(current)</span></a></li>
 					<li><a href="results.html">Results</a></li>
 				</ul>
 			</div>
@@ -55,26 +55,72 @@
 		}
 	</style>
 	<!-- Page Content -->
-	<div class="container-fluid container-body">
+	<div class="container-fluid container-body" style="padding-top: 20px;">
+
 		<div class="row">
-			<div class="col-lg-12">
-				<div class="title">
-					<h2>Protein Simulations</h2>
-					<span class="byline">A Colloborative Project Between the EMU Computer Science and Chemistry Departments</span>
+				<div class="col-lg-12">
+					<div class="title">
+						<h2>Simulation Queue</h2>
+					</div>
 				</div>
-				<h3>Purpose</h3>
-				<p>The goal of this project is to aid Dr. Albaugh's research team by allowing
-					them to compare the calculated free energy for various mutations. This
-					allows the research team to narrow down possible mutations on which to
-					continue their research.</p>
-				<h3>About The Team</h3>
-				<p>This system is developed by Jeremy Ginnard, Steven Sotok, Joel Genter,
-					Issac Kane, and Daniel Clarke as part of our capstone project.</p>
-				<h3>About This System</h3>
-				<p>This system uses only open source software. The protein simulations are
-				performed using GROMACS. Protein structures are obtained from the Protein Data Bank.</p>
-			</div>
 		</div>
+
+		<div class="panel panel-default">
+			<!-- Default panel contents -->
+			<div class="panel-heading">
+				<div class = "row">
+					<div class = "col-lg-4">
+						<h4>Simulation Name</h4>
+					</div>
+					<div class = "col-lg-2">
+						<h4>Requested By</h4>
+					</div>
+					<div class = "col-lg-2">
+						<h4>Date Submitted</h4>
+					</div>
+					<div class = "col-lg-2">
+						<h4>Esitmated Start</h4>
+					</div>
+				</div>
+			</div>
+
+			<!-- List group -->
+			<ul class="list-group">
+				<div class="list-group-item list-group-item-action">
+					<div class = "row">
+						<div class = "col-lg-4">
+							A Second Simulation Test Run
+						</div>
+						<div class = "col-lg-2">
+							Daniel Clarke
+						</div>
+						<div class = "col-lg-2">
+							02-19-2017,02:02:58
+						</div>
+						<div class = "col-lg-2">
+							02-20-2017,14:52:23
+						</div>
+					</div>
+				</div>
+
+				<div class="list-group-item list-group-item-action">
+					<div class = "row">
+						<div class = "col-lg-4">
+							A Third Simulation Test Run
+						</div>
+						<div class = "col-lg-2">
+							Daniel Clarke
+						</div>
+						<div class = "col-lg-2">
+							02-19-2017,02:05:36
+						</div>
+						<div class = "col-lg-2">
+							02-21-2017,01:02:15
+						</div>
+					</div>
+				</div>
+		</div>
+		
 	</div>
 	<footer>
 		<div class="row text-center">
