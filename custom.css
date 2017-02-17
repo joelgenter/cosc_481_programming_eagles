@@ -40,4 +40,8 @@ margin-right: 0px;
 
 .login-dialog .modal-dialog {
                 width: 80%;
-            }
+}
+
+.g-signin2{
+  margin-top: 6px;
+}
