@@ -17,7 +17,7 @@ $con = new mysqli($host, $user, $password, $dbname, $port, $socket)
       $stmt->execute();
       $stmt->bind_result($field1, $field2);
       while ($stmt->fetch()) {
-          /printf("%s, %s\n", $field1, $field2);
+          printf("%s, %s\n", $field1, $field2);
       }
       $stmt->close();
   }
