@@ -1,11 +1,5 @@
 <?php
-//Database Credentials
-$host="127.0.0.1";
-$port=3306;
-$socket="";
-$user="proteinSim";
-$password="Gromacs#2017";
-$dbname="ProteinSim";
+require 'db_connection.php';        //$conn (mysqli connection) is now available
 
 //Form data
 $pdbFileName = $_POST["pdbFileName"];
@@ -23,8 +17,6 @@ foreach ($simulationList as $mutation){
   $query .= "INSERT INTO ProteinSim.Simulations (mutations, pdbFileName, pdbFile, username, simulationName, description) VALUES (\"".$mutation."\",\"".$pdbFileName."\",\"".$pdbFile."\",\"".$username."\",\"".$simulationName."\",\"".$description."\");";
 }
 
-//Create connection and submit query
-$conn = mysqli_connect($host, $user, $password, $dbname, $port);
 
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
