@@ -15,7 +15,7 @@
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="bootstrap-dialog.min.js"></script>
-	<script src="submitSimulation.js"></script>
+	<script src="simulation.js"></script>
 	<link rel="stylesheet" href="custom.css">
 </head>
 
@@ -51,7 +51,7 @@
 		</div>
 		<div class="row">
 			<div class="col-lg-6">
-				<form>
+				<form action ="simulation.php" method="POST" onsubmit="sumbitSimulation();">
 					<fieldset class="form-group">
 						<legend>PDB File</legend>
 						<div class="form-check">
@@ -60,7 +60,7 @@
 									<!--Search Option-->
 									<label for="pdbSearchOption">Protein Data Bank Search</label>
 							<div class="input-group" style="width: 300px;">
-								<input id="pdbSearch" type="text" class="form-control" placeholder="Search for...">
+								<input id="pdbSearch" type="text" class="form-control" name="pdbName" placeholder="Search for...">
 								<span class="input-group-btn">
 											<button id="searchButton" class="btn btn-default" type="button" onclick="submitPdbSearch()">Search</button>
 										</span>
@@ -73,7 +73,7 @@
 									<!--Upload Option-->
 									<label for="pdbUploadOption">Upload Custom PDB File</label>
 							<div class="form-group">
-								<input type="file" class="form-control-file" id="pdbUpload" aria-describedby="fileHelp">
+								<input type="file" class="form-control-file" id="pdbUpload" name="pdbFile" aria-describedby="fileHelp">
 							</div>
 							</label>
 						</div>
@@ -82,12 +82,12 @@
 						<legend>Specify Mutants</legend>
 						<div class="form-check">
 							<label class="form-check-label">
-									<input type="radio" class="form-check-input" name="optionsRadios" id="mutantListOption" value="list" checked>
+									<input type="radio" class="form-check-input" name="mutantOption" id="mutantListOption" value="list" checked>
 									<!--List Option-->
 									<label for="mutantListOption">List of Mutants</label>
 							<div id="mutantList">
 								<div class="form-group">
-									<input type="text" class="form-control" id="mutant1" aria-describedby="mutantHelp" placeholder="mutant 1">
+									<input type="text" class="form-control" id="mutantListField1" aria-describedby="mutantHelp" placeholder="mutant 1">
 									<small id="mutantHelp" class="form-text text-muted">Example "Y213A, Y216A, F144A"</small>
 								</div>
 							</div>
@@ -96,12 +96,12 @@
 						</div>
 						<div class="form-check">
 							<label class="form-check-label">
-									<input type="radio" class="form-check-input" name="optionsRadios" id="mutantRangeOption" value="range">
+									<input type="radio" class="form-check-input" name="mutantOption" id="mutantRangeOption" value="range">
 									<!--Range Option-->
 									<label for="mutantRangeOption">Range of Mutants</label>
 							<div class="form-group">
 								<label for="mutant">Mutant</label>
-								<input type="text" class="form-control" id="mutant" aria-describedby="mutantHelp">
+								<input type="text" class="form-control" id="rangeMutant" name="mutation" aria-describedby="mutantHelp">
 								<small id="residueSpacingHelp" class="form-text text-muted">Replacement residue. Example: "A"</small>
 							</div>
 							<div class="form-group">
@@ -118,21 +118,23 @@
 						<legend>Additional Information</legend>
 						<div class="form-group">
 							<label for="username">Your Name</label>
-							<input type="text" class="form-control" id="username" placeholder="First and Last">
+							<input type="text" class="form-control" id="username" name="username" placeholder="First and Last">
 						</div>
 						<div class="form-group">
 							<label for="userEmail">Your Email</label>
-							<input type="email" class="form-control" id="userEmail">
+							<input type="email" class="form-control" id="userEmail" name="email">
 						</div>
 						<div class="form-group">
 							<label for="simulationName">Simulation Name</label>
-							<input type="text" class="form-control" id="simulationName">
+							<input type="text" class="form-control" id="simulationName" name="simulationName">
 						</div>
 						<div class="form-group">
 							<label for="exampleTextarea">Description</label>
-							<textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+							<textarea class="form-control" id="description" name="description" rows="3"></textarea>
 						</div>
 					</fieldset>
+					<input type="text" visibility="hidden" id="mutationList" name="mutationList"></input>
+					<input type="text" visibility="hidden" id="pdbFileName" name="pdbFileName"></input>
 					<button type="submit" class="btn btn-primary">Submit</button>
 				</form>
 			</div>
