@@ -2,12 +2,15 @@
 require 'db_connection.php';        //$conn (mysqli connection) is now available
 
 //Form data
-$pdbFileName = $_POST["pdbFileName"];
-$pdbFile = $_POST["pdbFile"];
-$mutationList = $_POST["mutationList"];
-$username = $_POST["username"];
-$simulationName = $_POST["simulationName"];
-$description = $_POST["description"];
+$pdbFileName = filter_var ($_POST["pdbFileName"], FILTER_SANITIZE_STRING);
+$pdbFile;
+if (pathinfo($pdbFileName)['extension'] == "pdb"){
+  $pdbFile= $_POST["pdbFile"];
+}
+$mutationList = filter_var ($_POST["mutationList"], FILTER_SANITIZE_STRING);
+$username = filter_var ($_POST["username"], FILTER_SANITIZE_STRING);
+$simulationName = filter_var ($_POST["simulationName"], FILTER_SANITIZE_STRING);
+$description = filter_var ($_POST["description"], FILTER_SANITIZE_STRING);
 
 //Generate queries
 $query;
@@ -21,13 +24,6 @@ foreach ($simulationList as $mutation){
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-//   if ($stmt = $con->prepare($query)) {
-//       $stmt->execute();
-//       $stmt->close();
-//       echo "Query Sent";
-//   }
-//
-// $con->close();
 
 if (mysqli_multi_query($conn, $query)) {
     echo "New records created successfully";
@@ -36,6 +32,5 @@ if (mysqli_multi_query($conn, $query)) {
 }
 
 mysqli_close($conn);
-//echo "submitted query: ".$query;
 header("Location: queue.php");
 die();
