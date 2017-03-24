@@ -63,8 +63,8 @@
 		padding-top: 15px;
 	}
 
-	input[type=text], input[type=password] {
-	    width: 100%;
+	input[type=text] {
+	    width: 50%;
 	    padding: 12px 20px;
 	    margin: 8px 0;
 	    display: inline-block;
@@ -79,11 +79,13 @@
 	    margin: 8px 0;
 	    border: none;
 	    cursor: pointer;
-	    width: 100%;
+	    width: 50%;
+
 	}
 
 	.container {
 	    padding: 30px;
+			text-align: center;
 	}
 
 	span.psw {
@@ -97,24 +99,28 @@
 	.register {
 		background-color: rgb(0, 51, 102);
 	}
+	p {
+		text-align: center;
+		padding-top: 25px;
+		font-size: 20px;
+	}
+
 
 	</style>
 
 	<h2>EMU Protein Simulations</h2>
+	<p>
+		If you already have an account please login using the
+		please fill out the form below.
+	</p>
 	<form action="action_page.php">
 	  <div class="container">
-	    <label><b>Username</b></label>
-	    <input type="text" placeholder="Enter Username" name="uname" required>
-
-	    <label><b>Password</b></label>
-	    <input type="password" placeholder="Enter Password" name="psw" required>
-
-	    <button type="submit">Login</button>
-			<button class="register">Register</button>
-	    <input type="checkbox" checked="checked"> Remember me
-			<span class="psw">Forgot <a href="#">password?</a></span>
+			<input type="text" placeholder="First Name" name="fname" required>
+			<input type="text" placeholder="Last Name" name="lname" required>
+	    <input type="text" placeholder="Username" name="uname" required>
+			<input type="text" placeholder="Email Address" name="email" required>
+			<button class="register">Request Access</button>
 	  </div>
-
 	</form>
 
 	<div class="container-fluid">
