@@ -16,6 +16,11 @@
 
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
+	<!--Google Sign In-->
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<meta name="google-signin-client_id" content="786699123825-24163j8ee5b0ma1htsbc173ptmbid348.apps.googleusercontent.com">
+
 </head>
 <body>
 	<nav class="navbar navbar-default">
@@ -36,6 +41,10 @@
 					<li><a href="simulation.html">Simulation</a></li>
 					<li><a href="queue.php">Queue</a></li>
 					<li><a href="results.html">Results</a></li>
+					<li><a href="register.html">Register</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><div class="g-signin2 float-right" data-onsuccess="onSignIn"></div></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
