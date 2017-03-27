@@ -33,6 +33,7 @@ CREATE TABLE `Simulations` (
   `endTime` datetime DEFAULT NULL,
   `ETA` datetime DEFAULT NULL,
   `results` varchar(200) DEFAULT NULL,
+  `queuePosition` int(11) DEFAULT NULL,
   PRIMARY KEY (`mutations`,`pdbFileName`),
   KEY `username_idx` (`username`),
   CONSTRAINT `username` FOREIGN KEY (`username`) REFERENCES `Users` (`username`) ON DELETE NO ACTION ON UPDATE CASCADE
@@ -45,7 +46,7 @@ CREATE TABLE `Simulations` (
 
 LOCK TABLES `Simulations` WRITE;
 /*!40000 ALTER TABLE `Simulations` DISABLE KEYS */;
-INSERT INTO `Simulations` VALUES ('A-123-L','pdbFile.pdb','jginnard',NULL,'Sim1','very cool simulation',NULL,NULL,NULL,NULL),('A123B','UHRF1_TTD-PHD_No_Zinc.pdb','jginnard','','Sim3','123',NULL,NULL,NULL,NULL),('A123F','UHRF1_TTD-PHD_No_Zinc.pdb','jginnard','UHRF1_TTD-PHD_No_Zinc.pdb','Sim5','new sim',NULL,NULL,NULL,NULL),('A123G','UHRF1_TTD-PHD_No_Zinc.pdb','jginnard','UHRF1_TTD-PHD_No_Zinc.pdb','Sim5','new sim',NULL,NULL,NULL,NULL);
+INSERT INTO `Simulations` VALUES ('A-123-L','pdbFile.pdb','jginnard',NULL,'Sim1','very cool simulation',NULL,NULL,NULL,NULL,NULL),('A123B','UHRF1_TTD-PHD_No_Zinc.pdb','jginnard','','Sim3','123',NULL,NULL,NULL,NULL,NULL),('A123F','UHRF1_TTD-PHD_No_Zinc.pdb','jginnard','UHRF1_TTD-PHD_No_Zinc.pdb','Sim5','new sim',NULL,NULL,NULL,NULL,NULL),('A123G','UHRF1_TTD-PHD_No_Zinc.pdb','jginnard','UHRF1_TTD-PHD_No_Zinc.pdb','Sim5','new sim',NULL,NULL,NULL,NULL,NULL),('AAAA','UHRF1_TTD-PHD_No_Zinc.pdb','jginnard','UHRF1_TTD-PHD_No_Zinc.pdb','DB Test','123',NULL,NULL,NULL,NULL,NULL),('Y100A','UHRF1_TTD-PHD_No_Zinc.pdb','bginnard','UHRF1_TTD-PHD_No_Zinc.pdb','Sim 20','new sim',NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `Simulations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -73,7 +74,7 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-INSERT INTO `Users` VALUES ('jginnard','Jeremy','Ginnard','jginnard@emich.edu','Admin'),('sginnard','Shane','Ginnard','sginnard@emich.edu','Admin');
+INSERT INTO `Users` VALUES ('bginnard','Brendan','Ginnard','bginnard@emich.edu','pending'),('jginnard','Jeremy','Ginnard','jginnard@emich.edu','Admin'),('sginnard','Shane','Ginnard','sginnard@emich.edu','Admin');
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -86,4 +87,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-03-23 17:15:06
+-- Dump completed on 2017-03-27 14:47:17
