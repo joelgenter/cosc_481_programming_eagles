@@ -68,14 +68,17 @@
 	<!-- Default panel contents -->
 	<div class='panel-heading'>
 		<div class = 'row'>
-			<div class = 'col-lg-4'>
+			<div class = 'col-lg-2'>
 				<h4>Simulation Name</h4>
+			</div>
+			<div class = 'col-lg-2'>
+				<h4>Mutations</h4>
 			</div>
 			<div class = 'col-lg-2'>
 				<h4>Requested By</h4>
 			</div>
 			<div class = 'col-lg-2'>
-				<h4>Date Submitted</h4>
+				<h4>Simulation Started</h4>
 			</div>
 			<div class = 'col-lg-2'>
 				<h4>Esitmated End Time</h4>
@@ -90,18 +93,21 @@
 <?php
 	require 'db_connection.php';
 
-	$query = "SELECT simulations.simulationName, simulations.startTime, simulations.endTime, simulations.username FROM simulations";
+	$query = "SELECT Simulations.simulationName, Simulations.startTime, Simulations.endTime, Simulations.username, Simulations.mutations FROM Simulations";
 	  if ($stmt = $conn->prepare($query)) {
       $stmt->execute();
-	  $stmt->bind_result($simulationName, $startTime, $endTime, $username);
+	  $stmt->bind_result($simulationName, $startTime, $endTime, $username, $mutations);
       while ($stmt->fetch()) {
           echo("
 	<!-- List group -->
 	<ul class='list-group'>
 		<div class='list-group-item list-group-item-action'>
 			<div class = 'row'>
-				<div class = 'col-lg-4'>"
+				<div class = 'col-lg-2'>"
 					.$simulationName.
+				"</div>
+				<div class = 'col-lg-2'>"
+					.$mutations.
 				"</div>
 				<div class = 'col-lg-2'>"
 					.$username.
