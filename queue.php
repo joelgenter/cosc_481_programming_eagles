@@ -1,17 +1,14 @@
 <?php
   require 'db_connection.php';        //$conn (mysqli connection) is now available
 
-  $query = "SELECT * FROM Users";
+  $query = "SELECT * FROM ProteinSim.Simulations";
 
 
-  if ($stmt = $conn->prepare($query)) {
+  if ($stmt = $con->prepare($query)) {
       $stmt->execute();
       $stmt->bind_result($field1, $field2);
       while ($stmt->fetch()) {
-          printf("%s, %s\n", $field1, $field2);
+          //printf("%s, %s\n", $field1, $field2);
       }
       $stmt->close();
   }
-
-
-$conn->close();
