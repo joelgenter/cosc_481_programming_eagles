@@ -100,9 +100,9 @@
 			</div>
 
 			<!-- List group -->
-			<ul class="list-group">
+			<ul id="usersList" class="list-group">
 
-				<div class="list-group-item list-group-item-action">
+				<!--<div class="list-group-item list-group-item-action">
 					<div class = "row">
 						<div class = "col-lg-6">
 							jginnard
@@ -170,7 +170,7 @@
 							<i class="fa fa-remove"></i>
 						</div>
 					</div>
-				</div>
+				</div>-->
 
 			</ul>
 		</div>
@@ -183,5 +183,31 @@
 			</div>
 		</div>
 </div>
+<script>
+	var $usersList = $("#usersList");
+
+	$.get('admin.php')
+		.done(function(users) {
+            users = JSON.parse(users);
+			for (var i = 0; i < users.length; i++) {
+				var html = 
+					'<div class="list-group-item list-group-item-action">' + 
+						'<div class = "row">' +
+							'<div class = "col-lg-6">' +
+								users[i].username +
+							'</div>' +
+							'<div class = "col-lg-4">' +
+								'Off&nbsp;<i class="fa fa-toggle-' + (users[i].isAdmin ? 'on' : 'off') + '"></i>&nbsp;On' +
+							'</div>' +
+							'<div class = "col-lg-2">' +
+								'<i class="fa fa-remove"></i>' +
+							'</div>' +
+						'</div>' +
+					'</div>';
+
+				$usersList.append(html);
+			}
+		});
+</script>
 </body>
 </html>
