@@ -34,8 +34,7 @@ CREATE TABLE `Simulations` (
   `ETA` datetime DEFAULT NULL,
   `results` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`mutations`,`pdbFileName`),
-  KEY `username_idx` (`username`),
-  CONSTRAINT `username` FOREIGN KEY (`username`) REFERENCES `Users` (`username`) ON DELETE NO ACTION ON UPDATE CASCADE
+  KEY `username_idx` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
