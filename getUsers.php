@@ -1,11 +1,11 @@
 <?php
 require 'db_connection.php';        //$conn (mysqli connection) is now available
 
-$query = "SELECT * FROM ProteinSim.Users";
+$query = "SELECT username, type FROM ProteinSim.Users";
 
 $users = [];
 
-if ($stmt = $con->prepare($query)) {
+if ($stmt = $conn->prepare($query)) {
     $stmt->execute();
     $stmt->bind_result($username, $type);
 
