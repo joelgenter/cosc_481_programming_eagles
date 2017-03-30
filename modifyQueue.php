@@ -23,7 +23,6 @@
 					}
 			}
             else {
-				print_r($_POST['arguments']);
 				$query = "UPDATE Simulations 
 						  SET Simulations.queuePosition = CASE
 							WHEN Simulations.queuePosition = ".$_POST['arguments'][0]." THEN ".$_POST['arguments'][1]." 
@@ -40,7 +39,18 @@
             }
             break;
 		case 'delete':
-			
+			$query = "DELETE FROM Simulations WHERE Simulations.queuePosition = ".$_POST['arguments'][0];
+			if ($conn->query($query) === TRUE) {
+				echo "Record deleted successfully";
+			} else {
+				echo "Error deleting record: " . $conn->error;
+			}
+			$query = " UPDATE Simulations SET Simulations.queuePosition = Simulations.queuePosition-1 WHERE Simulations.queuePosition > ".$_POST['arguments'][0] ;
+			if ($conn->query($query) === TRUE) {
+				echo "Record updated successfully";
+			} else {
+				echo "Error updating record: " . $conn->error;
+			}
 			break;
         default:
             echo 'Not found function '.$_POST['functionName'].'!';

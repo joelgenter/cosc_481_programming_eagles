@@ -3,7 +3,7 @@ function createSimulationsList(queue){
 	//generates list group
 	$('#simulationsList').append("<!-- List group --> <ul class='list-group'>")
 	for(var num in queue){
-		$('#simulationsList').append("<div class='list-group-item list-group-item-action'> 			\
+		$('#simulationsList').append("<div name='simulationRow' class='list-group-item list-group-item-action'> 			\
 			<div class = 'row'>   																\
 				<div class = 'col-lg-2'>  														\
 					"+queue[num][0]+"		   													\
@@ -38,38 +38,46 @@ function createSimulationsList(queue){
 	$(function(){
 		$('[name="simUp"]').click(function(){
 			incrementSim(this.id[this.id.length-1],queue)
+			updateList();
 		});
 		$('[name="simDown"]').click(function(){
 			decrementSim(this.id[this.id.length-1],queue)
+			updateList();
 		});
 		$('[name="simDelete"]').click(function(){
 			deleteSim(this.id[this.id.length-1],queue)
+			updateList();
 		});
 });
 }
 
-function incrementSim(simNumber, asdf){
-	console.log('incremet')
-	console.log(asdf)
-		
+function incrementSim(simNumber, asdf){		
 	$.ajax({url: 'modifyQueue.php', method: 'POST', 
-			data: {functionName:'increment', arguments: [(parseInt(simNumber)+1), (simNumber)]},
-			success: function(mesg){console.log(mesg);}});
-	console.log('aa')
+			data: {functionName:'increment', arguments: [(parseInt(simNumber)+1), simNumber]},
+			success: function(mesg){ }});
+			
+	
 }
 
 function decrementSim(simNumber, data){
 	if (simNumber==data.length-1)
 		alert("Cannot decrement the last item in the queue")
 	else{
-	console.log('decremet')
-		console.log(data)
+			$.ajax({url: 'modifyQueue.php', method: 'POST', 
+			data: {functionName:'increment', arguments: [(parseInt(simNumber)+2), parseInt(simNumber)+1]},
+			success: function(mesg){ }});
 	}
 }
 
 function deleteSim(simNumber, data){
-	console.log('delete')
-		console.log(data)
+	$.ajax({url: 'modifyQueue.php', method: 'POST', 
+			data: {functionName:'delete', arguments: (parseInt(simNumber)+1)},
+			success: function(mesg){ console.log(mesg)}});
+}
+
+function updateList(){
+	$('[name="simulationRow"]').remove();
+	generateSimulationsList();
 }
 
 function generateSimulationsList(){
