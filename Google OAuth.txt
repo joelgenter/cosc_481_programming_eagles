@@ -1,0 +1,8 @@
+Google OAuth Client for COSC 481 Project
+jeremyginnard.com/ProteinSimulations
+
+client ID
+786699123825-24163j8ee5b0ma1htsbc173ptmbid348.apps.googleusercontent.com
+
+client secret
+ltY8wWEUUrgLtnEEFjxQy_ln
