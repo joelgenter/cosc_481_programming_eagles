@@ -21,10 +21,12 @@ function createSimulationsList(queue){
 					"+queue[num][3]+"															\
 				</div>																			\
 				<div class = 'col-lg-2 text-center'>											\
-					<button type='button' id='simUp"+num+"' name='simUp' class='btn btn-default btn-xs'>			\
+					<button type='button' id='simUp"+num+"' name='simUp'						\
+					class='" + ((num==0)? 'disabled' : 'enabled') +" btn btn-default btn-xs'>	\
 						<span class='glyphicon glyphicon-chevron-up' aria-hidden='true'></span>	\
 					</button>																	\
-					<button type='button' id='simDown"+num+"' name='simDown' class='btn btn-default btn-xs'>		\
+					<button type='button' id='simDown"+num+"' name='simDown' 					\
+					class='" + ((num==queue.length-1)? 'disabled' : 'enabled') +" btn btn-default btn-xs'>		\
 						<span class='glyphicon glyphicon-chevron-down' aria-hidden='true'></span>	\
 					</button>																	\
 					<button type='button' id='simDelete"+num+"' name='simDelete' class='btn btn-default btn-xs'>	\
