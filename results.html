@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="resultsList.js"></script>
 <link rel="stylesheet" href="custom.css">
 </head>
 <body>
@@ -67,7 +68,7 @@
 					</div>
 				</div>
 		</div>
-		<div class="panel panel-default">
+		<div id="resultsList" class="panel panel-default">
 			<!-- Default panel contents -->
 			<div class="panel-heading">
 				<div class = "row">
@@ -82,7 +83,7 @@
 					</div>
 				</div>
 			</div>
-			<!-- List group -->
+			<!-- <!-- List group
 			<ul class="list-group">
 				<a href = "sampleResult.html" class="list-group-item list-group-item-action">
 					<div class = "row">
@@ -149,9 +150,12 @@
 						</div>
 					</div>
 				</a>
-			</ul>
+			</ul> -->
 		</div>
 	</div>
+	<script>
+		generateResultsList()
+	</script>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-lg-12 text-center">

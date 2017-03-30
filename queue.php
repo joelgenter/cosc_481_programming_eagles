@@ -14,9 +14,10 @@
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src ="queueFunctions.js"></script>
 	<link rel="stylesheet" href="custom.css">
 </head>
-<body>
+<body id>
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display  -->
@@ -55,7 +56,7 @@
 		}
 	</style>
 	<!-- Page Content -->
-	<div class="container-fluid container-body" style="padding-top: 20px;">
+	<div id="contents" class="container-fluid container-body" style="padding-top: 20px;">
 
 		<div class="row">
 				<div class="col-lg-12">
@@ -64,43 +65,44 @@
 					</div>
 				</div>
 		</div>
-		<div class='panel panel-default'>
+		<div id ="simulationsList" class='panel panel-default'>
 	<!-- Default panel contents -->
-	<div class='panel-heading'>
-		<div class = 'row'>
-			<div class = 'col-lg-2'>
-				<h4>Simulation Name</h4>
+			<div  class='panel-heading'>
+				<div class = 'row'>
+					<div class = 'col-lg-2'>
+						<h4>Simulation Name</h4>
+					</div>
+					<div class = 'col-lg-2'>
+						<h4>Mutations</h4>
+					</div>
+					<div class = 'col-lg-2'>
+						<h4>Requested By</h4>
+					</div>
+					<div class = 'col-lg-2'>
+						<h4>Simulation Started</h4>
+					</div>
+					<div class = 'col-lg-2'>
+						<h4>Esitmated End Time</h4>
+					</div>
+					<div class = 'col-lg-2 text-center'>
+						<h4>Admin tools</h4>
+					</div>
+				</div>
 			</div>
-			<div class = 'col-lg-2'>
-				<h4>Mutations</h4>
-			</div>
-			<div class = 'col-lg-2'>
-				<h4>Requested By</h4>
-			</div>
-			<div class = 'col-lg-2'>
-				<h4>Simulation Started</h4>
-			</div>
-			<div class = 'col-lg-2'>
-				<h4>Esitmated End Time</h4>
-			</div>
-			<div class = 'col-lg-2 text-center'>
-				<h4>Admin tools</h4>
-			</div>
-		</div>
-	</div>
 
 
 <?php
+	/*
 	require 'db_connection.php';
 
 	$query = "SELECT Simulations.simulationName, Simulations.startTime, Simulations.endTime, Simulations.username, Simulations.mutations FROM Simulations";
 	  if ($stmt = $conn->prepare($query)) {
       $stmt->execute();
 	  $stmt->bind_result($simulationName, $startTime, $endTime, $username, $mutations);
+	  echo("<!-- List group -->
+			<ul class='list-group'>");
       while ($stmt->fetch()) {
           echo("
-	<!-- List group -->
-	<ul class='list-group'>
 		<div class='list-group-item list-group-item-action'>
 			<div class = 'row'>
 				<div class = 'col-lg-2'>"
@@ -132,11 +134,16 @@
 			</div>
 		</div>
 ");
+	
       }
+	  echo "</ul>";
       $stmt->close();
   }
-
+	*/
 ?>
+<script>
+	generateSimulationsList();
+</script>
 </div>
 <!--Something is wrong with the XAMPP installation :-(-->
 
