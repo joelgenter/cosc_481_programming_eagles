@@ -2,10 +2,12 @@
 
 class GoogleAuth
 {
+  protected $db;
   protected $client;
 
-  public function __construct(Google_Client $googleClient = null)
+  public function __construct(DB $db = null, Google_Client $googleClient = null)
   {
+    $this->db = $db;
     $this->client = $googleClient;
 
     if($this->client)
@@ -35,22 +37,45 @@ class GoogleAuth
 
       $this->setToken($this->client->getAccessToken());
 
+      $payload = $this->getPayload();
+      echo '<pre>', print_r($payload), '</pre>';
+
+      //$this->storeUser($this->getPayload());
+
       return true;
     }
 
     return false;
   }
 
-public function setToken($token)
-{
-  $_SESSION['access_token'] = $token;
+  public function setToken($token)
+  {
+    $_SESSION['access_token'] = $token;
 
-  $this->client->setAccessToken($token);
-}
+    $this->client->setAccessToken($token);
+  }
 
-public function logout()
-{
-  unset($_SESSION['access_token']);
-}
+  public function logout()
+  {
+    unset($_SESSION['access_token']);
+  }
+
+  public function getPayload()
+  {
+    $payload = $this->client->verifyIdToken();
+
+    return $payload;
+  }
+
+  protected function storeUser($payload)
+  {
+    $sql = "
+      INSERT INTO protiensim (google_id, email)
+      VALUES ({$payload['id']}, '{$payload['email']}')
+      ON DUPLICATE KEY UPDATE id = id
+    ";
+
+    $this->db->query($sql);
+  }
 
 }
