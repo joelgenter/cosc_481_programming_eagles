@@ -34,6 +34,8 @@ CREATE TABLE `Simulations` (
   `ETA` datetime DEFAULT NULL,
   `results` varchar(200) DEFAULT NULL,
   `queuePosition` int(11) DEFAULT NULL,
+  `duration` decimal(20,5) DEFAULT NULL,
+  `temperature` decimal(20,5) DEFAULT NULL,
   PRIMARY KEY (`mutations`,`pdbFileName`),
   KEY `username_idx` (`username`),
   CONSTRAINT `username` FOREIGN KEY (`username`) REFERENCES `Users` (`username`) ON DELETE NO ACTION ON UPDATE CASCADE
@@ -46,7 +48,7 @@ CREATE TABLE `Simulations` (
 
 LOCK TABLES `Simulations` WRITE;
 /*!40000 ALTER TABLE `Simulations` DISABLE KEYS */;
-INSERT INTO `Simulations` VALUES ('A-123-L','pdbFile.pdb','jginnard',NULL,'Sim1','very cool simulation',NULL,NULL,NULL,NULL,-1),('A123B','UHRF1_TTD-PHD_No_Zinc.pdb','jginnard','','Sim3','123',NULL,NULL,NULL,NULL,1),('A123F','UHRF1_TTD-PHD_No_Zinc.pdb','jginnard','UHRF1_TTD-PHD_No_Zinc.pdb','Sim5','new sim',NULL,NULL,NULL,NULL,2),('A123G','UHRF1_TTD-PHD_No_Zinc.pdb','jginnard','UHRF1_TTD-PHD_No_Zinc.pdb','Sim5','new sim',NULL,NULL,NULL,NULL,3),('AAAA','UHRF1_TTD-PHD_No_Zinc.pdb','jginnard','UHRF1_TTD-PHD_No_Zinc.pdb','DB Test','123',NULL,NULL,NULL,NULL,4),('Y100A','UHRF1_TTD-PHD_No_Zinc.pdb','bginnard','UHRF1_TTD-PHD_No_Zinc.pdb','Sim 20','new sim',NULL,NULL,NULL,NULL,5);
+INSERT INTO `Simulations` VALUES ('A123B','UHRF1_TTD-PHD_No_Zinc.pdb','jginnard','','Sim3','123',NULL,NULL,NULL,NULL,3,NULL,NULL),('A123F','UHRF1_TTD-PHD_No_Zinc.pdb','jginnard','UHRF1_TTD-PHD_No_Zinc.pdb','Sim5','new sim',NULL,NULL,NULL,NULL,4,NULL,NULL),('Y100A, Y200A, Y300A','UHRF1_TTD-PHD_Unmodified_H3.pdb','jginnard','UHRF1_TTD-PHD_Unmodified_H3.pdb','4/5/2017','Test',NULL,NULL,NULL,NULL,NULL,2.00000,40.00000),('Y100B, Y200B, Y300B','UHRF1_TTD-PHD_Unmodified_H3.pdb','jginnard','UHRF1_TTD-PHD_Unmodified_H3.pdb','4/5/2017','Test',NULL,NULL,NULL,NULL,NULL,2.00000,40.00000),('Y200A','nvt.mdp','jginnard','','Name','123',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `Simulations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -90,4 +92,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-03-29 20:11:25
+-- Dump completed on 2017-04-05 16:57:21
