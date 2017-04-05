@@ -11,13 +11,15 @@ $mutationList = filter_var ($_POST["mutationList"], FILTER_SANITIZE_STRING);
 $username = filter_var ($_POST["username"], FILTER_SANITIZE_STRING);
 $simulationName = filter_var ($_POST["simulationName"], FILTER_SANITIZE_STRING);
 $description = filter_var ($_POST["description"], FILTER_SANITIZE_STRING);
+$duration = filter_var ($_POST["duration"], FILTER_SANITIZE_STRING);
+$temperature =filter_var ($_POST["temperature"], FILTER_SANITIZE_STRING);
 
 //Generate queries
 $query;
 $simulationList = explode(";", $mutationList);
 
 foreach ($simulationList as $mutation){
-  $query .= "INSERT INTO ProteinSim.Simulations (mutations, pdbFileName, pdbFile, username, simulationName, description) VALUES (\"".$mutation."\",\"".$pdbFileName."\",\"".$pdbFile."\",\"".$username."\",\"".$simulationName."\",\"".$description."\");";
+  $query .= "INSERT INTO ProteinSim.Simulations (mutations, pdbFileName, pdbFile, username, simulationName, description, duration, temperature) VALUES (\"".$mutation."\",\"".$pdbFileName."\",\"".$pdbFile."\",\"".$username."\",\"".$simulationName."\",\"".$description."\",\"".$duration."\",\"".$temperature."\");";
 }
 
 

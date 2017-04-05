@@ -54,37 +54,20 @@
 				<form action ="simulation.php" method="POST" onsubmit="sumbitSimulation();">
 					<fieldset class="form-group">
 						<legend>PDB File</legend>
-						<div class="form-check">
-							<label class="form-check-label">
-									<input type="radio" class="form-check-input" name="pdbOption" id="pdbSearchOption" value="search" checked>
-									<!--Search Option-->
-									<label for="pdbSearchOption">Protein Data Bank Search</label>
-							<div class="input-group" style="width: 300px;">
-								<input id="pdbSearch" type="text" class="form-control" name="pdbName" placeholder="Search for...">
-								<span class="input-group-btn">
-											<button id="searchButton" class="btn btn-default" type="button" onclick="submitPdbSearch()">Search</button>
-										</span>
-							</div>
-							</label>
-						</div>
-						<div class="form-check">
-							<label class="form-check-label">
-									<input type="radio" class="form-check-input" name="pdbOption" id="pdbUploadOption" value="upload">
+						<p>The PDB file must not have any breaks or the simulation will not work.
+							<br>You may need to build a PDB file using PyMol.</p>
 									<!--Upload Option-->
 									<label for="pdbUploadOption">Upload Custom PDB File</label>
 							<div class="form-group">
 								<input type="file" class="form-control-file" id="pdbUpload" name="pdbFile" aria-describedby="fileHelp">
 							</div>
-							</label>
-						</div>
+
 					</fieldset>
 					<fieldset class="form-group">
-						<legend>Specify Mutants</legend>
-						<div class="form-check">
-							<label class="form-check-label">
-									<input type="radio" class="form-check-input" name="mutantOption" id="mutantListOption" value="list" checked>
-									<!--List Option-->
-									<label for="mutantListOption">List of Mutants</label>
+						<legend>Simulation Parameters</legend>
+
+							<!--List Option-->
+									<label for="mutantList">List of Mutants (Seperate Simulations)</label>
 							<div id="mutantList">
 								<div class="form-group">
 									<input type="text" class="form-control" id="mutantListField1" aria-describedby="mutantHelp" placeholder="mutant 1">
@@ -92,27 +75,15 @@
 								</div>
 							</div>
 							<button id="addMutantButton" class="btn btn-default" type="button" onclick="addMutantField()">+ Add Mutant</button>
-							</label>
-						</div>
-						<div class="form-check">
-							<label class="form-check-label">
-									<input type="radio" class="form-check-input" name="mutantOption" id="mutantRangeOption" value="range">
-									<!--Range Option-->
-									<label for="mutantRangeOption">Range of Mutants</label>
+							<br><br>
 							<div class="form-group">
-								<label for="mutant">Mutant</label>
-								<input type="text" class="form-control" id="rangeMutant" name="mutation" aria-describedby="mutantHelp">
-								<small id="residueSpacingHelp" class="form-text text-muted">Replacement residue. Example: "A"</small>
+								<label for="duration">Duration (ns)</label>
+								<input type="text" class="form-control" id="duration" name="duration">
 							</div>
 							<div class="form-group">
-								<label for="residueRangeStart">First Residue</label>
-								<input type="text" class="form-control" id="residueRangeStart" aria-describedby="fisrtResidueHelp">
+								<label for="temperature">Temperature (Celsius)</label>
+								<input type="text" class="form-control" id="temperature" name="temperature">
 							</div>
-							<div class="form-group">
-								<label for="residueRangeEnd">Last Residue</label>
-								<input type="text" class="form-control" id="residueRangeEnd" aria-describedby="lastResidueHelp">
-							</div>
-						</div>
 					</fieldset>
 					<fieldset class="form-group">
 						<legend>Additional Information</legend>
