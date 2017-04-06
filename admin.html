@@ -190,14 +190,22 @@
 		.done(function(users) {
             users = JSON.parse(users);
 			for (var i = 0; i < users.length; i++) {
-				var html = 
-					'<div class="list-group-item list-group-item-action">' + 
+				var html =
+					'<div class="list-group-item list-group-item-action">' +
 						'<div class = "row">' +
 							'<div class = "col-lg-6">' +
 								users[i].username +
 							'</div>' +
-							'<div class = "col-lg-4">' +
-								'Off&nbsp;<i class="fa fa-toggle-' + (users[i].isAdmin ? 'on' : 'off') + '"></i>&nbsp;On' +
+								'<div class = "col-lg-4">' +
+								'<div class="dropdown">'+
+									'<button type="button" data-toggle="dropdown">' + users[i].type +
+									'<span class="caret"></span></button>' +
+									'<ul class="dropdown-menu">' +
+										'<li><a href="#">Admin</a></li>'+
+										'<li><a href="#">Standard</a></li>'+
+										'<li><a href="#">Pending</a></li>'+
+										'</ul>' +
+								'</div>' +
 							'</div>' +
 							'<div class = "col-lg-2">' +
 								'<i class="fa fa-remove"></i>' +

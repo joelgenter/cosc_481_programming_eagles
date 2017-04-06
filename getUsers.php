@@ -12,7 +12,7 @@ if ($stmt = $conn->prepare($query)) {
     while ($stmt->fetch()) {
         $user = [
             "username" => $username,
-            "isAdmin" => ($type == "Admin" ? TRUE : FALSE)
+            "type" => $type
         ];
         array_push($users, $user);
     }
