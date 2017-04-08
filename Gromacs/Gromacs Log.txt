@@ -1,0 +1,71 @@
+ 1760  gmx pdb2gmx -f mod_UHRF1TTD-PHD.pdb -o UHRF1.gro -water spc
+ 1767  sudo cp -r /home/jginnard/gromos54a7.ff ./
+ 1769  cd /home/gromacs/simulations/run1
+ 1804  sudo gmx pdb2gmx -f UHRF1_TTD-PHD_No_Zinc.pdb -o UHRF1.gro -water spc -ter -missing
+ 1805  gmx editconf -f UHRF1.gro -o newbox.gro -bt dodecahedron -d 1.0
+ 1806  gmx solvate -cp newbox.gro -cs spc216.gro -p topol.top -o solv.gro
+ 1807  wget http://www.bevanlab.biochem.vt.edu/Pages/Personal/justin/gmx-tutorials/complex/Files/em.mdp
+ 1810  wget http://www.bevanlab.biochem.vt.edu/Pages/Personal/justin/gmx-tutorials/complex/Files/em_real.mdp
+ 1814  gmx grompp -f em.mdp -c solv.gro -p topol.top -o ions.tpr
+ 1815  gmx genion -s ions.tpr -o solv_ions.gro -p topol.top -pname NA -nname ZN -nn 3
+ 1816  nano mdout.mdp
+ 1817  nano em_real.mdp
+ 1818  gmx grompp -f em_real.mdp -c solv_ions.gro -p topol.top -o em.tpr
+ 1819  gmx grompp -f em_real.mdp -p topol.top -o em.tpr
+ 1820  gmx grompp -f em_real.mdp -c solv_ions.gro -p topol.top -o em.tpr
+ 1821  gmx genion -s ions.tpr -o solv_ions.gro -p topol.top -pname NZ 3 -nname NA -nn 0
+ 1822  gmx genion -s ions.tpr -o solv_ions.gro -p topol.top -pname ZN -nname NA -nn 0
+ 1823  gmx grompp -f em_real.mdp -c solv_ions.gro -p topol.top -o em.tpr
+ 1824  gmx mdrun -v -deffnm em
+ 1825  wget http://www.bevanlab.biochem.vt.edu/Pages/Personal/justin/gmx-tutorials/complex/Files/nvt.mdp
+ 1826  sudo nano nvt.mdp
+ 1827  gmx grompp -f nvt.mdp -c em.gro -p topol.top -n index.ndx -o nvt.tpr
+ 1828  gmx make_ndx -f em.gro -o index.ndx
+ 1829  gmx grompp -f nvt.mdp -c em.gro -p topol.top -n index.ndx -o nvt.tpr
+ 1830  sudo nano nvt.mdp
+ 1831  gmx grompp -f nvt.mdp -c em.gro -p topol.top -n index.ndx -o nvt.tpr
+ 1832  sudo nano nvt.mdp
+ 1833  gmx make_ndx -f em.gro -o index.ndx
+ 1834  sudo nano nvt.mdp
+ 1835  gmx grompp -f nvt.mdp -c em.gro -p topol.top -n index.ndx -o nvt.tpr
+ 1836  sudo nano nvt.mdp
+ 1837  gmx grompp -f nvt.mdp -c em.gro -p topol.top -n index.ndx -o nvt.tpr
+ 1838  sudo nano nvt.mdp
+ 1839  gmx grompp -f nvt.mdp -c em.gro -p topol.top -n index.ndx -o nvt.tpr
+ 1840  gmx make_ndx -f em.gro -o index.ndx
+ 1841  sudo nano nvt.mdp
+ 1842  gmx grompp -f nvt.mdp -c em.gro -p topol.top -n index.ndx -o nvt.tpr
+ 1843  gmx mdrun -deffnm nvt
+ 1844  wget http://www.bevanlab.biochem.vt.edu/Pages/Personal/justin/gmx-tutorials/complex/Files/npt.mdp
+ 1845  nano npt.mdp
+ 1846  sudo nano nvt.mdp
+ 1847  nano npt.mdp
+ 1848  gmx grompp -f npt.mdp -c nvt.gro -t nvt.cpt -p topol.top -n index.ndx -o npt.tpr
+ 1860  sudo nano /var/log/auth.log
+ 1880  cd /home/gromacs/simulations/run1
+ 1882  gmx energy -f em.edr -o potential.xvg
+ 1883  gmx energy -f nvt.edr -o temperature.xvg
+ 1884  gmx energy -f npt.edr -o pressure.xvg
+ 1885  gmx energy -f npt.edr -o density.xvg
+ 1886  gmx trjconv -s md_0_1.tpr -f md_0_1.xtc -o md_0_1_noPBC.xtc -pbc mol -ur compact
+ 1887  gmx rms -s md_0_1.tpr -f md_0_1_noPBC.xtc -o rmsd.xvg -tu ns
+ 1888  gmx rms -s em.tpr -f md_0_1_noPBC.xtc -o rmsd_xtal.xvg -tu ns
+ 1889  gmx gyrate -s md_0_1.tpr -f md_0_1_noPBC.xtc -o gyrate.xvg
+ 1891  gmx trjconv -f md_0_1.gro -o md_0_1.pdb
+ 1893  editconf -f md_0_1.gro -o md_0_1 pdb
+ 1894  gmx editconf -f md_0_1.gro -o md_0_1 pdb
+ 1895  gmx editconf -f md_0_1.gro -o md_0_1.pdb
+ 1922  sudo nano md.mdp
+ 1923  sudo nano md_0_1.log
+ 1924  nano npt.tpr
+ 1925  sudo nano md.mdp
+ 1926  tpbconv -s md_0_1.tpr -extend 2000 -o extended_sim.tpr
+ 1927  gmx tpbconv -s md_0_1.tpr -extend 2000 -o extended_sim.tpr
+ 1930  gmx tpbconv -s md_0_1.tpr -extend 2000 -o next.tpr
+ 1934  sudo gmx tpbconv -s md_0_1.tpr -extend 2000 -o next.tpr
+ 1936  gmx tpbconv -s md_0_1.tpr -extend 2000 -o next.tpr
+ 1938  sudo nano md.mdp
+ 1939  grompp -f md.mdp -c md_0_1.tpr -o new.tpr -t md_0_1.cpt
+ 1940  gmx grompp -f md.mdp -c md_0_1.tpr -o new.tpr -t md_0_1.cpt
+ 1941  gmx mdrun -s new.tpr
+
