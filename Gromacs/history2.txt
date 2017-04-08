@@ -1,0 +1,1000 @@
+ 1003  ls
+ 1004  sudo gmx grompp -f em.mdp -c solv.gro -p topol.top -o ions.tpr
+ 1005  cd ..
+ 1006  cd test2
+ 1007  ls
+ 1008  cd amber99sb.ff
+ 1009  ls
+ 1010  sudo nano M3L.itp
+ 1011  cd ..
+ 1012  cd test3
+ 1013  ls
+ 1014  cd amber99sb.ff
+ 1015  ls
+ 1016  sudo nano M3L.itp
+ 1017  cd ..
+ 1018  ls
+ 1019  cd test4
+ 1020  ls
+ 1021  cd amber99sb.ff
+ 1022  ls
+ 1023  sudo nano M3L.itp
+ 1024  cd ..
+ 1025  cd test5
+ 1026  ls
+ 1027  cd amber99sb.ff
+ 1028  ls
+ 1029  sudo nano urea.itp
+ 1030  sudo nano M3L.itp
+ 1031  cd ..
+ 1032  sudo gmx grompp -f em.mdp -c solv.gro -p topol.top -o ions.tpr
+ 1033  sudo nano M3L.itp
+ 1034  ls
+ 1035  cd amber99sb.ff
+ 1036  ls
+ 1037  sudo nano atomtypes.atp
+ 1038  sudo nano ffnonbonded.itp
+ 1039  cd ..
+ 1040  sudo gmx grompp -f em.mdp -c solv.gro -p topol.top -o ions.tpr
+ 1041  ls
+ 1042  cd amber99sb.ff
+ 1043  ls
+ 1044  sudo nano ffnonbonded.itp
+ 1045  cd ..
+ 1046  sudo gmx grompp -f em.mdp -c solv.gro -p topol.top -o ions.tpr
+ 1047  cd amber99sb.ff
+ 1048  sudo nano ffnonbonded.itp
+ 1049  cd ..
+ 1050  ls
+ 1051  sudo gmx grompp -f em.mdp -c solv.gro -p topol.top -o ions.tpr
+ 1052  sudo gmx pdb2gmx -f 3ASK.pdb -o 3ASK.gro -water spc
+ 1053  ls
+ 1054  cd amber99sb.ff
+ 1055  ls
+ 1056  cd ..
+ 1057  ls
+ 1058  sudo rm -r amber99sb.ff
+ 1059  cd test5
+ 1060  ls
+ 1061  sudo cp -r amber99sb.ff ..
+ 1062  cd ..
+ 1063  ls
+ 1064  sudo rm -r test5
+ 1065  ls
+ 1066  cd
+ 1067  clear
+ 1068  cd /media
+ 1069  ls
+ 1070  cd bay1
+ 1071  ls
+ 1072  logout
+ 1073  htop
+ 1074  logout
+ 1075  htop
+ 1076  logout
+ 1077  ssh 192.168.75.107
+ 1078  logout
+ 1079  update
+ 1080  clear
+ 1081  htop
+ 1082  logout
+ 1083  cd /home/gromacs/test5
+ 1084  cd /home/gromacs/test4
+ 1085  ls
+ 1086  sudo gmx editconf -f 3ASK.gro -o newbox.gro -bt dodecahedron -d 1.0
+ 1087  sudo gmx pdb2gmx -f 3ASK.pdb -o 3ASK.gro -water spc
+ 1088  mail
+ 1089  clear
+ 1090  htop
+ 1091  quit
+ 1092  logouty
+ 1093  logout
+ 1094  htop
+ 1095  ssh 192.168.75.107
+ 1096  logout
+ 1097  clear
+ 1098  htop
+ 1099  logout
+ 1100  ls
+ 1101  sudo rm 4gy5.pdb
+ 1102  sudo rm 4GY5.pdb
+ 1103  sudo rm aminoacids.rtp
+ 1104  sudo rm M3L.itp
+ 1105  sudo rm M3L.pdb
+ 1106  sudo rm mbox
+ 1107  ls
+ 1108  mkdir machinelearning
+ 1109  ls
+ 1110  cd machinelearning
+ 1111  ls
+ 1112  htop
+ 1113  nano test.py
+ 1114  sudo chmod +x test.py
+ 1115  test.py
+ 1116  ./test.py
+ 1117  nano test.py
+ 1118  ./test.py
+ 1119  nano test.py
+ 1120  ./test.py
+ 1121  python ./test.py
+ 1122  sudo apt-get install python-pip python-dev
+ 1123  pip3 install tensorflow
+ 1124  sudo apt install python3-pip
+ 1125  pip3 install tensorflow
+ 1126  pip install --upgrade pip
+ 1127  sudo pip install --upgrade pip
+ 1128  pip install --upgrade pip
+ 1129  ls
+ 1130  python
+ 1131  pip3 install tensorflow
+ 1132  update
+ 1133  sudo apt autoremove
+ 1134  update
+ 1135  sudo apt-get install linux-generic
+ 1136  pip3 install tensorflow
+ 1137  pip3 -V
+ 1138  pip3 install tensorflow
+ 1139  pip install --upgrade pip3
+ 1140  pip install --upgrade pip
+ 1141  sudo pip3 install --upgrade
+ 1142  pip3 install --upgrade
+ 1143  sudo pip3 install --upgrade
+ 1144  cd
+ 1145  sudo pip3 install --upgrade
+ 1146  cd /
+ 1147  sudo pip3 install --upgrade
+ 1148  pip install --upgrade pip
+ 1149  cd
+ 1150  ls
+ 1151  cd machinelearning
+ 1152  ls
+ 1153  python
+ 1154  sudo apt-get install python-pip python-dev python-virtualenv
+ 1155  clear
+ 1156  htop
+ 1157  ssh 192.168.75.107
+ 1158  logout
+ 1159  mail
+ 1160  clear
+ 1161  htop
+ 1162  cd /home/machinelearning
+ 1163  cd machinelearning
+ 1164  ls
+ 1165  python test.py
+ 1166  python -V
+ 1167  sudo apt-get install python 3.5
+ 1168  update
+ 1169  sudo apt-get install python3.5
+ 1170  python -V
+ 1171  pip install tensorflow
+ 1172  sudo pip install tensorflow
+ 1173  python
+ 1174  ls
+ 1175  sudo nano tensor1.py
+ 1176  python sudo nano tensor1.py
+ 1177  python tensor1.py
+ 1178  sudo nano tensor1.py
+ 1179  python tensor1.py
+ 1180  sudo nano tensor1.py
+ 1181  python tensor1.py
+ 1182  python /usr/local/lib/python2.7/dist-packages/tensorflow/tensorboard/tensorboard.py --logdir=/home/user/Documents/.../logdir
+ 1183  htop
+ 1184  ssh jginnard@db2.emich.edu
+ 1185  logout
+ 1186  ls
+ 1187  acpype -i ben.mol2 -c user
+ 1188  locate acpype
+ 1189  find acpype
+ 1190  locate amber16
+ 1191  find amber16
+ 1192  cd /
+ 1193  ls
+ 1194  cd etc
+ 1195  ls
+ 1196  cd
+ 1197  locate AMber16/doc/Amber16.pdf
+ 1198  find AMber16/doc/Amber16.pdf
+ 1199  find Amber16/doc/Amber16.pdf
+ 1200  find Amber16.pdf
+ 1201  locate Amber16.pdf
+ 1202  find amber
+ 1203  locate amber
+ 1204  cd /home.gromacs/test5
+ 1205  cd /home/gromacs/test5
+ 1206  ls
+ 1207  gmx acpype -i ben.mol2 -c user
+ 1208  cd ..
+ 1209  ls
+ 1210  cd AMberTools
+ 1211  cd AmberTools
+ 1212  ls
+ 1213  cd amber16
+ 1214  ls
+ 1215  cd doc
+ 1216  ls
+ 1217  sudo nano Amber16.pdf
+ 1218  htop
+ 1219  logout
+ 1220  exit
+ 1221  mail
+ 1222  clear
+ 1223  cd /home/gromacs
+ 1224  ls
+ 1225  sudo mkdir test5
+ 1226  cd test5
+ 1227  ls
+ 1228  sudo wget https://files.rcsb.org/download/3ATL.pdb
+ 1229  ls
+ 1230  cd ..
+ 1231  ls
+ 1232  sudo cp amber99sb.ff ./test5
+ 1233  sudo cp -r amber99sb.ff ./test5
+ 1234  cd test5
+ 1235  ls
+ 1236  cd amber99sb.ff
+ 1237  ls
+ 1238  sudo nano aminoacids.rtp
+ 1239  cd ..
+ 1240  ls
+ 1241  grep
+ 1242  grep --help
+ 1243  ls
+ 1244  sudo grep 'ATOM ' 3ATL.pdb > protein.pdb
+ 1245  ls
+ 1246  sudo su
+ 1247  logout
+ 1248  update
+ 1249  sudo ufw allow 6006
+ 1250  logout
+ 1251  python /usr/local/lib/python2.7/dist-packages/tensorflow/tensorboard/tensorboard.py --logdir=/home/user/Documents/.../logdir
+ 1252  logout
+ 1253  cd /home/gromacs/test6
+ 1254  ls
+ 1255  gmx pdb2gmx -f 4gy5-Mutant.pdb -o 4gy5.gro -water spc
+ 1256  gmx editconf -f 4gy5.gro -o newbox.gro -bt dodecahedron -d 1.0
+ 1257  gmx solvate -cp newbox.gro -cs spc216.gro -p topol.top -o solv.gro
+ 1258  gmx grompp -f em.mdp -c solv.gro -p topol.top -o ions.tpr
+ 1259  wget http://www.bevanlab.biochem.vt.edu/Pages/Personal/justin/gmx-tutorials/complex/Files/em.mdp
+ 1260  gmx grompp -f em.mdp -c solv.gro -p topol.top -o ions.tpr
+ 1261  ls
+ 1262  cd amber99sb.ff
+ 1263  ls
+ 1264  nano M3L.itp
+ 1265  cd ..
+ 1266  ls
+ 1267  nano 4gy5-Mutant.pdb
+ 1268  grep M3L 4gy5-Mutant.pdb > M3L.pdb
+ 1269  ls
+ 1270  nano M3L.pdb
+ 1271  gmx pdb2gmx -f 4gy5-Mutant.pdb -o 4gy5.gro -water spc
+ 1272  ls
+ 1273  nano 4gy5-Mutant.pdb
+ 1274  gmx pdb2gmx -f 4gy5-Mutant.pdb -o 4gy5.gro -water spc
+ 1275  logout
+ 1276  mail
+ 1277  clear
+ 1278  cd /home/gromacs
+ 1279  ls
+ 1280  cd AmberTools
+ 1281  ls
+ 1282  export AMBERHOME=/home/gromacs/AmberTools/amber16
+ 1283  setenv AMBERHOME=/home/gromacs/AmberTools/amber16
+ 1284  sudo apt-get install csh flex gfortran g++ xorg-dev zlib1g-dev libbz2-dev patch python-tk python-matplotlib
+ 1285  ls
+ 1286  cd amber16
+ 1287  cd $AMBERHOME
+ 1288  ./configure --help
+ 1289  ./configure gnu
+ 1290  sudo ./configure gnu
+ 1291  $AMBERHOME
+ 1292  mail
+ 1293  clear
+ 1294  htop
+ 1295  logout
+ 1296  mail
+ 1297  clear
+ 1298  logout
+ 1299  htop
+ 1300  logout
+ 1301  mail
+ 1302  clear
+ 1303  htop
+ 1304  clear
+ 1305  htop
+ 1306  logout
+ 1307  ls
+ 1308  cd /home/gromacs
+ 1309  ls
+ 1310  wget http://vienna-ptm.univie.ac.at/?page_id=100
+ 1311  mail
+ 1312  clear
+ 1313  cd /home/gromacs
+ 1314  ls
+ 1315  mkdir simulations
+ 1316  cd simulations
+ 1317  ls
+ 1318  mkdir run1
+ 1319  ls
+ 1320  cd run1
+ 1321  ls
+ 1322  gmx pdb2gmx -f mod_UHRF1TTD-PHD.pdb -o UHRF1.gro -water spc
+ 1323  locate gromacs
+ 1324  cd /usr/sahre/gromacs/top
+ 1325  cd /usr/share/groamcs/top
+ 1326  cd /usr/share/gromacs/top
+ 1327  ls
+ 1328  sudo rm -r gromos54a7.ff
+ 1329  sudo cp -r /home/jginnard/gromos54a7.ff ./
+ 1330  ls
+ 1331  cd /home/gromacs/simulations/run1
+ 1332  ls
+ 1333  sudo gmx pdb2gmx -f mod_UHRF1TTD-PHD.pdb -o UHRF1.gro -water spc
+ 1334  ls
+ 1335  sudo gmx pdb2gmx -f mod_UHRF1.pdb -o UHRF1.gro -water spc
+ 1336  ls
+ 1337  sudo gmx pdb2gmx -f mod2_UHRF1.pdb -o UHRF1.gro -water spc
+ 1338  sudo gmx pdb2gmx -f mod1_UHRF1.pdb -o UHRF1.gro -water spc
+ 1339  htop
+ 1340  ls
+ 1341  sudo gmx pdb2gmx -f mod_UHRF1b.pdb -o UHRF1.gro -water spc
+ 1342  sudo gmx pdb2gmx -f mod_UHRF1c.pdb -o UHRF1.gro -water spc
+ 1343  sudo gmx pdb2gmx -f mod_UHRF1d.pdb -o UHRF1.gro -water spc
+ 1344  sudo gmx pdb2gmx -f mod_UHRF1d.pdb -o UHRF1.gro -water spc -ignh
+ 1345  sudo gmx pdb2gmx -f mod_UHRF1d.pdb -o UHRF1.gro -water spc
+ 1346  sudo gmx pdb2gmx -f mod_UHRF1e.pdb -o UHRF1.gro -water spc
+ 1347  logout
+ 1348  cd /home/gromacs/simulations/run1
+ 1349  ls
+ 1350  sudo gmx pdb2gmx -f mod_UHRF1f.pdb -o UHRF1.gro -water spc
+ 1351  sudo gmx pdb2gmx -f mod_UHRF1f.pdb -o UHRF1.gro -water spc -maxwarn 1
+ 1352  sudo gmx pdb2gmx -f mod_UHRF1f.pdb -o UHRF1.gro -water spc
+ 1353  sudo gmx pdb2gmx -f mod_UHRF1g.pdb -o UHRF1.gro -water spc
+ 1354  sudo gmx pdb2gmx -f mod_UHRF1h.pdb -o UHRF1.gro -water spc
+ 1355  htop
+ 1356  logout
+ 1357  cd /home/gromacs/simulations/run1
+ 1358  ls
+ 1359  sudo gmx pdb2gmx -f mod_UHRF1h.pdb -o UHRF1.gro -water spc -ter
+ 1360  ls
+ 1361  sudo nano mod_UHRF1h.pdb
+ 1362  ls
+ 1363  sudo gmx pdb2gmx -f mod_UHRF1_TTD-PHD_Unmodified_H3.pdb -o UHRF1.gro -water spc -ter
+ 1364  sudo gmx pdb2gmx -f mod_UHRF1_TTD-PHD_Unmodified_H3.pdb -o UHRF1.gro -water spc -ter -missing
+ 1365  ls
+ 1366  sudo gmx pdb2gmx -f UHRF1_TTD-PHD_No_Zinc.pdb -o UHRF1.gro -water spc -ter -missing
+ 1367  gmx editconf -f UHRF1.gro -o newbox.gro -bt dodecahedron -d 1.0
+ 1368  gmx solvate -cp newbox.gro -cs spc216.gro -p topol.top -o solv.gro
+ 1369  wget http://www.bevanlab.biochem.vt.edu/Pages/Personal/justin/gmx-tutorials/complex/Files/em.mdp
+ 1370  gmx genion -s ions.tpr -o solv_ions.gro -p topol.top -pname NA -nname ZN -nn 3
+ 1371  ls
+ 1372  wget http://www.bevanlab.biochem.vt.edu/Pages/Personal/justin/gmx-tutorials/complex/Files/em_real.mdp
+ 1373  gmx grompp -f em_real.mdp -c solv_ions.gro -p topol.top -o em.tpr
+ 1374  gmx grompp -f em_real.mdp -p topol.top -o em.tpr
+ 1375  gmx genion -s ions.tpr -o solv_ions.gro -p topol.top -pname NA -nname ZN -nn 6
+ 1376  gmx grompp -f em.mdp -c solv.gro -p topol.top -o ions.tpr
+ 1377  gmx genion -s ions.tpr -o solv_ions.gro -p topol.top -pname NA -nname ZN -nn 3
+ 1378  nano mdout.mdp
+ 1379  nano em_real.mdp
+ 1380  gmx grompp -f em_real.mdp -c solv_ions.gro -p topol.top -o em.tpr
+ 1381  gmx grompp -f em_real.mdp -p topol.top -o em.tpr
+ 1382  gmx grompp -f em_real.mdp -c solv_ions.gro -p topol.top -o em.tpr
+ 1383  gmx genion -s ions.tpr -o solv_ions.gro -p topol.top -pname NZ 3 -nname NA -nn 0
+ 1384  gmx genion -s ions.tpr -o solv_ions.gro -p topol.top -pname ZN -nname NA -nn 0
+ 1385  gmx grompp -f em_real.mdp -c solv_ions.gro -p topol.top -o em.tpr
+ 1386  gmx mdrun -v -deffnm em
+ 1387  wget http://www.bevanlab.biochem.vt.edu/Pages/Personal/justin/gmx-tutorials/complex/Files/nvt.mdp
+ 1388  sudo nano nvt.mdp
+ 1389  gmx grompp -f nvt.mdp -c em.gro -p topol.top -n index.ndx -o nvt.tpr
+ 1390  gmx make_ndx -f em.gro -o index.ndx
+ 1391  gmx grompp -f nvt.mdp -c em.gro -p topol.top -n index.ndx -o nvt.tpr
+ 1392  sudo nano nvt.mdp
+ 1393  gmx grompp -f nvt.mdp -c em.gro -p topol.top -n index.ndx -o nvt.tpr
+ 1394  sudo nano nvt.mdp
+ 1395  gmx make_ndx -f em.gro -o index.ndx
+ 1396  sudo nano nvt.mdp
+ 1397  gmx grompp -f nvt.mdp -c em.gro -p topol.top -n index.ndx -o nvt.tpr
+ 1398  sudo nano nvt.mdp
+ 1399  gmx grompp -f nvt.mdp -c em.gro -p topol.top -n index.ndx -o nvt.tpr
+ 1400  sudo nano nvt.mdp
+ 1401  gmx grompp -f nvt.mdp -c em.gro -p topol.top -n index.ndx -o nvt.tpr
+ 1402  gmx make_ndx -f em.gro -o index.ndx
+ 1403  sudo nano nvt.mdp
+ 1404  gmx grompp -f nvt.mdp -c em.gro -p topol.top -n index.ndx -o nvt.tpr
+ 1405  gmx mdrun -deffnm nvt
+ 1406  wget http://www.bevanlab.biochem.vt.edu/Pages/Personal/justin/gmx-tutorials/complex/Files/npt.mdp
+ 1407  nano npt.mdp
+ 1408  sudo nano nvt.mdp
+ 1409  nano npt.mdp
+ 1410  gmx grompp -f npt.mdp -c nvt.gro -t nvt.cpt -p topol.top -n index.ndx -o npt.tpr
+ 1411  screen
+ 1412  screen -r
+ 1413  screen
+ 1414  screen -r
+ 1415  screen ls
+ 1416  screen -ls
+ 1417  screen -r 15050.pts-0.ginnard-server2
+ 1418  screen -r
+ 1419  htop
+ 1420  screen -ls
+ 1421  htop
+ 1422  sudo nano /var/log/auth.log
+ 1423  htop
+ 1424  logout
+ 1425  mail
+ 1426  clear
+ 1427  screen -ls
+ 1428  screen -r
+ 1429  screen -ls
+ 1430  htop
+ 1431  watch sensors
+ 1432  htop
+ 1433  screen -ls
+ 1434  htop
+ 1435  watch sensors
+ 1436  htop
+ 1437  watch sensors
+ 1438  htop
+ 1439  screen -ls
+ 1440  screen -r
+ 1441  logout
+ 1442  cd /home/gromacs/simulations/run1
+ 1443  ls
+ 1444  gmx energy -f em.edr -o potential.xvg
+ 1445  gmx energy -f nvt.edr -o temperature.xvg
+ 1446  gmx energy -f npt.edr -o pressure.xvg
+ 1447  gmx energy -f npt.edr -o density.xvg
+ 1448  gmx trjconv -s md_0_1.tpr -f md_0_1.xtc -o md_0_1_noPBC.xtc -pbc mol -ur compact
+ 1449  gmx rms -s md_0_1.tpr -f md_0_1_noPBC.xtc -o rmsd.xvg -tu ns
+ 1450  gmx rms -s em.tpr -f md_0_1_noPBC.xtc -o rmsd_xtal.xvg -tu ns
+ 1451  gmx gyrate -s md_0_1.tpr -f md_0_1_noPBC.xtc -o gyrate.xvg
+ 1452  ls
+ 1453  gmx trjconv -f md_0_1.gro -o md_0_1.pdb
+ 1454  -------------------------------------
+ 1455  editconf -f md_0_1.gro -o md_0_1 pdb
+ 1456  gmx editconf -f md_0_1.gro -o md_0_1 pdb
+ 1457  gmx editconf -f md_0_1.gro -o md_0_1.pdb
+ 1458  htop
+ 1459  screen -ls
+ 1460  screen -r
+ 1461  clear
+ 1462  htop
+ 1463  cd /home/gromacs/simulations/run1
+ 1464  ls
+ 1465  screen -r
+ 1466  ls
+ 1467  logout
+ 1468  cd /var/www
+ 1469  ls
+ 1470  cd html
+ 1471  ls
+ 1472  cd ProteinSimulations
+ 1473  ls
+ 1474  chmod +x simulation.php
+ 1475  cd /home/gromacs/simulations/run1
+ 1476  ls
+ 1477  screen -r
+ 1478  htop
+ 1479  logout
+ 1480  screen -ls
+ 1481  screen -r
+ 1482  cd /home/gromacs/simulations/run1
+ 1483  ls
+ 1484  sudo nano md.mdp
+ 1485  sudo nano md_0_1.log
+ 1486  nano npt.tpr
+ 1487  sudo nano md.mdp
+ 1488  tpbconv -s md_0_1.tpr -extend 2000 -o extended_sim.tpr
+ 1489  gmx tpbconv -s md_0_1.tpr -extend 2000 -o extended_sim.tpr
+ 1490  screen -r
+ 1491  ls
+ 1492  gmx tpbconv -s md_0_1.tpr -extend 2000 -o next.tpr
+ 1493  ls
+ 1494  locate next.tpr
+ 1495  find next.tpr
+ 1496  sudo gmx tpbconv -s md_0_1.tpr -extend 2000 -o next.tpr
+ 1497  ls
+ 1498  gmx tpbconv -s md_0_1.tpr -extend 2000 -o next.tpr
+ 1499  ls
+ 1500  sudo nano md.mdp
+ 1501  grompp -f md.mdp -c md_0_1.tpr -o new.tpr -t md_0_1.cpt
+ 1502  gmx grompp -f md.mdp -c md_0_1.tpr -o new.tpr -t md_0_1.cpt
+ 1503  gmx mdrun -s new.tpr
+ 1504  htop
+ 1505  screen -r
+ 1506  htop
+ 1507  screen -ls
+ 1508  logout
+ 1509  htop
+ 1510  cd /home/gromacs/simulations/run1
+ 1511  ls
+ 1512  nano md.log
+ 1513  mail
+ 1514  clear
+ 1515  lspci
+ 1516  mail
+ 1517  clear
+ 1518  logout
+ 1519  htop
+ 1520  screen -r
+ 1521  cd /home/gromacs/simulations/run1
+ 1522  ls
+ 1523  gmx editconf -f confout.gro -o 2ns_UHRF1.pdb
+ 1524  cd /var/www/html/jginnard
+ 1525  ls
+ 1526  sudo chmod +x mailer.php
+ 1527  nano mailer.php
+ 1528  clear
+ 1529  htop
+ 1530  logout
+ 1531  mail
+ 1532  clear
+ 1533  logout
+ 1534  sudo nano /etc/network/interfaces
+ 1535  clear
+ 1536  htop
+ 1537  sudo netstat -peanut
+ 1538  clear
+ 1539  htop
+ 1540  loogut
+ 1541  logout
+ 1542  cd /home/gormacs/simulations/run1
+ 1543  cd /home/gromacs/simulations/run1
+ 1544  ls
+ 1545  nano md.log
+ 1546  logout
+ 1547  update
+ 1548  clear
+ 1549  htop
+ 1550  logout
+ 1551  cd /var/www/html/ProteinSImulations
+ 1552  cd /var/www/html/ProteinSimulations
+ 1553  ls
+ 1554  sudo chmod +x login.php
+ 1555  mysql -p
+ 1556  mysql proteinSim -p
+ 1557  mysql -u proteinSim -p
+ 1558  ls
+ 1559  sudo chmod +x db_connection.php
+ 1560  ls
+ 1561  sudo chmod +x queue.php
+ 1562  logout
+ 1563  cd /home/gromacs/simulaitions
+ 1564  cd /home/gromacs
+ 1565  ls
+ 1566  cd simulations
+ 1567  ls
+ 1568  mkdir run2
+ 1569  cd run1
+ 1570  ls
+ 1571  cp UHRF1_TTD-PHD_No_Zinc.pdb ../run2
+ 1572  cp  ../run2
+ 1573  sudo nano /var/log/auth.log
+ 1574  screen -r
+ 1575  > history
+ 1576  ls
+ 1577  history
+ 1578  history > history.txt
+ 1579  ls
+ 1580  nano history.txt
+ 1581  sudo rm history
+ 1582  ls
+ 1583  cd ..
+ 1584  cd run2
+ 1585  ls
+ 1586  sudo gmx pdb2gmx -f UHRF1_TTD-PHD_No_Zinc.pdb -o UHRF1.gro -water spc -ter -missing
+ 1587  gmx editconf -f complex.gro -o newbox.gro -bt dodecahedron -d 1.5
+ 1588  ls
+ 1589  sudo gmx editconf -f complex.gro -o newbox.gro -bt dodecahedron -d 1.5
+ 1590  sudo gmx editconf -f UHRF1.gro -o newbox.gro -bt dodecahedron -d 1.5
+ 1591  sudo gmx solvate -cp newbox.gro -cs spc216.gro -p topol.top -o solv.gro
+ 1592  ls
+ 1593  wget http://www.bevanlab.biochem.vt.edu/Pages/Personal/justin/gmx-tutorials/complex/Files/em.mdp
+ 1594  wget http://www.bevanlab.biochem.vt.edu/Pages/Personal/justin/gmx-tutorials/complex/Files/em_real.mdp
+ 1595  sudo gmx grompp -f em.mdp -c solv.gro -p topol.top -o ions.tpr
+ 1596  gmx genion -s ions.tpr -o solv_ions.gro -p topol.top -pname NA -nname ZN -nn 3
+ 1597  gmx genion -s ions.tpr -o solv_ions.gro -p topol.top -pname ZN -nname NA -nn 0
+ 1598  gmx grompp -f em_real.mdp -c solv_ions.gro -p topol.top -o em.tpr
+ 1599  sudo nano em_real.mdp
+ 1600  ls
+ 1601  sudo rm em.mdp em_real.mdp
+ 1602  ls
+ 1603  cp ../run1/em.mdp
+ 1604  cp ../run1/em.mdp ./
+ 1605  cp ../run1/em_real.mdp ./
+ 1606  ls
+ 1607  gmx grompp -f em.mdp -c solv.gro -p topol.top -o ions.tpr
+ 1608  ls
+ 1609  rm #ions.tpr.1#
+ 1610  sudo rm #ions.tpr.1#
+ 1611  sudo rm '#ions.tpr.1#'
+ 1612  ls
+ 1613  sudo rm 'mdout.mdp'
+ 1614  sudo rm 'mdout.mdp.1'
+ 1615  sudo rm '#mdout.mdp.1#'
+ 1616  sudo rm '#mdout.mdp.2#'
+ 1617  ls
+ 1618  sudo rm '#topol.top.1#'
+ 1619  ls
+ 1620  gmx grompp -f em.mdp -c solv.gro -p topol.top -o ions.tpr
+ 1621  Using a fourier grid of 80x80x80, spacing 0.118 0.1
+ 1622  gmx genion -s ions.tpr -o solv_ions.gro -p topol.top -pname ZN -nname NA -nn 0
+ 1623  gmx grompp -f em_real.mdp -c solv_ions.gro -p topol.top -o em.tpr
+ 1624  gmx mdrun -v -deffnm em
+ 1625  wget http://www.bevanlab.biochem.vt.edu/Pages/Personal/justin/gmx-tutorials/complex/Files/nvt.mdp
+ 1626  nano nvt.mdp
+ 1627  sudo rm nvt.mdp
+ 1628  sudo cp ../run1/nvt.mdp ./
+ 1629  sudo rm nvt.mdp
+ 1630  sudo cp ../run1/nvt.mdp ./
+ 1631  nano nvt.mdp
+ 1632  sudo nano nvt.mdp
+ 1633  gmx grompp -f npt.mdp -c nvt.gro -t nvt.cpt -p topol.top -n index.ndx -o npt.tpr
+ 1634  sudo gmx grompp -f npt.mdp -c nvt.gro -t nvt.cpt -p topol.top -n index.ndx -o npt.tpr
+ 1635  gmx make_ndx -f em.gro -o index.ndx
+ 1636  ls
+ 1637  sudo rm index.ndx
+ 1638  sudo rm '#index.ndx#'
+ 1639  sudo rm '#index.ndx.1#'
+ 1640  ls
+ 1641  gmx make_ndx -f em.gro -o index.ndx
+ 1642  gmx grompp -f nvt.mdp -c em.gro -p topol.top -n index.ndx -o nvt.tpr
+ 1643  sudo gmx grompp -f nvt.mdp -c em.gro -p topol.top -n index.ndx -o nvt.tpr
+ 1644  nano nvt.mdp
+ 1645  sudo nano nvt.mdp
+ 1646  sudo gmx grompp -f nvt.mdp -c em.gro -p topol.top -n index.ndx -o nvt.tpr
+ 1647  sudo nano nvt.mdp
+ 1648  ls
+ 1649  nano index.ndx
+ 1650  mail
+ 1651  clear
+ 1652  cd /home/gromacs/ls
+ 1653  ls
+ 1654  cd /home/gromacs/
+ 1655  ls
+ 1656  cd simulations
+ 1657  ls
+ 1658  cp run2 ./default
+ 1659  cp -r run2 ./default
+ 1660  ls
+ 1661  cd run2
+ 1662  ls
+ 1663  sudo gmx pdb2gmx -f UHRF1_TTD-PHD_No_Zinc.pdb -o UHRF1.gro -water spc -ter -missing
+ 1664  sudo gmx editconf -f UHRF1.gro -o newbox.gro -bt dodecahedron -d 1.5
+ 1665  sudo gmx solvate -cp newbox.gro -cs spc216.gro -p topol.top -o solv.gro
+ 1666  gmx grompp -f em.mdp -c solv.gro -p topol.top -o ions.tpr
+ 1667  gmx genion -s ions.tpr -o solv_ions.gro -p topol.top -pname ZN -nname NA -nn 3
+ 1668  gmx genion -s ions.tpr -o solv_ions.gro -p topol.top -pname ZN -np 3
+ 1669  gmx genion -s ions.tpr -o solv_ions.gro -p topol.top -pname ZN -np 6
+ 1670  gmx grompp -f em_real.mdp -c solv_ions.gro -p topol.top -o em.tpr
+ 1671  sudo gmx mdrun -v -deffnm em
+ 1672  gmx genion -s ions.tpr -o solv_ions.gro -p topol.top -pname ZN -np 3 -nname NA -nn 0
+ 1673  logout
+ 1674  mail
+ 1675  clear
+ 1676  update
+ 1677  sudo apt autoremove
+ 1678  clear
+ 1679  logout
+ 1680  clear
+ 1681  uname -m && cat /etc/*release
+ 1682  lspci | grep -i nvidia
+ 1683  update-pciids
+ 1684  cpu
+ 1685  lscpu
+ 1686  clear
+ 1687  htop
+ 1688  screen
+ 1689  gmx mdrun -deffnm npt
+ 1690  wget http://www.bevanlab.biochem.vt.edu/Pages/Personal/justin/gmx-tutorials/complex/Files/md.mdp
+ 1691  nano md.mdp
+ 1692  clear
+ 1693  gmx grompp -f md.mdp -c npt.gro -t npt.cpt -p topol.top -n index.ndx -o md_0_1.tpr
+ 1694  gmx mdrun -nt -deffnm md_0_1
+ 1695  gmx mdrun -deffnm md_0_1
+ 1696  gmx mdrun -s extended_sim.tpr -cpi md_0_1.cpt -append
+ 1697  ls
+ 1698  gmx mdrun -s new.tpr
+ 1699  gmx mdrun -s new.tpr -append
+ 1700  lspci
+ 1701  lspci | grep -i nvidia
+ 1702  htop
+ 1703  logout
+ 1704  lspci | grep -i nvidia
+ 1705  sudo update-pciids
+ 1706  lspci | grep -i nvidia
+ 1707  gcc --version
+ 1708  uname -r
+ 1709  sudo apt-get install linux-headers-$(uname -r)
+ 1710  sudo dpkg -i cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64.deb
+ 1711  ls
+ 1712  sudo dpkg -i cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64.deb
+ 1713  sudo rm cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64.deb
+ 1714  sudo rm -f cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64.deb
+ 1715  ls
+ 1716  sudo rm -r cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64-deb
+ 1717  ls
+ 1718  sudo wget https://developer.nvidia.com/compute/cuda/8.0/Prod2/local_installers/cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64-deb
+ 1719  md5sum cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64-deb
+ 1720  sudo dpkg -i cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64.deb
+ 1721  `sudo dpkg -i cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64.deb`
+ 1722  sudo dpkg -i cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64.deb
+ 1723  ls
+ 1724  sudo dpkg -i cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64.deb
+ 1725  sudo dpkg -i 'cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64.deb'
+ 1726  ls
+ 1727  sudo dpkg -i cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64-deb
+ 1728  sudo apt-get update
+ 1729  sudo apt-get install cuda
+ 1730  cudo --version
+ 1731  cuda --version
+ 1732  nvcc --version
+ 1733  cudaDriverGetVersion() q
+ 1734  deviceQuery
+ 1735  which nvcc
+ 1736  nvcc -V
+ 1737  nvidia --version
+ 1738  modinfo nv
+ 1739  update
+ 1740  apt-cache search nvidia | grep -P '^nvidia-[0-9]+\s'
+ 1741  nvidia-smi
+ 1742  sudo reboot
+ 1743  mail
+ 1744  clear
+ 1745  lspci
+ 1746  lspci | grep -i nvidia
+ 1747  nvidia
+ 1748  cd /home/gromacs/simulations
+ 1749  cd run2
+ 1750  ls
+ 1751  gmx mdrun -deffnm npt
+ 1752  sudo gmx mdrun -v -deffnm em
+ 1753  ls
+ 1754  htop
+ 1755  mail
+ 1756  clear
+ 1757  htop
+ 1758  sudo gmx pdb2gmx -f UHRF1_TTD-PHD_No_Zinc.pdb -o UHRF1.gro -water spc -ter -missing
+ 1759  ls
+ 1760  cd /home/gromacs/simulations/run2
+ 1761  sudo gmx pdb2gmx -f UHRF1_TTD-PHD_No_Zinc.pdb -o UHRF1.gro -water spc -ter -missing
+ 1762  sudo gmx editconf -f UHRF1.gro -o newbox.gro -bt dodecahedron -d 1.5
+ 1763  sudo gmx solvate -cp newbox.gro -cs spc216.gro -p topol.top -o solv.gro
+ 1764  gmx grompp -f em.mdp -c solv.gro -p topol.top -o ions.tpr
+ 1765  gmx genion -s ions.tpr -o solv_ions.gro -p topol.top -pname ZN -np 3 -nname NA -nn 0
+ 1766  gmx genion -s ions.tpr -o solv_ions.gro -p topol.top -pname ZN -np 6 -nname NA -nn 0
+ 1767  ls
+ 1768  gmx genion -s ions.tpr -o solv_ions.gro -p topol.top -pname ZN -np 6
+ 1769  gmx grompp -f em_real.mdp -c solv_ions.gro -p topol.top -o em.tpr
+ 1770  gmx mdrun -v -deffnm em
+ 1771  gmx make_ndx -f em.gro -o index.ndx
+ 1772  gmx grompp -f nvt.mdp -c em.gro -p topol.top -n index.ndx -o nvt.tpr
+ 1773  ls
+ 1774  sudo rm index.ndx
+ 1775  gmx make_ndx -f em.gro -o index.ndx
+ 1776  gmx grompp -f nvt.mdp -c em.gro -p topol.top -n index.ndx -o nvt.tpr
+ 1777  sudo rm index.ndx
+ 1778  ls
+ 1779  gmx make_ndx -f em.gro -o index.ndx
+ 1780  gmx grompp -f nvt.mdp -c em.gro -p topol.top -n index.ndx -o nvt.tpr
+ 1781  sudo nano nvt.mdp
+ 1782  gmx make_ndx -f em.gro -o index.ndx
+ 1783  ls
+ 1784  sudo rm '#index.ndx.1#'
+ 1785  ls
+ 1786  mail
+ 1787  clear
+ 1788  htop
+ 1789  lspci | grep -i nvidia
+ 1790  lspci
+ 1791  sudo lshw -C display
+ 1792  logout
+ 1793  mail
+ 1794  clear
+ 1795  cd /var/www/html/ProteinSImulations
+ 1796  cd /var/www/html/ProteinSimulations
+ 1797  ls
+ 1798  sudo chmod +x getSimulations.php
+ 1799  ls
+ 1800  sudo chmod +x admin.php modifyQueue.php register.php
+ 1801  ls
+ 1802  clear
+ 1803  ls
+ 1804  sudo chmod +x getUsers.php
+ 1805  ls
+ 1806  clear
+ 1807  ls
+ 1808  clear
+ 1809  cd /home/gromacs/simulations
+ 1810  ls
+ 1811  cd run2
+ 1812  ls
+ 1813  sudo rm index.ndx
+ 1814  ls
+ 1815  sudo gmx make_ndx -f em.gro -o index.ndx
+ 1816  sudo gmx grompp -f nvt.mdp -c em.gro -p topol.top -n index.ndx -o nvt.tpr
+ 1817  sudo nano nvt.mdp
+ 1818  sudo gmx grompp -f nvt.mdp -c em.gro -p topol.top -n index.ndx -o nvt.tpr
+ 1819  sudo nano nvt.mdp
+ 1820  sudo gmx grompp -f nvt.mdp -c em.gro -p topol.top -n index.ndx -o nvt.tpr
+ 1821  sudo nano nvt.mdp
+ 1822  sudo gmx grompp -f nvt.mdp -c em.gro -p topol.top -n index.ndx -o nvt.tpr
+ 1823  sudo nano nvt.mdp
+ 1824  cd /home
+ 1825  ls
+ 1826  cd jginnard
+ 1827  ls
+ 1828  cd machinelearning
+ 1829  ls
+ 1830  python test.py
+ 1831  python tensor1.py
+ 1832  glxinfo
+ 1833  sudo apt install mesa-utils
+ 1834  glxinfo|egrep "OpenGL vendor|OpenGL renderer"
+ 1835  lspci -vnnn | perl -lne 'print if /^\d+\:.+(\[\S+\:\S+\])/' | grep VGA
+ 1836  nvidia-settings
+ 1837  nvidia-settings --help
+ 1838  nvidia-settings -g
+ 1839  nvidia-settings -q screens -q gpus -q framelocks -q vcs -q gvis -q fans -q thermalsensors -q svps -q dpys
+ 1840  clear
+ 1841  htop
+ 1842  cd /home/gromacs/
+ 1843  ls
+ 1844  cd test5
+ 1845  ls
+ 1846  cd ..
+ 1847  ls
+ 1848  cd test6
+ 1849  ls
+ 1850  cd ..
+ 1851  mkdir test7
+ 1852  ls
+ 1853  cd test7
+ 1854  wget http://www.bevanlab.biochem.vt.edu/Pages/Personal/justin/gmx-tutorials/complex/Files/3HTB_clean.pdb
+ 1855  cd ..
+ 1856  ls
+ 1857  cd test4
+ 1858  ls
+ 1859  cd ..
+ 1860  ls
+ 1861  cd test7
+ 1862  ls
+ 1863  gmx pdb2gmx -f 3HTB_clean.pdb -o 3HTB_processed.gro -water spc
+ 1864  grep JZ4 3HTB_clean.pdb > JZ4.pdb
+ 1865  gmx pdb2gmx -f 3HTB_clean.pdb -o 3HTB_processed.gro -water spc
+ 1866  ls
+ 1867  locate next.mdp
+ 1868  locate next.tpc
+ 1869  find next.tpc
+ 1870  find next.mdp
+ 1871  cd ..
+ 1872  ls
+ 1873  cd test5
+ 1874  ls
+ 1875  cd ..
+ 1876  cd simulations
+ 1877  cd test1
+ 1878  ls
+ 1879  run1
+ 1880  cd run1
+ 1881  ls
+ 1882  screen -r
+ 1883  gmx mdrun -deffnm md_0_1
+ 1884  nvidia-smi
+ 1885  sudo apt-get install nvidia-modprobe
+ 1886  gmx mdrun -deffnm md_0_1 -gpuid 0
+ 1887  gmx mdrun -deffnm md_0_1 -gpu_id 0
+ 1888  sudo apt-get install gromacs
+ 1889  gromacs -v
+ 1890  gmx -v
+ 1891  cd
+ 1892  ls
+ 1893  wget ftp://ftp.gromacs.org/pub/gromacs/gromacs-VERSION.tar.gz
+ 1894  wget ftp://ftp.gromacs.org/pub/gromacs/gromacs-2016.3.tar.gz
+ 1895  logout
+ 1896  mail
+ 1897  clear
+ 1898  sudo apt-get install gromacs-gpu
+ 1899  ls
+ 1900  tar -xzvf gromacs-2016.3.tar.gz
+ 1901  ls
+ 1902  cd /home
+ 1903  mkdir gromacs-2016.3-build
+ 1904  sudo mkdir gromacs-2016.3-build
+ 1905  cd gromacs-2016.3-build
+ 1906  CC=gcc CXX=g++ cmake <GROMACS_SRC_DIR> -DGMX_OPENMP=ON -DGMX_GPU=ON -
+ 1907  DGPU_DEPLOYMENT_KIT_ROOT_DIR=<GDK_PATH> -DGMX_BUILD_OWN_FFTW=ON -
+ 1908  DGMX_PREFER_STATIC_LIBS=ON -DCMAKE_BUILD_TYPE=Release -
+ 1909  DCMAKE_INSTALL_PREFIX=<GROMACS_INSTALL_DIR> - See more at: http://www.nvidia.com/object/gromacs-installation.html#sthash.nK1KoG1W.dpufclear
+ 1910  clear
+ 1911  locate gromacs
+ 1912  clear
+ 1913  cd /home/jginnard
+ 1914  ls
+ 1915  locate DGPU
+ 1916  find gdpu
+ 1917  find dgpu
+ 1918  find gdk
+ 1919  locate gdk
+ 1920  sudo CC=gcc CXX=g++ cmake /home/jginnard/gromacs-2016.3 -DGMX_OPENMP=ON -DGMX_GPU=ON -DGMX_BUILD_OWN_FFTW=ON -DGMX_PREFER_STATIC_LIBS=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/home/gromacs-2016.3-build
+ 1921  sudo apt-get install cmake
+ 1922  sudo apt-get install gcc
+ 1923  sudo apt-get install mpi
+ 1924  sudo CC=gcc CXX=g++ cmake /home/jginnard/gromacs-2016.3 -DGMX_OPENMP=ON -DGMX_GPU=ON -DGMX_BUILD_OWN_FFTW=ON -DGMX_PREFER_STATIC_LIBS=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/home/gromacs-2016.3-build
+ 1925  make
+ 1926  sudo make
+ 1927  ls
+ 1928  cd /home/gromacs
+ 1929  ls
+ 1930  cd simulations/run1
+ 1931  ls
+ 1932  gmx mdrun -deffnm md_0_1 -gpu_id 0
+ 1933  gmx mpirun -np 2 mdrun -deffnm md_0_1 -gpu_id 0
+ 1934  gmx mdrun -deffnm md_0_1 -ntmpi 2 -gpu_id 00 -nb gpu_cpu
+ 1935  gmx mdrun -deffnm md_0_1 -ntmpi 4 -gpu_id 0000 -nb gpu_cpu
+ 1936  gmx mdrun -deffnm md_0_1 -ntmpi 8 -gpu_id 00000000 -nb gpu_cpu
+ 1937  gmx mdrun -deffnm md_0_1 -ntmpi 16 -gpu_id 0000000000000000 -nb gpu_cpu
+ 1938  gmx mdrun -deffnm md_0_1 -ntmpi 8 -gpu_id 0000000000000000 -nb gpu_cpu
+ 1939  gmx mdrun -deffnm md_0_1 -ntmpi 8 -gpu_id 0 -nb gpu_cpu
+ 1940  gmx mdrun -deffnm md_0_1 -ntmpi 8 -gpu_id 00000000 -nb gpu_cpu
+ 1941  gmx mdrun -deffnm md_0_1 -ntmpi 8 -gpu_id 0000 -nb gpu_cpu
+ 1942  gmx mdrun -deffnm md_0_1 -ntmpi 4 -gpu_id 00 -nb gpu_cpu
+ 1943  gmx mdrun -deffnm md_0_1 -ntmpi 4 -gpu_id 0000 -nb gpu_cpu
+ 1944  gmx mdrun -deffnm md_0_1 -ntmpi 8 -gpu_id 0000 -nb gpu_cpu
+ 1945  gmx mdrun -deffnm md_0_1 -ntmpi 8 -gpu_id 00000000 -nb gpu_cpu
+ 1946  gmx mdrun -deffnm md_0_1 -ntmpi 6 -gpu_id 000000 -nb gpu_cpu
+ 1947  gmx mdrun -deffnm md_0_1 -ntmpi 10 -gpu_id 0000000000 -nb gpu_cpu
+ 1948  gmx mdrun -deffnm md_0_1 -ntmpi 8 -gpu_id 0000 -nb gpu_cpu
+ 1949  gmx mdrun -deffnm md_0_1 -ntmpi 3 -gpu_id 000 -nb gpu_cpu
+ 1950  gmx mdrun -deffnm md_0_1 -ntmpi 5 -gpu_id 00000 -nb gpu_cpu
+ 1951  gmx mdrun -deffnm md_0_1 -ntmpi 7 -gpu_id 0000000 -nb gpu_cpu
+ 1952  gmx mdrun -deffnm md_0_1 -ntmpi 8 -gpu_id 00000000 -nb gpu_cpu
+ 1953  cd /home/gromacs/simulations/run1
+ 1954  ls
+ 1955  gmx mdrun -deffnm md_0_1 -ntmpi 8 -gpu_id 00000000 -nb gpu_cpu
+ 1956  htop
+ 1957  nvidia-smi
+ 1958  htop
+ 1959  nvidia-smi
+ 1960  watch sensors
+ 1961  htop
+ 1962  watch -n 1 nvidia-smi
+ 1963  sudo pip install gpustat
+ 1964  gpustat
+ 1965  nvidia-smi -q
+ 1966  nvidia-settings -q all
+ 1967  nvidia-settings -q
+ 1968  watch -n 1 nvidia-smi
+ 1969  sudo watch -n 1 nvidia-smi
+ 1970  htop
+ 1971  sudo watch -n 1 nvidia-smi
+ 1972  clear
+ 1973  watch -n 1 nvidia-smi
+ 1974  htop
+ 1975  cd /home/gromacs/simulations/run1
+ 1976  ls
+ 1977  watch '#md_0_1.log.24#'
+ 1978  tail -f '#md_0_1.log.24#'
+ 1979  tail -f md_0_1.log
+ 1980  watch md_0_1.log
+ 1981  ls
+ 1982  tail -f md_0_1.log
+ 1983  sudo watch md_0_1.log
+ 1984  sudo tail -f md_0_1.log
+ 1985  clear
+ 1986  sudo tail -f md_0_1.log
+ 1987  logout
+ 1988  screen -r
+ 1989  cd /home/gromacs/simulations/run1
+ 1990  ls
+ 1991  gmx mdrun -deffnm md_0_1 -ntmpi 8 -gpu_id 00000000 -nb gpu_cpu
+ 1992  logout
+ 1993  cleart
+ 1994  clear
+ 1995  htop
+ 1996  logout
+ 1997  mail
+ 1998  clear
+ 1999  htop
+ 2000  update
+ 2001  history
+ 2002  history > history2.txt
