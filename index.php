@@ -38,7 +38,6 @@ if ($gClient->getAccessToken()) {
         'oauth_provider'=> 'google',
         'oauth_uid'     => $gpUserProfile['id'],
         'email'         => $gpUserProfile['email']
-
     );
 
     $userData = $user->checkUser($gpUserData);
