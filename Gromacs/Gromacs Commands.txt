@@ -4,15 +4,17 @@ Preconditions:
 	run directory contains:
 		PDB file		-Used for pdb2gmx
 		gromos54a7.ff		-Used for pdb2gmx
-		em.mdp			-Used for grompp -f em.mdp
-		em_real.mdp		-Used for grompp -f em_real.mdp
-		nvt.mdp			-Used for grompp -f nvt.mdp
-		npt.mdp			-Used for grompp -f npt.mdp
+		em.mdp			-Used for grompp -f em.mdp		#Create system setup
+		em_real.mdp		-Used for grompp -f em_real.mdp		#Energy Minimization
+		nvt.mdp			-Used for grompp -f nvt.mdp		#Equilibrium 1
+		npt.mdp			-Used for grompp -f npt.mdp		#Equilibrium 2
+		md.mdp			-Used for gmx grompp -f md.mdp		#Production Simulation
 
 wget http://www.bevanlab.biochem.vt.edu/Pages/Personal/justin/gmx-tutorials/complex/Files/em.mdp
 wget http://www.bevanlab.biochem.vt.edu/Pages/Personal/justin/gmx-tutorials/complex/Files/em_real.mdp
 wget http://www.bevanlab.biochem.vt.edu/Pages/Personal/justin/gmx-tutorials/complex/Files/nvt.mdp
 wget http://www.bevanlab.biochem.vt.edu/Pages/Personal/justin/gmx-tutorials/complex/Files/npt.mdp
+wget http://www.bevanlab.biochem.vt.edu/Pages/Personal/justin/gmx-tutorials/complex/Files/md.mdp
 
 
 sudo gmx pdb2gmx -f UHRF1_TTD-PHD_No_Zinc.pdb -o UHRF1.gro -water spc -ter -missing
@@ -30,7 +32,7 @@ select '13' SOL ; Replaces Solvent molecules with 3 ZN molecules
 
 gmx grompp -f em_real.mdp -c solv_ions.gro -p topol.top -o em.tpr
 
-gmx mdrun -v -deffnm em
+gmx mdrun -v -deffnm em -ntmpi 8 -gpu_id 00000000 -nb gpu_cpu
 
 
 
@@ -44,15 +46,15 @@ enter 'q' quit
 
 gmx grompp -f nvt.mdp -c em.gro -p topol.top -n index.ndx -o nvt.tpr
 
-gmx mdrun -deffnm nvt
+gmx mdrun -deffnm nvt -ntmpi 8 -gpu_id 00000000 -nb gpu_cpu
 
 gmx grompp -f npt.mdp -c nvt.gro -t nvt.cpt -p topol.top -n index.ndx -o npt.tpr
 
-gmx mdrun -deffnm npt
+gmx mdrun -deffnm npt -ntmpi 8 -gpu_id 00000000 -nb gpu_cpu
 
 gmx grompp -f md.mdp -c npt.gro -t npt.cpt -p topol.top -n index.ndx -o md_0_1.tpr
 
-gmx mdrun -deffnm md_0_1
+gmx mdrun -deffnm md_0_1 -ntmpi 8 -gpu_id 00000000 -nb gpu_cpu
 
 
 
@@ -74,7 +76,6 @@ gmx tpbconv -s md_0_1.tpr -extend 2000 -o extended_sim.tpr
 gmx tpbconv -s md_0_1.tpr -extend 2000 -o next.tpr
 sudo gmx tpbconv -s md_0_1.tpr -extend 2000 -o next.tpr
 gmx tpbconv -s md_0_1.tpr -extend 2000 -o next.tpr
-sudo nano md.mdp
 grompp -f md.mdp -c md_0_1.tpr -o new.tpr -t md_0_1.cpt
 gmx grompp -f md.mdp -c md_0_1.tpr -o new.tpr -t md_0_1.cpt
 gmx mdrun -s new.tpr
