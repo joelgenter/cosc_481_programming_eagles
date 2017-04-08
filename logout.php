@@ -1,11 +1,17 @@
 <?php
+//Include GP config file
+include_once 'gpConfig.php';
 
-require_once 'app/init.php';
+//Unset token and user data from session
+unset($_SESSION['token']);
+unset($_SESSION['userData']);
 
-$auth = new GoogleAuth();
+//Reset OAuth access token
+$gClient->revokeToken();
 
-$auth->logout();
+//Destroy entire session
+session_destroy();
 
-header('Location: index.php');
-
- ?>
+//Redirect to homepage
+header("Location:index.php");
+?>
