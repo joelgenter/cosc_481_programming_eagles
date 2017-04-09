@@ -59,7 +59,7 @@
 									<!--Upload Option-->
 									<label for="pdbUploadOption">Upload Custom PDB File</label>
 							<div class="form-group">
-								<input type="file" class="form-control-file" id="pdbUpload" name="pdbFile" aria-describedby="fileHelp">
+								<input type="file" class="form-control-file" id="pdbUpload" name="pdbFile" aria-describedby="fileHelp" required>
 							</div>
 
 					</fieldset>
@@ -70,7 +70,7 @@
 									<label for="mutantList">List of Mutants (Seperate Simulations)</label>
 							<div id="mutantList">
 								<div class="form-group">
-									<input type="text" class="form-control" id="mutantListField1" aria-describedby="mutantHelp" placeholder="mutant 1">
+									<input type="text" class="form-control" id="mutantListField1" aria-describedby="mutantHelp" placeholder="mutant 1" required>
 									<small id="mutantHelp" class="form-text text-muted">Example "Y213A, Y216A, F144A"</small>
 								</div>
 							</div>
@@ -78,22 +78,22 @@
 							<br><br>
 							<div class="form-group">
 								<label for="duration">Duration (ns)</label>
-								<input type="text" class="form-control" id="duration" name="duration">
+								<input type="number" class="form-control" id="duration" name="duration" value="1" min="1" max="40">
 							</div>
 							<div class="form-group">
 								<label for="temperature">Temperature (Celsius)</label>
-								<input type="text" class="form-control" id="temperature" name="temperature">
+								<input type="number" class="form-control" id="temperature" name="temperature" value="30" min="0">
 							</div>
 					</fieldset>
 					<fieldset class="form-group">
 						<legend>Additional Information</legend>
 						<div class="form-group">
 							<label for="username">Username</label>
-							<input type="text" class="form-control" id="username" name="username">
+							<input type="text" class="form-control" id="username" name="username" required>
 						</div>
 						<div class="form-group">
 							<label for="simulationName">Simulation Name</label>
-							<input type="text" class="form-control" id="simulationName" name="simulationName">
+							<input type="text" class="form-control" id="simulationName" name="simulationName" required>
 						</div>
 						<div class="form-group">
 							<label for="exampleTextarea">Description</label>

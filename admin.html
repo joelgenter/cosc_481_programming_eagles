@@ -102,76 +102,6 @@
 			<!-- List group -->
 			<ul id="usersList" class="list-group">
 
-				<!--<div class="list-group-item list-group-item-action">
-					<div class = "row">
-						<div class = "col-lg-6">
-							jginnard
-						</div>
-						<div class = "col-lg-4">
-							Off&nbsp;<i class="fa fa-toggle-on"></i>&nbsp;On
-						</div>
-						<div class = "col-lg-2">
-							<i class="fa fa-remove"></i>
-						</div>
-					</div>
-				</div>
-
-				<div class="list-group-item list-group-item-action">
-					<div class = "row">
-						<div class = "col-lg-6">
-							ssotok
-						</div>
-						<div class = "col-lg-4">
-							Off&nbsp;<i class="fa fa-toggle-off"></i>&nbsp;On
-						</div>
-						<div class = "col-lg-2">
-							<i class="fa fa-remove"></i>
-						</div>
-					</div>
-				</div>
-
-				<div class="list-group-item list-group-item-action">
-					<div class = "row">
-						<div class = "col-lg-6">
-							jgenter1
-						</div>
-						<div class = "col-lg-4">
-							Off&nbsp;<i class="fa fa-toggle-off"></i>&nbsp;On
-						</div>
-						<div class = "col-lg-2">
-							<i class="fa fa-remove"></i>
-						</div>
-					</div>
-				</div>
-
-				<div class="list-group-item list-group-item-action">
-					<div class = "row">
-						<div class = "col-lg-6">
-							ikane
-						</div>
-						<div class = "col-lg-4">
-							Off&nbsp;<i class="fa fa-toggle-off"></i>&nbsp;On
-						</div>
-						<div class = "col-lg-2">
-							<i class="fa fa-remove"></i>
-						</div>
-					</div>
-				</div>
-
-				<div class="list-group-item list-group-item-action">
-					<div class = "row">
-						<div class = "col-lg-6">
-							dclarke1
-						</div>
-						<div class = "col-lg-4">
-							Off&nbsp;<i class="fa fa-toggle-off"></i>&nbsp;On
-						</div>
-						<div class = "col-lg-2">
-							<i class="fa fa-remove"></i>
-						</div>
-					</div>
-				</div>-->
-
 			</ul>
 		</div>
 	</div>
@@ -183,22 +113,33 @@
 			</div>
 		</div>
 </div>
+
 <script>
+	// console.log("Test");
+
 	var $usersList = $("#usersList");
 
 	$.get('getUsers.php')
 		.done(function(users) {
             users = JSON.parse(users);
 			for (var i = 0; i < users.length; i++) {
-				var html = 
-					'<div class="list-group-item list-group-item-action">' + 
+				var html =
+					'<div class="list-group-item list-group-item-action userList">' +
 						'<div class = "row">' +
-							'<div class = "col-lg-6">' +
+							'<div class = "col-lg-6" id = "username">' +
 								users[i].username +
 							'</div>' +
-							'<div class = "col-lg-4">' +
-								'Off&nbsp;<i class="fa fa-toggle-' + (users[i].isAdmin ? 'on' : 'off') + '"></i>&nbsp;On' +
-							'</div>' +
+								'<div class = "col-lg-4">' +
+									'<div class="dropdown">'+
+										'<button type="button" data-toggle="dropdown">' + users[i].type +
+										'<span class="caret"></span></button>' +
+										'<ul id="typelist" class="dropdown-menu">' +
+											'<li><a href="#" onclick="admin()">Admin</a></li>'+
+											'<li><a href="#" onclick="standard()">Standard</a></li>'+
+											'<li><a href="#" onclick="pending()">Pending</a></li>'+
+											'</ul>' +
+									'</div>' +
+								'</div>' +
 							'<div class = "col-lg-2">' +
 								'<i class="fa fa-remove"></i>' +
 							'</div>' +
@@ -208,6 +149,60 @@
 				$usersList.append(html);
 			}
 		});
+
+		function admin(){
+			var userList = document.getElementsByClassName("list-group-item");
+	    for (i = 0; i < userList.length; i++) {
+	        userList[i].onclick=function(){
+	            var username = (this.querySelector('#username').innerHTML);
+							$.ajax({
+								data: 'username=' + username + '&userType=' + 'Admin',
+								url: 'updateUsers.php',
+								method: 'POST',
+								success: function(message) {
+									console.log(message);
+									window.location.reload();
+								}
+							});
+	        }
+	    }
+		}
+
+		function standard(){
+			var userList = document.getElementsByClassName("list-group-item");
+			for (i = 0; i < userList.length; i++) {
+					userList[i].onclick=function(){
+							var username = (this.querySelector('#username').innerHTML);
+							$.ajax({
+								data: 'username=' + username + '&userType=' + 'Standard',
+								url: 'updateUsers.php',
+								method: 'POST',
+								success: function(message) {
+									console.log(message);
+									window.location.reload();
+								}
+							});
+					}
+			}
+		}
+
+		function pending(){
+			var userList = document.getElementsByClassName("list-group-item");
+			for (i = 0; i < userList.length; i++) {
+					userList[i].onclick=function(){
+							var username = (this.querySelector('#username').innerHTML);
+							$.ajax({
+								data: 'username=' + username + '&userType=' + 'Pending',
+								url: 'updateUsers.php',
+								method: 'POST',
+								success: function(message) {
+									console.log(message);
+									window.location.reload();
+								}
+							});
+					}
+			}
+		}
 </script>
 </body>
 </html>

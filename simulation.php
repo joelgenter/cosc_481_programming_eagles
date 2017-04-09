@@ -13,13 +13,24 @@ $simulationName = filter_var ($_POST["simulationName"], FILTER_SANITIZE_STRING);
 $description = filter_var ($_POST["description"], FILTER_SANITIZE_STRING);
 $duration = filter_var ($_POST["duration"], FILTER_SANITIZE_STRING);
 $temperature =filter_var ($_POST["temperature"], FILTER_SANITIZE_STRING);
+//Get Current Queue Position
+$currentQueue = 1000;
+$query = "SELECT max(queuePosition) FROM ProteinSim.Simulations;";
+if ($stmt = $conn->prepare($query)) {
+    $stmt->execute();
+    $stmt->bind_result($position);
+    $stmt->fetch();
+    $currentQueue = $position + 1;
+    $stmt->close();
+}
 
 //Generate queries
-$query;
+$query="";
 $simulationList = explode(";", $mutationList);
 
 foreach ($simulationList as $mutation){
-  $query .= "INSERT INTO ProteinSim.Simulations (mutations, pdbFileName, pdbFile, username, simulationName, description, duration, temperature) VALUES (\"".$mutation."\",\"".$pdbFileName."\",\"".$pdbFile."\",\"".$username."\",\"".$simulationName."\",\"".$description."\",\"".$duration."\",\"".$temperature."\");";
+  $query .= "INSERT INTO ProteinSim.Simulations (mutations, pdbFileName, pdbFile, username, simulationName, description, duration, temperature, queuePosition) VALUES (\"".$mutation."\",\"".$pdbFileName."\",\"".$pdbFile."\",\"".$username."\",\"".$simulationName."\",\"".$description."\",\"".$duration."\",\"".$temperature."\",\"".$currentQueue."\");";
+  $currentQueue += 1;
 }
 
 
