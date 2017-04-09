@@ -1,19 +1,52 @@
 #!/bin/bash
+#
+# This file will be executed from a cron job
+# and will run all incomplete simulations in db
 
-#The following code should only be used if we aren't able to use db triggers
-# SIMULATION_IS_QUEUED=0;
-# while [$SIMULATION_IS_QUEUED -eq 0]
-# do
-#     myvar=$(mysql testdb -u root -ptestpass -se "SELECT EXISTS(SELECT 1 FROM users WHERE firstName = 'Joel')")
+readonly DB_PASSWORD="Gromacs#2017"
 
-    myvar=$(mysql ProteinSim -u root -prepublic -se "SELECT * FROM Simulations")
+select_query=$(cat <<EOF
+SELECT 
+  mutations, 
+  pdbFileName, 
+  pdbFile, 
+  simulationName, 
+  temperature 
+FROM Simulations 
+WHERE queuePosition = 0
+EOF
+)
 
-    echo $myvar;
+update_query=$(cat <<EOF
+UPDATE Simulations
+SET queuePosition = (queuePosition - 1)
+WHERE queuePosition >= 0
+EOF
+)
 
-#while querying the db for a simulation in queue position 0 returns a result
+while true; do
+  query_result=$(mysql ProteinSim -u root -p$DB_PASSWORD -se "$select_query")
 
-    #give the simulation info to gromacs to run the simulation
+  if [ ! -z "$query_result" ]; then    #if result not empty
+    #read query_result into vars
+    read mutations pdb_file_name pdb_file simulation_name temperature <<< $query_result
 
-    #query the db changing the completed simulation's queue position to -1 (completed)
+    #if dir doesn't exist (sim hasn't run before)
+    if [ ! -d "$PWD/test_directory/$simulation_name" ]; then 
+      #create dir
+      mkdir -p $PWD/test_directory/$simulation_name
 
-#end while
+      #give the simulation data to gromacs
+
+      #decrement queue position of incomplete simulations
+      mysql ProteinSim -u root -p$DB_PASSWORD -se "$update_query"
+
+      #move gromacs result files to the new dir
+      mv $PWD/test_directory/gromacs_result_files/* $PWD/test_directory/$simulation_name/
+    else
+      break   #this sim already ran
+    fi
+  else
+    break   #no more incomplete simulations
+  fi
+done
