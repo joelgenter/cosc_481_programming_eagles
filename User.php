@@ -1,21 +1,11 @@
 <?php
 class User {
-		private $dbHost     = "127.0.0.1";
-    private $dbUsername = "ProteinSim";
-    private $dbPassword = "";
-    private $dbName     = "Gromacs#2017";
     private $userTbl    = 'users';
+    private $db;
 
 	function __construct(){
-        if(!isset($this->db)){
-            // Connect to the database
-            $conn = new mysqli($this->dbHost, $this->dbUsername, $this->dbPassword, $this->dbName);
-            if($conn->connect_error){
-                die("Failed to connect with MySQL: " . $conn->connect_error);
-            }else{
-                $this->db = $conn;
-            }
-        }
+        require 'db_connection.php';
+        $this->db = $conn;
     }
 
 	function checkUser($userData = array()){
