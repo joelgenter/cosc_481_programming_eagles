@@ -1,6 +1,6 @@
 <?php
 class User {
-    private $userTbl    = 'users';
+    private $userTbl    = 'Users';
     private $db;
 
 	function __construct(){

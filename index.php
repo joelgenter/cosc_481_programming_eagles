@@ -65,7 +65,7 @@ if ($gClient->getAccessToken()) {
     }
 } else {
 	$authUrl = $gClient->createAuthUrl();
-	$output = '<a href="'.filter_var($authUrl, FILTER_SANITIZE_URL).'"><img src="images/glogin2.PNG" alt=""/></a>';
+	$output = '<a href="'.filter_var($authUrl, FILTER_SANITIZE_URL).'"><img src="images/glogin3.PNG" alt=""/></a>';
 }
 ?>
 
@@ -87,6 +87,7 @@ if ($gClient->getAccessToken()) {
 
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!--Google OAuth-->
 
 
 <style type="text/css">
