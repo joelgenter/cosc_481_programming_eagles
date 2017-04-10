@@ -8,9 +8,9 @@ include_once 'src/contrib/Google_Oauth2Service.php';
 /*
  * Configuration and setup Google API
  */
-$clientId = '276192707871-cov16r6j7dj1nspc68f6ip4llpvsoubl.apps.googleusercontent.com'; //Google client ID
-$clientSecret = 'e-GIUfE8QgGBSZWYcj9_QFmJ'; //Google client secret
-$redirectURL = 'http://localhost/index.php'; //Callback URL
+$clientId = '786699123825-24163j8ee5b0ma1htsbc173ptmbid348.apps.googleusercontent.com'; //Google client ID
+$clientSecret = 'ltY8wWEUUrgLtnEEFjxQy_ln'; //Google client secret
+$redirectURL = 'http://jeremyginnard.com/ProteinSimulations/index.php'; //Callback URL
 
 //Call Google API
 $gClient = new Google_Client();
@@ -20,4 +20,3 @@ $gClient->setClientSecret($clientSecret);
 $gClient->setRedirectUri($redirectURL);
 
 $google_oauthV2 = new Google_Oauth2Service($gClient);
-?>

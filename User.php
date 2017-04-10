@@ -1,9 +1,9 @@
 <?php
 class User {
-		private $dbHost     = "localhost";
-    private $dbUsername = "root";
+		private $dbHost     = "127.0.0.1";
+    private $dbUsername = "ProteinSim";
     private $dbPassword = "";
-    private $dbName     = "proteinsim";
+    private $dbName     = "Gromacs#2017";
     private $userTbl    = 'users';
 
 	function __construct(){
@@ -56,4 +56,3 @@ class User {
         return $userData;
     }
 }
-?>

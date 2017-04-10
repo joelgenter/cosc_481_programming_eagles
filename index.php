@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 //Include GP config file && User class
 include_once 'gpConfig.php';
 include_once 'User.php';
@@ -63,7 +65,7 @@ if ($gClient->getAccessToken()) {
     }
 } else {
 	$authUrl = $gClient->createAuthUrl();
-	$output = '<a href="'.filter_var($authUrl, FILTER_SANITIZE_URL).'"><img src="images/glogin2.png" alt=""/></a>';
+	$output = '<a href="'.filter_var($authUrl, FILTER_SANITIZE_URL).'"><img src="images/glogin2.PNG" alt=""/></a>';
 }
 ?>
 
