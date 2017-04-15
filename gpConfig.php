@@ -10,7 +10,7 @@ include_once 'src/contrib/Google_Oauth2Service.php';
  */
 $clientId = '786699123825-24163j8ee5b0ma1htsbc173ptmbid348.apps.googleusercontent.com'; //Google client ID
 $clientSecret = 'ltY8wWEUUrgLtnEEFjxQy_ln'; //Google client secret
-$redirectURL = 'http://jeremyginnard.com/ProteinSimulations/index.php'; //Callback URL
+$redirectURL = 'https://jeremyginnard.com/ProteinSimulations/index.php'; //Callback URL
 
 //Call Google API
 $gClient = new Google_Client();
