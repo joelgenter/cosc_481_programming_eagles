@@ -44,7 +44,7 @@ if ($gClient->getAccessToken()) {
         'oauth_uid'     => $gpUserProfile['id'],
 				'first_name'    => $gpUserProfile['given_name'],
 				'last_name'     => $gpUserProfile['family_name'],
-        'email'         => $gpUserProfile['email']
+        'email'         => $gpUserProfile['email'],
 				'username'			=> $username
     );
 
