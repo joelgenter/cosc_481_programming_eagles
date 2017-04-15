@@ -38,8 +38,19 @@ while true; do
 
       #give the simulation data to gromacs
       gmx pdb2gmx -f $pdbFile -o protein.gro -water spc -ter -missing
-      select '1' for force field selection
-      select '1' for all -ter options
+      #select '1' for force field selection
+      echo | 1
+      #select '1' for all -ter options, there is 1 for each terminus. 10 just to be safe.
+      echo | 1
+      echo | 1
+      echo | 1
+      echo | 1
+      echo | 1
+      echo | 1
+      echo | 1
+      echo | 1
+      echo | 1
+      echo | 1
       gmx editconf -f protein.gro -o newbox.gro -bt dodecahedron -d 1.5
       gmx solvate -cp newbox.gro -cs spc216.gro -p topol.top -o solv.gro
       gmx grompp -f em.mdp -c solv.gro -p topol.top -o ions.tpr
@@ -49,8 +60,11 @@ while true; do
       gmx mdrun -v -deffnm em -ntmpi 8 -gpu_id 00000000 -nb gpu_cpu
       gmx make_ndx -f em.gro -o index.ndx
       #enter '1' Protein
+      echo | 1
       #enter '11' non-Protein
+      echo | 11
       #enter 'q' quit
+      echo | q
       gmx grompp -f nvt.mdp -c em.gro -p topol.top -n index.ndx -o nvt.tpr
       gmx mdrun -deffnm nvt -ntmpi 8 -gpu_id 00000000 -nb gpu_cpu
       gmx grompp -f npt.mdp -c nvt.gro -t nvt.cpt -p topol.top -n index.ndx -o npt.tpr
