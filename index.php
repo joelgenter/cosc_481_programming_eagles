@@ -35,12 +35,19 @@ if ($gClient->getAccessToken()) {
     //     'link'          => $gpUserProfile['link']
     // );
 
+		$email = $gpUserProfile['email'];
+        $index = strpos($email, '@');
+        $username = substr($email, 0, $index);
 
-		$gpUserData = array(
-        'oauth_provider'=> 'google',
-        'oauth_uid'     => $gpUserProfile['id'],
-        'email'         => $gpUserProfile['email']
-    );
+
+        $gpUserData = array(
+            'oauth_provider'=> 'google',
+            'oauth_uid'     => $gpUserProfile['id'],
+            'username'      => $username,
+            'first_name'    => $gpUserProfile['given_name'],
+            'last_name'     => $gpUserProfile['family_name'],
+            'email'         => $gpUserProfile['email']
+        );
 
     $userData = $user->checkUser($gpUserData);
 
@@ -80,9 +87,9 @@ if ($gClient->getAccessToken()) {
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <!-- Latest compiled JavaScript -->
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="custom.css">
 
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">

@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 class User {
     private $userTbl    = 'Users';
     private $db;
@@ -25,15 +27,15 @@ class User {
 
 
 
-						if($prevResult->num_rows > 0){
-								//Update user data if already exists
-								$query = "UPDATE ".$this->userTbl." SET email = '".$userData['email']."'";
-								$update = $this->db->query($query);
-						}else{
-								//Insert user data
-								$query = "INSERT INTO ".$this->userTbl." SET oauth_provider = '".$userData['oauth_provider']."', oauth_uid = '".$userData['oauth_uid']."', email = '".$userData['email']."'";
-								$insert = $this->db->query($query);
-						}
+            if($prevResult->num_rows > 0){
+                //Update user data if already exists
+                $query = "UPDATE ".$this->userTbl." SET username = '".$userData['username']."', firstName = '".$userData['first_name']."', lastName = '".$userData['last_name']."', email = '".$userData['email']."' WHERE oauth_provider = '".$userData['oauth_provider']."' AND oauth_uid = '".$userData['oauth_uid']."'";
+                $update = $this->db->query($query);
+            }else{
+                //Insert user data
+                $query = "INSERT INTO ".$this->userTbl." SET oauth_provider = '".$userData['oauth_provider']."', oauth_uid = '".$userData['oauth_uid']."', username = '".$userData['username']."', firstName = '".$userData['first_name']."', lastName = '".$userData['last_name']."', email = '".$userData['email']."'";
+                $insert = $this->db->query($query);
+            }
 
 
 

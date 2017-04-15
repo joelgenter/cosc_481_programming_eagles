@@ -9,9 +9,9 @@
 	<!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<!-- Latest compiled JavaScript -->
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="bootstrap-dialog.min.js"></script>
@@ -34,7 +34,7 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="index.html">Home</a></li>
+					<li><a href="index.php">Home</a></li>
 					<li class="active"><a href="simulation.html">Simulation<span class="sr-only">(current)</span></a></li>
 					<li><a href="queue.php">Queue</a></li>
 					<li><a href="results.html">Results</a></li>
@@ -48,14 +48,20 @@
 	<div class="container-fluid container-body" style="padding-top: 20px;">
 		<div class="title">
 			<h2>Simulation Setup</h2>
+			<legend>Instructions</legend>
+			<p><strong>Step 1:</strong> Download PDB file from the <a target="_blank" href="http://www.rcsb.org/pdb/home/home.do">Protein Data Bank</a>.<br />
+			<strong>Step 2:</strong> Fix any breaks in the PDB file if necessary using a program such as <a target="_blank" href="https://www.pymol.org/"> PyMol</a>.<br />
+			<strong>Step 3:</strong> Upload PDB file to <a target="_blank" href="http://vienna-ptm.univie.ac.at/">Vienna-PTM</a>. Select "ffG54a7" as the force field. Submit the form and follow the instructions to make your mutations. Download the modified PDB file.<br />
+			<strong>Step 4:</strong> Upload the modified PDB file to this page and complete the form to run your simulation.
+			</p>
 		</div>
 		<div class="row">
 			<div class="col-lg-6">
 				<form action ="simulation.php" method="POST" onsubmit="sumbitSimulation();">
 					<fieldset class="form-group">
 						<legend>PDB File</legend>
-						<p>The PDB file must not have any breaks or the simulation will not work.
-							<br>You may need to build a PDB file using PyMol.</p>
+						<!-- <p>The PDB file must not have any breaks or the simulation will not work.
+							<br>You may need to build a PDB file using PyMol.</p> -->
 									<!--Upload Option-->
 									<label for="pdbUploadOption">Upload Custom PDB File</label>
 							<div class="form-group">
