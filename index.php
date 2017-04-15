@@ -35,11 +35,17 @@ if ($gClient->getAccessToken()) {
     //     'link'          => $gpUserProfile['link']
     // );
 
+		$email = $gpUserProfile['email'];
+		$index = strpos($email, '@');
+		$username = substr($email, 0, $index);
 
 		$gpUserData = array(
         'oauth_provider'=> 'google',
         'oauth_uid'     => $gpUserProfile['id'],
+				'first_name'    => $gpUserProfile['given_name'],
+				'last_name'     => $gpUserProfile['family_name'],
         'email'         => $gpUserProfile['email']
+				'username'			=> $username
     );
 
     $userData = $user->checkUser($gpUserData);

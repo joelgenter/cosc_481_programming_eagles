@@ -27,11 +27,11 @@ class User {
 
 						if($prevResult->num_rows > 0){
 								//Update user data if already exists
-								$query = "UPDATE ".$this->userTbl." SET email = '".$userData['email']."'";
+								$query = "UPDATE ".$this->userTbl." SET username = '".$userData['username']."', first_name = '".$userData['first_name']."', last_name = '".$userData['last_name']."', email = '".$userData['email']."'";
 								$update = $this->db->query($query);
 						}else{
 								//Insert user data
-								$query = "INSERT INTO ".$this->userTbl." SET oauth_provider = '".$userData['oauth_provider']."', oauth_uid = '".$userData['oauth_uid']."', email = '".$userData['email']."'";
+								$query = "INSERT INTO ".$this->userTbl." SET oauth_provider = '".$userData['oauth_provider']."', oauth_uid = '".$userData['oauth_uid']."', username = '".$userData['username']."', first_name = '".$userData['first_name']."', last_name = '".$userData['last_name']."', email = '".$userData['email']."'";
 								$insert = $this->db->query($query);
 						}
 
