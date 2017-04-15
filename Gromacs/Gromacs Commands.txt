@@ -9,6 +9,7 @@ Preconditions:
 		nvt.mdp			-Used for grompp -f nvt.mdp		#Equilibrium 1
 		npt.mdp			-Used for grompp -f npt.mdp		#Equilibrium 2
 		md.mdp			-Used for gmx grompp -f md.mdp		#Production Simulation
+		fec.mdp			-USed for gmx grompp -f fec.mdp		#Free Energy Calculation
 
 wget http://www.bevanlab.biochem.vt.edu/Pages/Personal/justin/gmx-tutorials/complex/Files/em.mdp
 wget http://www.bevanlab.biochem.vt.edu/Pages/Personal/justin/gmx-tutorials/complex/Files/em_real.mdp
@@ -17,27 +18,22 @@ wget http://www.bevanlab.biochem.vt.edu/Pages/Personal/justin/gmx-tutorials/comp
 wget http://www.bevanlab.biochem.vt.edu/Pages/Personal/justin/gmx-tutorials/complex/Files/md.mdp
 
 
-sudo gmx pdb2gmx -f UHRF1_TTD-PHD_No_Zinc.pdb -o UHRF1.gro -water spc -ter -missing
+gmx pdb2gmx -f UHRF1_TTD-PHD_No_Zinc.pdb -o UHRF1.gro -water spc -ter -missing
 select '1' for force field selection
 select '1' for all -ter options
 
-sudo gmx editconf -f UHRF1.gro -o newbox.gro -bt dodecahedron -d 1.5
+gmx editconf -f UHRF1.gro -o newbox.gro -bt dodecahedron -d 1.5
 
-sudo gmx solvate -cp newbox.gro -cs spc216.gro -p topol.top -o solv.gro
+gmx solvate -cp newbox.gro -cs spc216.gro -p topol.top -o solv.gro
  
 gmx grompp -f em.mdp -c solv.gro -p topol.top -o ions.tpr
 
 gmx genion -s ions.tpr -o solv_ions.gro -p topol.top -pname ZN -np 3
-select '13' SOL ; Replaces Solvent molecules with 3 ZN molecules
+#select '13' SOL ; Replaces Solvent molecules with 3 ZN molecules
 
 gmx grompp -f em_real.mdp -c solv_ions.gro -p topol.top -o em.tpr
 
 gmx mdrun -v -deffnm em -ntmpi 8 -gpu_id 00000000 -nb gpu_cpu
-
-
-
-
-
 
 gmx make_ndx -f em.gro -o index.ndx
 enter '1' Protein
@@ -52,9 +48,19 @@ gmx grompp -f npt.mdp -c nvt.gro -t nvt.cpt -p topol.top -n index.ndx -o npt.tpr
 
 gmx mdrun -deffnm npt -ntmpi 8 -gpu_id 00000000 -nb gpu_cpu
 
+
+
+#Production Simulation, variable time
 gmx grompp -f md.mdp -c npt.gro -t npt.cpt -p topol.top -n index.ndx -o md_0_1.tpr
 
 gmx mdrun -deffnm md_0_1 -ntmpi 8 -gpu_id 00000000 -nb gpu_cpu
+
+
+
+#This causes crash. Run at end of longer simulation to calculate Free Energy
+gmx grompp -f fec.mdp -c md_0_1.gro -t md_0_1.cpt -p topol.top -n index.ndx -o fec.tpr
+
+gmx mdrun -deffnm fec -ntmpi 8 -gpu_id 00000000 -nb gpu_cpu
 
 
 
