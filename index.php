@@ -22,55 +22,50 @@ if ($gClient->getAccessToken()) {
 	//Initialize User class
 	$user = new User();
 
+	//gets username
+	$email = $gpUserProfile['email'];
+	$index = strpos($email, '@');
+	$username = substr($email, 0, $index);
+
 	//Insert or update user data to the database
-    // $gpUserData = array(
-    //     'oauth_provider'=> 'google',
-    //     'oauth_uid'     => $gpUserProfile['id'],
-    //     'first_name'    => $gpUserProfile['given_name'],
-    //     'last_name'     => $gpUserProfile['family_name'],
-    //     'email'         => $gpUserProfile['email'],
-    //     'gender'        => $gpUserProfile['gender'],
-    //     'locale'        => $gpUserProfile['locale'],
-    //     'picture'       => $gpUserProfile['picture'],
-    //     'link'          => $gpUserProfile['link']
-    // );
+	$gpUserData = array(
+	    'oauth_provider'=> 'google',
+	    'oauth_uid'     => $gpUserProfile['id'],
+			'username'			=> $username,
+	    'first_name'    => $gpUserProfile['given_name'],
+	    'last_name'     => $gpUserProfile['family_name'],
+	    'email'         => $gpUserProfile['email']
+	);
 
-		$email = $gpUserProfile['email'];
-        $index = strpos($email, '@');
-        $username = substr($email, 0, $index);
+  $userData = $user->checkUser($gpUserData);
 
+	//--------------------------------------------------------
 
-        $gpUserData = array(
-            'oauth_provider'=> 'google',
-            'oauth_uid'     => $gpUserProfile['id'],
-            'username'      => $username,
-            'first_name'    => $gpUserProfile['given_name'],
-            'last_name'     => $gpUserProfile['family_name'],
-            'email'         => $gpUserProfile['email']
-        );
+	//checks the users permissions
+	$status = $user->getStatus($username);
+	$statusOutput = '<br/>Status: ' .$status .'<br/>';
+	echo $statusOutput;
+	echo "Hello world";
 
-    $userData = $user->checkUser($gpUserData);
+	//--------------------------------------------------------
+
 
 	//Storing user data into session
 	$_SESSION['userData'] = $userData;
 
 	//Render facebook profile data
-    if(!empty($userData)){
-        //$output = '<h1>Google+ Profile Details </h1>';
-				//$output = '-';
-        //$output .= '<img src="'.$userData['picture'].'" width="300" height="220">';
-        //$output .= '<br/>Google ID : ' . $userData['oauth_uid'];
-        //$output .= '<br/>Logged in as: ' . $userData['first_name'].' '.$userData['last_name'];
+    if(!empty($userData))
+		{
         $output = '<br/>Logged in as: ' . $userData['email'];
-        //$output .= '<br/>Gender : ' . $userData['gender'];
-        //$output .= '<br/>Locale : ' . $userData['locale'];
-        //$output .= '<br/>Logged in with : Google';
-        //$output .= '<br/><a href="'.$userData['link'].'" target="_blank">Click to Visit Google+ Page</a>';
         $output .= '<br/><a href="logout.php">Logout of EMU ProteinSim</a>';
-    }else{
+    }
+		else
+		{
         $output = '<h3 style="color:red">Some problem occurred, please try again.</h3>';
     }
-} else {
+}
+else
+{
 	$authUrl = $gClient->createAuthUrl();
 	$output = '<a href="'.filter_var($authUrl, FILTER_SANITIZE_URL).'"><img src="images/glogin3.PNG" alt=""/></a>';
 }
@@ -87,9 +82,9 @@ if ($gClient->getAccessToken()) {
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="custom.css">
 
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
@@ -129,6 +124,7 @@ if ($gClient->getAccessToken()) {
 					<li><a href="register.html">Register</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
+					<!-- <li><div><?php echo $statusOutput; ?></div></li> -->
 					<li><div class="n/a" align="right";><?php echo $output; ?></div></li>
 				</ul>
 			</div>
