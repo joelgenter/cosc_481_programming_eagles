@@ -9,9 +9,9 @@
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <!-- Latest compiled JavaScript -->
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -57,7 +57,7 @@
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
-					<li><a href="index.html">Home</a></li>
+					<li><a href="index.php">Home</a></li>
 					<li><a href="simulation.html">Simulation</a></li>
 					<li><a href="queue.php">Queue</a></li>
 					<li><a href="results.html">Results</a></li>
@@ -116,6 +116,10 @@
 
 <script>
 	// console.log("Test");
+	var Admin = 'Admin';
+	var Standard = 'Standard';
+	var Pending = 'Pending';
+	var userCount = 0;
 
 	var $usersList = $("#usersList");
 
@@ -126,17 +130,17 @@
 				var html =
 					'<div class="list-group-item list-group-item-action userList">' +
 						'<div class = "row">' +
-							'<div class = "col-lg-6" id = "username">' +
+							'<div class = "col-lg-6" id = "username' + userCount + '">' +
 								users[i].username +
 							'</div>' +
 								'<div class = "col-lg-4">' +
 									'<div class="dropdown">'+
-										'<button type="button" data-toggle="dropdown">' + users[i].type +
+										'<button id="typeButton'+userCount+'" type="button" data-toggle="dropdown">' + users[i].type +
 										'<span class="caret"></span></button>' +
-										'<ul id="typelist" class="dropdown-menu">' +
-											'<li><a href="#" onclick="admin()">Admin</a></li>'+
-											'<li><a href="#" onclick="standard()">Standard</a></li>'+
-											'<li><a href="#" onclick="pending()">Pending</a></li>'+
+										'<ul id="typelist'+userCount+'" class="dropdown-menu">' +
+											'<li><a href="#" id="A'+userCount+'" onclick="updateType(Admin,'+userCount+')">Admin</a></li>'+
+											'<li><a href="#" id="S'+userCount+'" onclick="updateType(Standard,'+userCount+')">Standard</a></li>'+
+											'<li><a href="#" id="P'+userCount+'" onclick="updateType(Pending,'+userCount+')">Pending</a></li>'+
 											'</ul>' +
 									'</div>' +
 								'</div>' +
@@ -147,61 +151,42 @@
 					'</div>';
 
 				$usersList.append(html);
+				userCount++;
 			}
 		});
 
-		function admin(){
-			var userList = document.getElementsByClassName("list-group-item");
-	    for (i = 0; i < userList.length; i++) {
-	        userList[i].onclick=function(){
-	            var username = (this.querySelector('#username').innerHTML);
-							$.ajax({
-								data: 'username=' + username + '&userType=' + 'Admin',
-								url: 'updateUsers.php',
-								method: 'POST',
-								success: function(message) {
-									console.log(message);
-									window.location.reload();
-								}
-							});
-	        }
-	    }
+		function updateType(dropType,idLi){
+			// console.log(dropType+','+idLi);
+
+			// Get username
+			var username = nodeToString(document.getElementById('username'+idLi));
+					username = username.replace('<div class="col-lg-6" id="username'+idLi+'">','');
+					username = username.replace('</div>','');
+					console.log(username);
+			// Update the database
+			$.ajax({
+				data: 'username=' + username + '&userType=' + dropType,
+				url: 'updateUsers.php',
+				method: 'POST',
+				// If successful, standard message
+				success: function(message) {
+					console.log(message);
+				}
+			});
+			// Update HTML to show new dropType value for said username
+			document.getElementById('typeButton'+idLi).innerHTML =
+						dropType +
+						'<span class="caret"></span>';
 		}
 
-		function standard(){
-			var userList = document.getElementsByClassName("list-group-item");
-			for (i = 0; i < userList.length; i++) {
-					userList[i].onclick=function(){
-							var username = (this.querySelector('#username').innerHTML);
-							$.ajax({
-								data: 'username=' + username + '&userType=' + 'Standard',
-								url: 'updateUsers.php',
-								method: 'POST',
-								success: function(message) {
-									console.log(message);
-									window.location.reload();
-								}
-							});
-					}
-			}
-		}
+		function nodeToString ( node ) {
+			// Fuction is used to convert node into string
 
-		function pending(){
-			var userList = document.getElementsByClassName("list-group-item");
-			for (i = 0; i < userList.length; i++) {
-					userList[i].onclick=function(){
-							var username = (this.querySelector('#username').innerHTML);
-							$.ajax({
-								data: 'username=' + username + '&userType=' + 'Pending',
-								url: 'updateUsers.php',
-								method: 'POST',
-								success: function(message) {
-									console.log(message);
-									window.location.reload();
-								}
-							});
-					}
-			}
+			var tmpNode = document.createElement( "div" );
+			tmpNode.appendChild( node.cloneNode( true ) );
+			var str = tmpNode.innerHTML;
+			tmpNode = node = null; // prevent memory leaks in IE
+			return str;
 		}
 </script>
 </body>
