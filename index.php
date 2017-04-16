@@ -46,7 +46,7 @@ if ($gClient->getAccessToken()) {
 	//Render facebook profile data
     if(!empty($userData))
 		{
-        $output = '<br/>Logged in as: ' . $userData['email'];
+        $output = 'Logged in as: ' . $userData['email'];
         $output .= '<br/><a href="logout.php">Logout of EMU ProteinSim</a>';
     }
 		else
@@ -101,8 +101,7 @@ setCookie("oauth_uid", username, 365);
 	h1{font-family:Arial, Helvetica, sans-serif;color:#999999;}
 
 	.sign-in {
-		padding-top: 0em;
-		margin-top: -1em;
+		margin-top: 3px;
 	}
 </style>
 
@@ -128,7 +127,7 @@ setCookie("oauth_uid", username, 365);
 					<li><a href="results.php">Results</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><div class="n/a" align="right";><?php echo $output; ?></div></li>
+					<li><div class="sign-in" align="right";><?php echo $output; ?></div></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
