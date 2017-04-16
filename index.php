@@ -71,9 +71,9 @@ else
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <!-- Latest compiled JavaScript -->
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="custom.css">
 
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
@@ -150,9 +150,9 @@ setCookie("username", username, 365);
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="index.php">Home<span class="sr-only">(current)</span></a></li>
-					<li><a href="simulation.html">Simulation</a></li>
+					<li><a href="simulation.php">Simulation</a></li>
 					<li><a href="queue.php">Queue</a></li>
-					<li><a href="results.html">Results</a></li>
+					<li><a href="results.php">Results</a></li>
 					<li><a href="register.php">Register</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
