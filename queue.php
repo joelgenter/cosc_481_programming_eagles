@@ -186,7 +186,7 @@ $email = $user->getEmail($oauth_uid);
 	*/
 ?>
 <script>
-	generateSimulationsList();
+	generateSimulationsList(<?php echo "\"".$status."\""; ?>);
 </script>
 </div>
 <!--Something is wrong with the XAMPP installation :-(-->
