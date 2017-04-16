@@ -38,9 +38,9 @@
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
 					<li><a href="index.php">Home</a></li>
-					<li><a href="simulation.html">Simulation</a></li>
+					<li><a href="simulation.php">Simulation</a></li>
 					<li><a href="queue.php">Queue</a></li>
-					<li class="active"><a href="results.html">Results<span class="sr-only">(current)</span></a></li>
+					<li class="active"><a href="results.php">Results<span class="sr-only">(current)</span></a></li>
 	      </ul>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
