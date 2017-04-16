@@ -50,10 +50,10 @@ else {
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="index.html">Home</a></li>
-					<li><a href="simulation.html">Simulation</a></li>
+					<li><a href="index.php">Home</a></li>
+					<li><a href="simulation.php">Simulation</a></li>
 					<li class="active"><a href="queue.php">Queue<span class="sr-only">(current)</span></a></li>
-					<li><a href="results.html">Results</a></li>
+					<li><a href="results.php">Results</a></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->

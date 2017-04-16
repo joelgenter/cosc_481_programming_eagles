@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 class User {
-    private $userTbl    = 'users';
+    private $userTbl    = 'Users';
     private $db;
 
 	function __construct(){
