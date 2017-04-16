@@ -1,3 +1,21 @@
+<?php
+include_once 'gpConfig.php';
+include_once 'User.php';
+
+$cookie_name = "username";
+$username = $_COOKIE[$cookie_name];
+$user = new User();
+$status = $user->getStatus($username);
+
+if ($status['type'] == "admin" || $status['type'] == "standard"){
+	//do nothing
+}
+else {
+	header("Location: index.php");
+	exit();
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>

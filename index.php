@@ -153,7 +153,6 @@ setCookie("username", username, 365);
 					<li><a href="simulation.php">Simulation</a></li>
 					<li><a href="queue.php">Queue</a></li>
 					<li><a href="results.php">Results</a></li>
-					<li><a href="register.php">Register</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><div class="n/a" align="right";><?php echo $output; ?></div></li>
