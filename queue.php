@@ -1,3 +1,21 @@
+<?php
+include_once 'gpConfig.php';
+include_once 'User.php';
+
+$cookie_name = "username";
+$username = $_COOKIE[$cookie_name];
+$user = new User();
+$status = $user->getStatus($username);
+
+if ($status['type'] != "pending"){
+	header("Location: https://localhost/index.php");
+	exit();
+}
+else {
+	echo "welcome!";
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +50,7 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="index.php">Home</a></li>
+					<li><a href="index.html">Home</a></li>
 					<li><a href="simulation.html">Simulation</a></li>
 					<li class="active"><a href="queue.php">Queue<span class="sr-only">(current)</span></a></li>
 					<li><a href="results.html">Results</a></li>
