@@ -8,7 +8,7 @@ $user = new User();
 $status = $user->getStatus($oauth_uid);
 $status = $status['type'];
 
-if ($status == "admin" || $status == "standard"){
+if ($status == "admin"){
 	//do nothing
 }
 else {
