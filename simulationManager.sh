@@ -39,7 +39,9 @@ while true; do
     read mutations pdb_file_name pdb_file simulation_name temperature, id <<< $query_result
 
     #copy default gromacs files to current simulation folder
-    cp -rf /home/gromacs/simulations/default/* /home/gromacs/simulations/current_simulation/
+    current_sim_path='/home/gromacs/simulations/current_simulation/'
+    mkdir $current_sim_path
+    cp -rf /home/gromacs/simulations/default/* $current_sim_path
     cd /home/gromacs/simulations/current_simulation
 
     #give the simulation data to gromacs
@@ -110,7 +112,7 @@ while true; do
     zip -rj "$result_folder_path/simulation_data.zip" . -i '*.xvg' '*.gro' '*.trr' '*.pdb'
 
     #remove simulation configuration files
-    cd ..; 
+    cd ..;
     rm -rf -- current_simulation
   else
     break   #no more incomplete simulations
