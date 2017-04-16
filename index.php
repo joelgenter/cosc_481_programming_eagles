@@ -27,9 +27,6 @@ if ($gClient->getAccessToken()) {
 	$index = strpos($email, '@');
 	$username = substr($email, 0, $index);
 
-	//set username
-	//$user->setUsername($username);
-
 	//Insert or update user data to the database
 	$gpUserData = array(
 	    'oauth_provider'=> 'google',
@@ -41,18 +38,6 @@ if ($gClient->getAccessToken()) {
 	);
 
   $userData = $user->checkUser($gpUserData);
-
-	//--------------------------------------------------------
-
-	//checks the users permissions
-	$status = $user->getStatus($username);
-	$statusOutput = $status;
-	echo $statusOutput['type'];
-	echo "<br>Hello world</br>";
-	//echo $user->getUsername();
-
-	//--------------------------------------------------------
-
 
 	//Storing user data into session
 	$_SESSION['userData'] = $userData;
@@ -86,9 +71,9 @@ else
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="custom.css">
 
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
@@ -96,7 +81,6 @@ else
 
 
 <!-- username cookie -->
-<script src=usernameCookie.js></script>
 <script>
 
 var data = <?php echo json_encode($username, JSON_HEX_TAG); ?>;
@@ -138,10 +122,6 @@ function getCookie(cname) {
 
 //creates a cookie with the username of the user
 setCookie("username", username, 365);
-
-// displays the username
-checkCookie();
-
 </script>
 
 <style type="text/css">

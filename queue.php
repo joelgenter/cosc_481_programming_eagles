@@ -7,12 +7,12 @@ $username = $_COOKIE[$cookie_name];
 $user = new User();
 $status = $user->getStatus($username);
 
-if ($status['type'] != "pending"){
-	header("Location: https://localhost/index.php");
-	exit();
+if ($status['type'] == "admin" || $status['type'] == "standard"){
+	//do nothing
 }
 else {
-	echo "welcome!";
+	header("Location: index.php");
+	exit();
 }
 ?>
 
