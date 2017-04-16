@@ -1,23 +1,3 @@
-<?php
-include_once 'gpConfig.php';
-include_once 'User.php';
-
-$cookie_name = "username";
-$username = $_COOKIE[$cookie_name];
-$user = new User();
-$status = $user->getStatus($username);
-
-if ($status['type'] != "pending"){
-	header("Location: http://localhost/index.php");
-	exit();
-}
-else {
-	echo "welcome!";
-}
-?>
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,9 +9,9 @@ else {
 	<!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<!-- Latest compiled JavaScript -->
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src ="queueFunctions.js"></script>
@@ -52,7 +32,7 @@ else {
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="index.html">Home</a></li>
+					<li><a href="index.php">Home</a></li>
 					<li><a href="simulation.html">Simulation</a></li>
 					<li class="active"><a href="queue.php">Queue<span class="sr-only">(current)</span></a></li>
 					<li><a href="results.html">Results</a></li>
