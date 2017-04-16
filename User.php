@@ -4,6 +4,7 @@ ini_set('display_errors', 1);
 class User {
     private $userTbl    = 'users';
     private $db;
+  //  private $username;
 
 	function __construct(){
         require 'db_connection.php';
@@ -36,10 +37,22 @@ class User {
 
     function getStatus($username)
     {
-      $sql = "SELECT type FROM $this->userTbl WHERE username = $username";
+      $sql = "SELECT type FROM " .$this->userTbl." WHERE username = '" .$username."'";
       $result = $this->db->query($sql);
-      return $result;
+
+      $userData = $result->fetch_assoc();
+      return $userData;
     }
+
+    // function setUsername($username)
+    // {
+    //   $this->username = $username;
+    // }
+    //
+    // function getUsername()
+    // {
+    //   return $this->username;
+    // }
 }
 
 

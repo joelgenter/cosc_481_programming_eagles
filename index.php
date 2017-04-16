@@ -27,6 +27,9 @@ if ($gClient->getAccessToken()) {
 	$index = strpos($email, '@');
 	$username = substr($email, 0, $index);
 
+	//set username
+	//$user->setUsername($username);
+
 	//Insert or update user data to the database
 	$gpUserData = array(
 	    'oauth_provider'=> 'google',
@@ -43,9 +46,10 @@ if ($gClient->getAccessToken()) {
 
 	//checks the users permissions
 	$status = $user->getStatus($username);
-	$statusOutput = '<br/>Status: ' .$status .'<br/>';
-	echo $statusOutput;
-	echo "Hello world";
+	$statusOutput = $status;
+	echo $statusOutput['type'];
+	echo "<br>Hello world</br>";
+	//echo $user->getUsername();
 
 	//--------------------------------------------------------
 
@@ -89,8 +93,56 @@ else
 
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<!--Google OAuth-->
 
+
+<!-- username cookie -->
+<script src=usernameCookie.js></script>
+<script>
+
+var data = <?php echo json_encode($username, JSON_HEX_TAG); ?>;
+var username = "" + data;
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function checkCookie() {
+	var user = getCookie("username");
+	if (user != "") {
+			alert("Welcome again " + user);
+	} else {
+			user = prompt("Please enter your name:", "");
+			if (user != "" && user != null) {
+					setCookie("username", user, 365);
+			}
+	}
+}
+
+function getCookie(cname) {
+	var name = cname + "=";
+	var ca = document.cookie.split(';');
+	for(var i = 0; i < ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) == ' ') {
+					c = c.substring(1);
+			}
+			if (c.indexOf(name) == 0) {
+					return c.substring(name.length, c.length);
+			}
+	}
+	return "";
+}
+
+//creates a cookie with the username of the user
+setCookie("username", username, 365);
+
+//displays the username
+//checkCookie();
+
+</script>
 
 <style type="text/css">
 	h1{font-family:Arial, Helvetica, sans-serif;color:#999999;}
@@ -117,14 +169,13 @@ else
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="index.html">Home<span class="sr-only">(current)</span></a></li>
+					<li class="active"><a href="index.php">Home<span class="sr-only">(current)</span></a></li>
 					<li><a href="simulation.html">Simulation</a></li>
 					<li><a href="queue.php">Queue</a></li>
 					<li><a href="results.html">Results</a></li>
-					<li><a href="register.html">Register</a></li>
+					<li><a href="register.php">Register</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<!-- <li><div><?php echo $statusOutput; ?></div></li> -->
 					<li><div class="n/a" align="right";><?php echo $output; ?></div></li>
 				</ul>
 			</div>
