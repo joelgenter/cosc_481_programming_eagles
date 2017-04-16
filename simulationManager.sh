@@ -110,7 +110,8 @@ while true; do
     zip -rj "$result_folder_path/simulation_data.zip" . -i '*.xvg' '*.gro' '*.trr' '*.pdb'
 
     #remove simulation configuration files
-    rm -rf *
+    cd ..; 
+    rm -rf -- current_simulation
   else
     break   #no more incomplete simulations
   fi
