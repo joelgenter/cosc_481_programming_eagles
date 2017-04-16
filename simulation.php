@@ -55,7 +55,7 @@ else {
 					<li><a href="index.php">Home</a></li>
 					<li class="active"><a href="simulation.html">Simulation<span class="sr-only">(current)</span></a></li>
 					<li><a href="queue.php">Queue</a></li>
-					<li><a href="results.html">Results</a></li>
+					<li><a href="results.php">Results</a></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
