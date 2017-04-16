@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 class User {
-    private $userTbl    = 'Users';
+    private $userTbl    = 'users';
     private $db;
 
 	function __construct(){
@@ -34,9 +34,9 @@ class User {
         return $userData;
     }
 
-    function getStatus($username)
+    function getStatus($oauth_uid)
     {
-      $sql = "SELECT type FROM " .$this->userTbl." WHERE username = '" .$username."'";
+      $sql = "SELECT type FROM " .$this->userTbl." WHERE oauth_uid = '" .$oauth_uid."'";
       $result = $this->db->query($sql);
 
       $userData = $result->fetch_assoc();

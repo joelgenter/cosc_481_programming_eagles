@@ -2,10 +2,10 @@
 include_once 'gpConfig.php';
 include_once 'User.php';
 
-$cookie_name = "username";
-$username = $_COOKIE[$cookie_name];
+$cookie_name = "oauth_uid";
+$oauth_uid = $_COOKIE[$cookie_name];
 $user = new User();
-$status = $user->getStatus($username);
+$status = $user->getStatus($oauth_uid);
 
 if ($status['type'] == "admin" || $status['type'] == "standard"){
 	//do nothing

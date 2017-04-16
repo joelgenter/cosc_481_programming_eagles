@@ -26,6 +26,7 @@ if ($gClient->getAccessToken()) {
 	$email = $gpUserProfile['email'];
 	$index = strpos($email, '@');
 	$username = substr($email, 0, $index);
+	$oauth_uid = $gpUserProfile['id'];
 
 	//Insert or update user data to the database
 	$gpUserData = array(
@@ -82,8 +83,7 @@ else
 
 <!-- username cookie -->
 <script>
-
-var data = <?php echo json_encode($username, JSON_HEX_TAG); ?>;
+var data = <?php echo json_encode($oauth_uid, JSON_HEX_TAG); ?>;
 var username = "" + data;
 
 function setCookie(cname, cvalue, exdays) {
@@ -93,35 +93,8 @@ function setCookie(cname, cvalue, exdays) {
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
-function checkCookie() {
-	var user = getCookie("username");
-	if (user != "") {
-			alert("Welcome again " + user);
-	} else {
-			user = prompt("Please enter your name:", "");
-			if (user != "" && user != null) {
-					setCookie("username", user, 365);
-			}
-	}
-}
-
-function getCookie(cname) {
-	var name = cname + "=";
-	var ca = document.cookie.split(';');
-	for(var i = 0; i < ca.length; i++) {
-			var c = ca[i];
-			while (c.charAt(0) == ' ') {
-					c = c.substring(1);
-			}
-			if (c.indexOf(name) == 0) {
-					return c.substring(name.length, c.length);
-			}
-	}
-	return "";
-}
-
 //creates a cookie with the username of the user
-setCookie("username", username, 365);
+setCookie("oauth_uid", username, 365);
 </script>
 
 <style type="text/css">
