@@ -116,6 +116,9 @@
 
 <script>
 	// console.log("Test");
+	var Admin = 'Admin';
+	var Standard = 'Standard';
+	var Pending = 'Pending';
 
 	var $usersList = $("#usersList");
 
@@ -131,12 +134,12 @@
 							'</div>' +
 								'<div class = "col-lg-4">' +
 									'<div class="dropdown">'+
-										'<button type="button" data-toggle="dropdown">' + users[i].type +
+										'<button id="typeButton" type="button" data-toggle="dropdown">' + users[i].type +
 										'<span class="caret"></span></button>' +
 										'<ul id="typelist" class="dropdown-menu">' +
-											'<li><a href="#" onclick="admin()">Admin</a></li>'+
-											'<li><a href="#" onclick="standard()">Standard</a></li>'+
-											'<li><a href="#" onclick="pending()">Pending</a></li>'+
+											'<li><a href="#" onclick="updateType(Admin)">Admin</a></li>'+
+											'<li><a href="#" onclick="updateType(Standard)">Standard</a></li>'+
+											'<li><a href="#" onclick="updateType(Pending)">Pending</a></li>'+
 											'</ul>' +
 									'</div>' +
 								'</div>' +
@@ -150,57 +153,32 @@
 			}
 		});
 
-		function admin(){
-			var userList = document.getElementsByClassName("list-group-item");
-	    for (i = 0; i < userList.length; i++) {
-	        userList[i].onclick=function(){
-	            var username = (this.querySelector('#username').innerHTML);
-							$.ajax({
-								data: 'username=' + username + '&userType=' + 'Admin',
-								url: 'updateUsers.php',
-								method: 'POST',
-								success: function(message) {
-									console.log(message);
-									window.location.reload();
-								}
-							});
-	        }
-	    }
-		}
+		function updateType(dropdownType){
+			// Function to change the user type in the database, then updateType
+			// the value being shown on the page to new type
 
-		function standard(){
+			// Get user list and place into variavle userList
 			var userList = document.getElementsByClassName("list-group-item");
+			// Loop through each user until onclick event found
 			for (i = 0; i < userList.length; i++) {
-					userList[i].onclick=function(){
-							var username = (this.querySelector('#username').innerHTML);
-							$.ajax({
-								data: 'username=' + username + '&userType=' + 'Standard',
-								url: 'updateUsers.php',
-								method: 'POST',
-								success: function(message) {
-									console.log(message);
-									window.location.reload();
-								}
-							});
-					}
-			}
-		}
-
-		function pending(){
-			var userList = document.getElementsByClassName("list-group-item");
-			for (i = 0; i < userList.length; i++) {
-					userList[i].onclick=function(){
-							var username = (this.querySelector('#username').innerHTML);
-							$.ajax({
-								data: 'username=' + username + '&userType=' + 'Pending',
-								url: 'updateUsers.php',
-								method: 'POST',
-								success: function(message) {
-									console.log(message);
-									window.location.reload();
-								}
-							});
-					}
+				// Run onclick event for user being changed
+				userList[i].onclick=function(){
+					// Grab username for updating database
+					var username = (this.querySelector('#username').innerHTML);
+					// Run ajax to update database via updateUsers.php
+					$.ajax({
+						data: 'username=' + username + '&userType=' + dropdownType,
+						url: 'updateUsers.php',
+						method: 'POST',
+						// If successful, standard message
+						success: function(message) {
+						}
+					});
+					// Refresh page until innerHTML edit works
+					window.location.reload();
+					// // Update button to new Type
+					// this.querySelector('#typeButton').innerHTML = dropdownType + '<span class="caret"></span>';
+				}
 			}
 		}
 </script>

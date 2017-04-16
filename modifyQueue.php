@@ -9,7 +9,7 @@
 			if( count($_POST['arguments']) < 2 ) {
                 echo 'Error in arguments!';
             }
-			else if(floatval($_POST['arguments'][0]==1)){
+			/*else if(floatval($_POST['arguments'][0]==0)){
 				$query = "UPDATE Simulations 
 						  SET Simulations.queuePosition = CASE
 							WHEN Simulations.queuePosition > 1 THEN Simulations.queuePosition-1
@@ -21,7 +21,8 @@
 					} else {
 						echo "Error updating record: " . $conn->error;
 					}
-			}
+			
+			}*/
             else {
 				$query = "UPDATE Simulations 
 						  SET Simulations.queuePosition = CASE
