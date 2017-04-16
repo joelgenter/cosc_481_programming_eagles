@@ -42,4 +42,13 @@ class User {
       $userData = $result->fetch_assoc();
       return $userData;
     }
+
+    function getEmail($oauth_uid)
+    {
+      $sql = "SELECT email FROM " .$this->userTbl." WHERE oauth_uid = '" .$oauth_uid."'";
+      $result = $this->db->query($sql);
+
+      $userData = $result->fetch_assoc();
+      return $userData;
+    }
 }
