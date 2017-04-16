@@ -119,6 +119,7 @@
 	var Admin = 'Admin';
 	var Standard = 'Standard';
 	var Pending = 'Pending';
+	var userCount = 0;
 
 	var $usersList = $("#usersList");
 
@@ -129,17 +130,17 @@
 				var html =
 					'<div class="list-group-item list-group-item-action userList">' +
 						'<div class = "row">' +
-							'<div class = "col-lg-6" id = "username">' +
+							'<div class = "col-lg-6" id = "username' + userCount + '">' +
 								users[i].username +
 							'</div>' +
 								'<div class = "col-lg-4">' +
 									'<div class="dropdown">'+
-										'<button id="typeButton" type="button" data-toggle="dropdown">' + users[i].type +
+										'<button id="typeButton'+userCount+'" type="button" data-toggle="dropdown">' + users[i].type +
 										'<span class="caret"></span></button>' +
-										'<ul id="typelist" class="dropdown-menu">' +
-											'<li><a href="#" onclick="updateType(Admin)">Admin</a></li>'+
-											'<li><a href="#" onclick="updateType(Standard)">Standard</a></li>'+
-											'<li><a href="#" onclick="updateType(Pending)">Pending</a></li>'+
+										'<ul id="typelist'+userCount+'" class="dropdown-menu">' +
+											'<li><a href="#" id="A'+userCount+'" onclick="updateType(Admin,'+userCount+')">Admin</a></li>'+
+											'<li><a href="#" id="S'+userCount+'" onclick="updateType(Standard,'+userCount+')">Standard</a></li>'+
+											'<li><a href="#" id="P'+userCount+'" onclick="updateType(Pending,'+userCount+')">Pending</a></li>'+
 											'</ul>' +
 									'</div>' +
 								'</div>' +
@@ -150,36 +151,42 @@
 					'</div>';
 
 				$usersList.append(html);
+				userCount++;
 			}
 		});
 
-		function updateType(dropdownType){
-			// Function to change the user type in the database, then updateType
-			// the value being shown on the page to new type
+		function updateType(dropType,idLi){
+			// console.log(dropType+','+idLi);
 
-			// Get user list and place into variavle userList
-			var userList = document.getElementsByClassName("list-group-item");
-			// Loop through each user until onclick event found
-			for (i = 0; i < userList.length; i++) {
-				// Run onclick event for user being changed
-				userList[i].onclick=function(){
-					// Grab username for updating database
-					var username = (this.querySelector('#username').innerHTML);
-					// Run ajax to update database via updateUsers.php
-					$.ajax({
-						data: 'username=' + username + '&userType=' + dropdownType,
-						url: 'updateUsers.php',
-						method: 'POST',
-						// If successful, standard message
-						success: function(message) {
-						}
-					});
-					// Refresh page until innerHTML edit works
-					window.location.reload();
-					// // Update button to new Type
-					// this.querySelector('#typeButton').innerHTML = dropdownType + '<span class="caret"></span>';
+			// Get username
+			var username = nodeToString(document.getElementById('username'+idLi));
+					username = username.replace('<div class="col-lg-6" id="username'+idLi+'">','');
+					username = username.replace('</div>','');
+					console.log(username);
+			// Update the database
+			$.ajax({
+				data: 'username=' + username + '&userType=' + dropType,
+				url: 'updateUsers.php',
+				method: 'POST',
+				// If successful, standard message
+				success: function(message) {
+					console.log(message);
 				}
-			}
+			});
+			// Update HTML to show new dropType value for said username
+			document.getElementById('typeButton'+idLi).innerHTML =
+						dropType +
+						'<span class="caret"></span>';
+		}
+
+		function nodeToString ( node ) {
+			// Fuction is used to convert node into string
+
+			var tmpNode = document.createElement( "div" );
+			tmpNode.appendChild( node.cloneNode( true ) );
+			var str = tmpNode.innerHTML;
+			tmpNode = node = null; // prevent memory leaks in IE
+			return str;
 		}
 </script>
 </body>
