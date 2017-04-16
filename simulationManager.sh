@@ -1,8 +1,9 @@
 #!/bin/bash
 #
-# This file will be executed from a php file when it knows there isn't
-# currently a simulation running
-# TODO:
+# This file will be executed from a php file. The PHP file will only
+# execute this file when it knows there is a new simulation and there are
+# no simulations currently running. This script will execute all incomplete
+# simulations in the db
 #   
 # SHELL DEPENDENCIES:
 #   zip
@@ -38,8 +39,8 @@ while true; do
     read mutations pdb_file_name pdb_file simulation_name temperature, id <<< $query_result
 
     #copy default gromacs files to current simulation folder
-    cp -f /home/gromacs/simulations/default /home/gromacs/current_simulation
-    cd /home/gromacs/current_simulation
+    cp -rf /home/gromacs/simulations/default/* /home/gromacs/simulations/current_simulation/
+    cd /home/gromacs/simulations/current_simulation
 
     #give the simulation data to gromacs
     gmx pdb2gmx -f $pdbFile -o protein.gro -water spc -ter -missing
@@ -109,7 +110,7 @@ while true; do
     zip -rj "$result_folder_path/simulation_data.zip" . -i '*.xvg' '*.gro' '*.trr' '*.pdb'
 
     #remove simulation configuration files
-    rm -f *
+    rm -rf *
   else
     break   #no more incomplete simulations
   fi
