@@ -6,14 +6,36 @@ $cookie_name = "oauth_uid";
 $oauth_uid = $_COOKIE[$cookie_name];
 $user = new User();
 $status = $user->getStatus($oauth_uid);
+$status = $status['type'];
 
-if ($status['type'] == "admin" || $status['type'] == "standard"){
+if ($status == "admin" || $status == "standard"){
 	//do nothing
 }
 else {
 	header("Location: index.php");
 	exit();
 }
+
+//produce admin tab if admin
+$admin = "";
+if ($status == "admin")
+{
+	$admin = '<a href="admin.php">Admin</a>';
+}
+
+//get user email
+$email = $user->getEmail($oauth_uid);
+
+//Render user email and logot text
+	if(!empty($email))
+	{
+			$output = 'Logged in as: ' . $email['email'];
+			$output .= '<br/><a href="logout.php">Logout of EMU ProteinSim</a>';
+	}
+	else
+	{
+			$output = '<h3 style="color:red">Some problem occurred, please try again.</h3>';
+	}
 ?>
 
 <!DOCTYPE html>
@@ -54,6 +76,10 @@ else {
 					<li><a href="simulation.php">Simulation</a></li>
 					<li class="active"><a href="queue.php">Queue<span class="sr-only">(current)</span></a></li>
 					<li><a href="results.php">Results</a></li>
+					<li><?php echo $admin; ?></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><div class="sign-in" align="right";><?php echo $output; ?></div></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
