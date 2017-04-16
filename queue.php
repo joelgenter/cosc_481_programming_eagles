@@ -9,9 +9,9 @@
 	<!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<!-- Latest compiled JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src ="queueFunctions.js"></script>
@@ -32,7 +32,7 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="index.php">Home</a></li>
+					<li><a href="index.html">Home</a></li>
 					<li><a href="simulation.html">Simulation</a></li>
 					<li class="active"><a href="queue.php">Queue<span class="sr-only">(current)</span></a></li>
 					<li><a href="results.html">Results</a></li>
@@ -48,8 +48,21 @@
 			width: auto;
 			display: inline;
 		}
+		
+		.progress span {
+			position: absolute;
+			display: block;
+			width: 100%;
+			color: black;
+		}
+		
 		.thumbnail {
 			padding: 30px;
+		}
+		
+		div.border-green{
+			border-style: solid;
+			border-color: #11DD11;
 		}
 		.container-body {
 			padding: 10%;
@@ -89,59 +102,34 @@
 					</div>
 				</div>
 			</div>
-
-
-<?php
-	/*
-	require 'db_connection.php';
-
-	$query = "SELECT Simulations.simulationName, Simulations.startTime, Simulations.endTime, Simulations.username, Simulations.mutations FROM Simulations";
-	  if ($stmt = $conn->prepare($query)) {
-      $stmt->execute();
-	  $stmt->bind_result($simulationName, $startTime, $endTime, $username, $mutations);
-	  echo("<!-- List group -->
-			<ul class='list-group'>");
-      while ($stmt->fetch()) {
-          echo("
-		<div class='list-group-item list-group-item-action'>
-			<div class = 'row'>
-				<div class = 'col-lg-2'>"
-					.$simulationName.
-				"</div>
-				<div class = 'col-lg-2'>"
-					.$mutations.
-				"</div>
-				<div class = 'col-lg-2'>"
-					.$username.
-				"</div>
-				<div class = 'col-lg-2'>"
-					.$startTime.
-				"</div>
-				<div class = 'col-lg-2'>"
-					.$endTime.
-				"</div>
-				<div class = 'col-lg-2 text-center'>
-					<button type='button' class='disabled btn btn-default btn-xs'>
-						<span class='glyphicon glyphicon-chevron-up' aria-hidden='true'></span>
-					</button>
-					<button type='button' class='disabled btn btn-default btn-xs'>
-						<span class='glyphicon glyphicon-chevron-down' aria-hidden='true'></span>
-					</button>
-					<button type='button' class='disabled btn btn-default btn-xs'>
-						<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>
-					</button>
+			<div class="modal fade" id="alertModal" role="dialog">
+				<div class="modal-dialog">
+    
+				<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header bg-primary">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Modal Header</h4>
+						</div>
+						<div class="modal-body">
+							<p>Are you sure you want to delete this simulation?</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="button" id = "confirmDelete" class="btn btn-default" data-dismiss="modal">Delete</button>
+						</div>
+					</div>
+      
 				</div>
 			</div>
-		</div>
-");
 
-      }
-	  echo "</ul>";
-      $stmt->close();
-  }
-	*/
-?>
 <script>
+	$(function(){
+		$('#confirmDelete').click(function(){
+			console.log(this);
+			deleteSim(this.name[this.name.length-1],'use Queue')
+		})
+	})
 	generateSimulationsList();
 </script>
 </div>
