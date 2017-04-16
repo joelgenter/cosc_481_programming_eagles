@@ -5,7 +5,7 @@ ini_set('display_errors', 1);
 include_once 'gpConfig.php';
 include_once 'User.php';
 
-$status = "<strong>Warning!</strong> You need to sign in to access other pages!";
+$status = "<div class=\"alert alert-warning\"><strong>Warning!</strong> You need to sign in to access other pages!</div>";
 $admin = "";
 
 if(isset($_GET['code'])){
@@ -52,6 +52,7 @@ if ($gClient->getAccessToken()) {
 	if ($status == 'pending')
 	{
 		$status = "<strong>Warning!</strong> Your user status is set to \"pending\". Access to other pages requires admin approval!";
+		$status = "<div class=\"alert alert-warning\"><strong>Warning!</strong> Your user status is set to \"pending\". Access to other pages requires admin approval!</div>";
 	}
 	else
 	{
@@ -169,7 +170,8 @@ setCookie("oauth_uid", username, 365);
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="title">
-					<div class="alert alert-warning"><?php echo $status; ?></div>
+					<!-- <div class="alert alert-warning"><?php echo $status; ?></div> -->
+					<?php echo $status; ?>
 					<h2><font color="black">Protein Simulations</h2>
 					<span class="byline">A Colloborative Project Between the EMU Computer Science and Chemistry Departments</span>
 				</div>
