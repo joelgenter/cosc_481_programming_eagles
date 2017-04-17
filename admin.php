@@ -174,9 +174,9 @@ $email = $user->getEmail($oauth_uid);
 
 <script>
 	// console.log("Test");
-	var Admin = 'Admin';
-	var Standard = 'Standard';
-	var Pending = 'Pending';
+	var Admin = 'admin';
+	var Standard = 'standard';
+	var Pending = 'pending';
 	var userCount = 0;
 
 	var $usersList = $("#usersList");
