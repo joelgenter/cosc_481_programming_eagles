@@ -62,7 +62,7 @@ function incrementSim(simNumber, data){
 	if(simNumber>0){
 		$.ajax({url: 'modifyQueue.php', method: 'POST', 
 			data: {functionName:'increment', arguments: [(parseInt(simNumber)), parseInt(simNumber)-1]},
-			success: function(mesg){ updateList();}});
+			success: function(mesg){ updateList(data);}});
 	}
 }
 
@@ -72,14 +72,14 @@ function decrementSim(simNumber, data){
 	else{
 			$.ajax({url: 'modifyQueue.php', method: 'POST', 
 			data: {functionName:'increment', arguments: [(parseInt(simNumber)+1), parseInt(simNumber)]},
-			success: function(mesg){ updateList();}});
+			success: function(mesg){ updateList(data);}});
 	}
 }
 
 function deleteSim(simNumber, data){
 	$.ajax({url: 'modifyQueue.php', method: 'POST', 
 	  data: {functionName:'delete', arguments: (parseInt(simNumber))},
-	  success: function(mesg){ updateList();}});					
+	  success: function(mesg){ updateList(data);}});					
 }
 
 /** 'updates' list by deleting the list and creating a new one.
