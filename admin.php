@@ -174,9 +174,9 @@ $email = $user->getEmail($oauth_uid);
 
 <script>
 	// console.log("Test");
-	var Admin = 'admin';
-	var Standard = 'standard';
-	var Pending = 'pending';
+	var admin = 'admin';
+	var standard = 'standard';
+	var pending = 'pending';
 	var userCount = 0;
 
 	var $usersList = $("#usersList");
@@ -196,9 +196,9 @@ $email = $user->getEmail($oauth_uid);
 										'<button id="typeButton'+userCount+'" type="button" data-toggle="dropdown">' + users[i].type +
 										'<span class="caret"></span></button>' +
 										'<ul id="typelist'+userCount+'" class="dropdown-menu">' +
-											'<li><a href="#" id="A'+userCount+'" onclick="updateType(Admin,'+userCount+')">Admin</a></li>'+
-											'<li><a href="#" id="S'+userCount+'" onclick="updateType(Standard,'+userCount+')">Standard</a></li>'+
-											'<li><a href="#" id="P'+userCount+'" onclick="updateType(Pending,'+userCount+')">Pending</a></li>'+
+											'<li><a href="#" id="A'+userCount+'" onclick="updateType(admin,'+userCount+')">admin</a></li>'+
+											'<li><a href="#" id="S'+userCount+'" onclick="updateType(standard,'+userCount+')">standard</a></li>'+
+											'<li><a href="#" id="P'+userCount+'" onclick="updateType(pending,'+userCount+')">pending</a></li>'+
 											'</ul>' +
 									'</div>' +
 								'</div>' +
