@@ -127,7 +127,7 @@ $email = $user->getEmail($oauth_uid);
 					</div>
 				</div>
 			</div>
-			<!-- <!-- List group
+			<!-- List group
 			<ul class="list-group">
 				<a href = "sampleResult.html" class="list-group-item list-group-item-action">
 					<div class = "row">
