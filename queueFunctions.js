@@ -43,11 +43,11 @@ function createSimulationsList(queue, status){
 	$(function(){
 		$('[name="simUp"]').click(function(){
 			if(!$(this).hasClass('disabled'))
-				incrementSim(this.id[this.id.length-1],queue)
+				incrementSim(this.id[this.id.length-1],status)
 		});
 		$('[name="simDown"]').click(function(){
 			if(!$(this).hasClass('disabled'))
-				decrementSim(this.id[this.id.length-1],queue)
+				decrementSim(this.id[this.id.length-1],status)
 		});
 		$('[name="simDelete"]').click(function(){
 			$('#confirmDelete').attr('name',(this.id));
@@ -96,7 +96,6 @@ function updateBar(folderPath, simDuration){
 	$.ajax({url: 'getSimulationStatus.php', method: 'POST', 
 			data: {fileLocation: folderPath, duration: simDuration },
 			success: function(percent){
-				console.log(percent)
 				var message ="";
 				if(percent<5)
 					message = "Initializing"
