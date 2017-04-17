@@ -150,12 +150,12 @@ $email = $user->getEmail($oauth_uid);
 				</div>
 			</div>
 
-			<div class="input-group col-lg-12">
+			<!-- <div class="input-group col-lg-12">
 				<input id="pdbSearch" type="text" class="form-control" placeholder="New emich user (Ex. jsmith1)">
 				<span class="input-group-btn">
 					<button id="searchButton" class="btn btn-default" type="button">Add</button>
 				</span>
-			</div>
+			</div> -->
 
 			<!-- List group -->
 			<ul id="usersList" class="list-group">
@@ -192,7 +192,7 @@ $email = $user->getEmail($oauth_uid);
 							'</div>' +
 								'<div class = "col-lg-4">' +
 									'<div class="dropdown">'+
-										'<button id="typeButton'+userCount+'" type="button" data-toggle="dropdown">' + users[i].type +
+										'<button style="width: 8em;" class="btn btn-secondary dropdown-toggle" id="typeButton'+userCount+'" type="button" data-toggle="dropdown">' + users[i].type +
 										'<span class="caret"></span></button>' +
 										'<ul id="typelist'+userCount+'" class="dropdown-menu">' +
 											'<li><a href="#" id="A'+userCount+'" onclick="updateType(admin,'+userCount+')">admin</a></li>'+
