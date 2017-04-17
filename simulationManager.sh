@@ -20,7 +20,7 @@ SELECT
   temperature,
   id
 FROM Simulations
-WHERE queuePosition = 0
+WHERE queuePosition = 1
 EOF
 )
 
