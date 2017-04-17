@@ -101,7 +101,7 @@ $email = $user->getEmail($oauth_uid);
 		</div>
 		<div class="row">
 			<div class="col-lg-6">
-				<form action ="simulation.php" method="POST" onsubmit="sumbitSimulation();">
+				<form action ="submitSimulation.php" method="POST" onsubmit="sumbitSimulation();">
 					<fieldset class="form-group">
 						<legend>PDB File</legend>
 						<!-- <p>The PDB file must not have any breaks or the simulation will not work.
