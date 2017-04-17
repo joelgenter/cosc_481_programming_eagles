@@ -130,7 +130,7 @@ function updateBarValues(amount, string){
 /** Calls getSimulations and passes it a created function that parses the data.
   * 	Once the data has been parsed it sends the info to createSimulationsList()
   */
-function generateSimulationsList(){
+function generateSimulationsList(status){
 	getSimulations(function(obj){
 		var results =[];
 		var completedSimulations = JSON.parse(obj)
@@ -138,7 +138,7 @@ function generateSimulationsList(){
 				if (i[5]>=0)
 					results.push(i);
 		
-		createSimulationsList(results);
+		createSimulationsList(results,status);
 	})
 }
 
