@@ -73,10 +73,9 @@ function decrementSim(simNumber, data){
 }
 
 function deleteSim(simNumber, data){
-	console.log(simNumber);
-	//$.ajax({url: 'modifyQueue.php', method: 'POST',
-	//  data: {functionName:'delete', arguments: (parseInt(simNumber))},
-	//	success: function(mesg){ updateList();}});
+	$.ajax({url: 'modifyQueue.php', method: 'POST',
+		data: {functionName:'delete', arguments: (parseInt(simNumber))},
+		success: function(mesg){ updateList();}});
 }
 
 /** 'updates' list by deleting the list and creating a new one.
@@ -88,25 +87,28 @@ function updateList(){
 }
 
 function updateBar(){
-	console.log($('#progressBar').parent().children()[0].style.width);
-	$.ajax({url: 'getSimulationStatus.php', method: 'POST',
-			data: {fileLocation:'./Gromacs/' },
+	$.	$.ajax({url: 'getSimulationStatus.php', method: 'POST', 
+			data: {fileLocation: folderPath },
 			success: function(percent){
 				var message ="";
 				if(percent<5)
-					message = "Initializing";
+					message = "Initializing"
 				else if(percent<25)
-					message = "Performing equilibrium simulation";
+					message = "Performing equilibrium calculations"
 				else if(percent<80)
-					message = "Simulating molecule";
+					message = "Simulating molecule"
 				else if(percent<100)
-					message = "Performing free energy calculations";
+					message = "Performing free energy calculations"
 				else
-					message ="Error: Reticulating Splines";
+					message ="Error: Reticulating Splines"
 				updateBarValues(percent,message)
 			},
-			failure: function(mesg){cnsole.log(mesg)}});
-}
+			error: function(XMLHttpRequest, textStatus, errorThrown){
+				 //alert("Status: " + textStatus);
+				console.log(XMLHttpRequest)
+				 //alert("Error: " + errorThrown); 
+				}
+			});
 
 /** Changes the progress bar completion percent to the passed amount
   *  	and the message to the passed string.
