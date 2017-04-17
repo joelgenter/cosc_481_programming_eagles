@@ -1,3 +1,4 @@
+var barUpdater;
 function createSimulationsList(queue, status){
 	//generates list group
 	$('#simulationsList').append("<!-- List group --> <ul class='list-group'>");
@@ -41,22 +42,25 @@ function createSimulationsList(queue, status){
 	$('#simulationsList').append("</div></ul>");
 	$(function(){
 		$('[name="simUp"]').click(function(){
-			incrementSim(this.id[this.id.length-1],queue);
+			if(!$(this).hasClass('disabled'))
+				incrementSim(this.id[this.id.length-1],queue)
 		});
 		$('[name="simDown"]').click(function(){
-			decrementSim(this.id[this.id.length-1],queue);
+			if(!$(this).hasClass('disabled'))
+				decrementSim(this.id[this.id.length-1],queue)
 		});
 		$('[name="simDelete"]').click(function(){
 			$('#confirmDelete').attr('name',(this.id));
-			$('#alertModal').modal('show');
+			$('#alertModal').modal('show')
 		});
 	});
-	updateBar();
+	updateBar(queue[0][7],queue[0][8])
+	barUpdater=setInterval(function(){updateBar(queue[0][7],queue[0][8])},10000);
 }
 
-function incrementSim(simNumber, data){
+function incrementSim(simNumber, data){		
 	if(simNumber>0){
-		$.ajax({url: 'modifyQueue.php', method: 'POST',
+		$.ajax({url: 'modifyQueue.php', method: 'POST', 
 			data: {functionName:'increment', arguments: [(parseInt(simNumber)), parseInt(simNumber)-1]},
 			success: function(mesg){ updateList();}});
 	}
@@ -64,37 +68,40 @@ function incrementSim(simNumber, data){
 
 function decrementSim(simNumber, data){
 	if (simNumber==data.length-1)
-		alert("Cannot decrement the last item in the queue");
+		alert("Cannot decrement the last item in the queue")
 	else{
-			$.ajax({url: 'modifyQueue.php', method: 'POST',
+			$.ajax({url: 'modifyQueue.php', method: 'POST', 
 			data: {functionName:'increment', arguments: [(parseInt(simNumber)+1), parseInt(simNumber)]},
 			success: function(mesg){ updateList();}});
 	}
 }
 
 function deleteSim(simNumber, data){
-	$.ajax({url: 'modifyQueue.php', method: 'POST',
-		data: {functionName:'delete', arguments: (parseInt(simNumber))},
-		success: function(mesg){ updateList();}});
+	$.ajax({url: 'modifyQueue.php', method: 'POST', 
+	  data: {functionName:'delete', arguments: (parseInt(simNumber))},
+	  success: function(mesg){ updateList();}});					
 }
 
 /** 'updates' list by deleting the list and creating a new one.
   *
   */
-function updateList(){
+function updateList(status){
+	clearInterval(barUpdater);
 	$('[name="simulationRow"]').remove();
-	generateSimulationsList();
+	generateSimulationsList(status);
 }
 
-function updateBar(){
-	$.	$.ajax({url: 'getSimulationStatus.php', method: 'POST', 
-			data: {fileLocation: folderPath },
+function updateBar(folderPath, simDuration){
+	//console.log($('#progressBar').parent().children()[0].style.width)
+	$.ajax({url: 'getSimulationStatus.php', method: 'POST', 
+			data: {fileLocation: folderPath, duration: simDuration },
 			success: function(percent){
+				console.log(percent)
 				var message ="";
 				if(percent<5)
 					message = "Initializing"
 				else if(percent<25)
-					message = "Performing equilibrium calculations"
+					message = "Performing equilibrium"
 				else if(percent<80)
 					message = "Simulating molecule"
 				else if(percent<100)
@@ -109,6 +116,7 @@ function updateBar(){
 				 //alert("Error: " + errorThrown); 
 				}
 			});
+}
 
 /** Changes the progress bar completion percent to the passed amount
   *  	and the message to the passed string.
@@ -122,22 +130,22 @@ function updateBarValues(amount, string){
 /** Calls getSimulations and passes it a created function that parses the data.
   * 	Once the data has been parsed it sends the info to createSimulationsList()
   */
-function generateSimulationsList(status){
+function generateSimulationsList(){
 	getSimulations(function(obj){
 		var results =[];
-		var completedSimulations = JSON.parse(obj);
+		var completedSimulations = JSON.parse(obj)
 			for(var i of completedSimulations.results)
 				if (i[5]>=0)
 					results.push(i);
-
-		createSimulationsList(results, status);
+		
+		createSimulationsList(results);
 	})
 }
 
 /** Gets simulation data from the sql server by calling the appropriate php file.
-  *	After Gathering data calls the passed function with the data.
+  *	After Gathering data calls the passed function with the data. 
   */
 function getSimulations(func){
-	$.ajax({url: 'getSimulations.php', method: 'POST',
-			success: function(obj){func(obj);}});
+	$.ajax({url: 'getSimulations.php', method: 'POST', 
+			success: function(obj){func(obj);}});	
 }

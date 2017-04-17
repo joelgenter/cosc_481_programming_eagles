@@ -22,7 +22,6 @@ fec        1000ps
 $currentPercent = 0;
 $multiplier = 1;
 $fileName = $_POST['fileLocation'];
-
 if(file_exists($fileName.'fec.log')){
 	$fileName.= 'fec.log';
 	$currentPercent = 80;
@@ -31,7 +30,7 @@ if(file_exists($fileName.'fec.log')){
 else if(file_exists($fileName.'md_0_1.log')){
 	$fileName.= 'md_0_1.log';
 	$currentPercent = 25;
-	$multiplier = 0.55;
+	$multiplier = (100/$_POST['duration'])*0.55;
 }
 else if(file_exists($fileName.'npt.log')){
 	$fileName.= 'npt.log';

@@ -92,6 +92,12 @@ $email = $user->getEmail($oauth_uid);
 			width: auto;
 			display: inline;
 		}
+		.progress span {
+			position: absolute;
+			display: block;
+			width: 100%;
+			color: black;
+		}
 		.thumbnail {
 			padding: 30px;
 		}
@@ -156,7 +162,7 @@ $email = $user->getEmail($oauth_uid);
 <script>
 	$(function(){
 		$('#confirmDelete').click(function(){
-			deleteSim(this.name[this.name.length-1],'use Queue')
+			deleteSim(this.name[this.name.length-1],<?php echo "\"".$status."\""; ?>)
 		})
 	})
 	generateSimulationsList(<?php echo "\"".$status."\""; ?>);
@@ -166,13 +172,13 @@ $email = $user->getEmail($oauth_uid);
 
 
 	</div>
-	<div class="container-fluid footer">
+	<!--<div class="container-fluid footer">
 		<div class="row">
 			<div class="col-lg-12 text-center">
 				<p>Copyright &copy; Programming Eagles 2017
 				</p>
 			</div>
 		</div>
-</div>
+	</div>-->
 </body>
 </html>
