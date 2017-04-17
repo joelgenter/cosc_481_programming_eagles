@@ -22,38 +22,38 @@ fec        1000ps
 $currentPercent = 0;
 $multiplier = 1;
 $fileName = $_POST['fileLocation'];
-if(file_exists($fileName .'fec.log')){
+if(file_exists($fileName.'fec.log')){
 	$fileName.= 'fec.log';
 	$currentPercent = 80;
-	$currentMultiplier = 0.2;
+	$multiplier = 0.2;
 }
 else if(file_exists($fileName.'md_0_1.log')){
 	$fileName.= 'md_0_1.log';
 	$currentPercent = 25;
-	$currentMultiplier = 0.55;
+	$multiplier = (100/$_POST['duration'])*0.55;
 }
 else if(file_exists($fileName.'npt.log')){
 	$fileName.= 'npt.log';
 	$currentPercent = 15;
-	$currentMultiplier = 0.1;
+	$multiplier = 0.1;
 }
 else if(file_exists($fileName.'nvt.log')){
 	$fileName.= 'nvt.log';
 	$currentPercent = 10;
-	$currentMultiplier = 0.1;
+	$multiplier = 0.1;
 }
 else if(file_exists($fileName.'em.log')){
-	$fileName.= 'nvt.log';
+	$fileName.= 'em.log';
 	$currentPercent = 5;
-	$currentMultiplier = 0.05;
+	$multiplier = 0.05;
 }
 else{
 	$currentPercent = 1;
-	$currentMultiplier = 0.05;
+	$multiplier = 0.05;
 }
 
 if($currentPercent>1){		
-	$file = fopen($_POST['fileLocation'], "r");
+	$file = fopen($fileName, "r");
 	$top_line = "";
 	$bottom_line = "";
 	for ($x_position = 0, $new_line = ''; fseek($file, $x_position, SEEK_END) !== -1; $x_position--) {
@@ -94,6 +94,6 @@ if($currentPercent>1){
 	if (empty($percentage)) {
 		$percentage = 100;
 	}
-	$currentPercent += $percentage*$multiplier;
+	$currentPercent += ($percentage*$multiplier);
 }
 echo floatval($currentPercent);

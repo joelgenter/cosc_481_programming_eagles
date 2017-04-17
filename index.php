@@ -5,6 +5,9 @@ ini_set('display_errors', 1);
 include_once 'gpConfig.php';
 include_once 'User.php';
 
+$status = "<div class=\"alert alert-warning\"><strong>Warning!</strong> You need to sign in to access other pages!</div>";
+$admin = "";
+
 if(isset($_GET['code'])){
 	$gClient->authenticate($_GET['code']);
 	$_SESSION['token'] = $gClient->getAccessToken();
@@ -22,7 +25,7 @@ if ($gClient->getAccessToken()) {
 	//Initialize User class
 	$user = new User();
 
-	//gets username
+	//gets username for db and cookie storage
 	$email = $gpUserProfile['email'];
 	$index = strpos($email, '@');
 	$username = substr($email, 0, $index);
@@ -38,7 +41,29 @@ if ($gClient->getAccessToken()) {
 	    'email'         => $gpUserProfile['email']
 	);
 
+	//push to DB
   $userData = $user->checkUser($gpUserData);
+
+	//store user permission status
+	$status = $user->getStatus($oauth_uid);
+	$status = $status['type'];
+
+	//check if pending output message is needed
+	if ($status == 'pending')
+	{
+		$status = "<strong>Warning!</strong> Your user status is set to \"pending\". Access to other pages requires admin approval!";
+		$status = "<div class=\"alert alert-warning\"><strong>Warning!</strong> Your user status is set to \"pending\". Access to other pages requires admin approval!</div>";
+	}
+	else
+	{
+		//produce admin tab if admin
+		if ($status == "admin")
+		{
+			$admin = '<a href="admin.php">Admin</a>';
+		}
+
+		$status = "";
+	}
 
 	//Storing user data into session
 	$_SESSION['userData'] = $userData;
@@ -99,10 +124,6 @@ setCookie("oauth_uid", username, 365);
 
 <style type="text/css">
 	h1{font-family:Arial, Helvetica, sans-serif;color:#999999;}
-
-	.sign-in {
-		margin-top: 3px;
-	}
 </style>
 
 </head>
@@ -125,6 +146,7 @@ setCookie("oauth_uid", username, 365);
 					<li><a href="simulation.php">Simulation</a></li>
 					<li><a href="queue.php">Queue</a></li>
 					<li><a href="results.php">Results</a></li>
+					<li><?php echo $admin; ?></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><div class="sign-in" align="right";><?php echo $output; ?></div></li>
@@ -137,7 +159,7 @@ setCookie("oauth_uid", username, 365);
 	<div class="container-fluid banner">
 		<div class="row">
 			<div class="col-lg-12">
-				<h1>Protein Simulations</h1>
+				<h1><font color="white">Protein Simulations</h1>
 				<p>Helping to Cure Cancer At Eastern Michigan University</p>
 			</div>
 		</div>
@@ -148,7 +170,9 @@ setCookie("oauth_uid", username, 365);
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="title">
-					<h2>Protein Simulations</h2>
+					<!-- <div class="alert alert-warning"><?php echo $status; ?></div> -->
+					<?php echo $status; ?>
+					<h2><font color="black">Protein Simulations</h2>
 					<span class="byline">A Colloborative Project Between the EMU Computer Science and Chemistry Departments</span>
 				</div>
 				<h3>Purpose</h3>

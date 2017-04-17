@@ -6,14 +6,36 @@ $cookie_name = "oauth_uid";
 $oauth_uid = $_COOKIE[$cookie_name];
 $user = new User();
 $status = $user->getStatus($oauth_uid);
+$status = $status['type'];
 
-if ($status['type'] == "admin" || $status['type'] == "standard"){
+if ($status == "admin" || $status == "standard"){
 	//do nothing
 }
 else {
 	header("Location: index.php");
 	exit();
 }
+
+//produce admin tab if admin
+$admin = "";
+if ($status == "admin")
+{
+	$admin = '<a href="admin.php">Admin</a>';
+}
+
+//get user email
+$email = $user->getEmail($oauth_uid);
+
+//Render user email and logot text
+	if(!empty($email))
+	{
+			$output = 'Logged in as: ' . $email['email'];
+			$output .= '<br/><a href="logout.php">Logout of EMU ProteinSim</a>';
+	}
+	else
+	{
+			$output = '<h3 style="color:red">Some problem occurred, please try again.</h3>';
+	}
 ?>
 
 <!DOCTYPE html>
@@ -54,6 +76,10 @@ else {
 					<li><a href="simulation.php">Simulation</a></li>
 					<li class="active"><a href="queue.php">Queue<span class="sr-only">(current)</span></a></li>
 					<li><a href="results.php">Results</a></li>
+					<li><?php echo $admin; ?></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><div class="sign-in" align="right";><?php echo $output; ?></div></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -65,6 +91,12 @@ else {
 			min-width: 0;
 			width: auto;
 			display: inline;
+		}
+		.progress span {
+			position: absolute;
+			display: block;
+			width: 100%;
+			color: black;
 		}
 		.thumbnail {
 			padding: 30px;
@@ -107,73 +139,46 @@ else {
 					</div>
 				</div>
 			</div>
-
-
-<?php
-	/*
-	require 'db_connection.php';
-
-	$query = "SELECT Simulations.simulationName, Simulations.startTime, Simulations.endTime, Simulations.username, Simulations.mutations FROM Simulations";
-	  if ($stmt = $conn->prepare($query)) {
-      $stmt->execute();
-	  $stmt->bind_result($simulationName, $startTime, $endTime, $username, $mutations);
-	  echo("<!-- List group -->
-			<ul class='list-group'>");
-      while ($stmt->fetch()) {
-          echo("
-		<div class='list-group-item list-group-item-action'>
-			<div class = 'row'>
-				<div class = 'col-lg-2'>"
-					.$simulationName.
-				"</div>
-				<div class = 'col-lg-2'>"
-					.$mutations.
-				"</div>
-				<div class = 'col-lg-2'>"
-					.$username.
-				"</div>
-				<div class = 'col-lg-2'>"
-					.$startTime.
-				"</div>
-				<div class = 'col-lg-2'>"
-					.$endTime.
-				"</div>
-				<div class = 'col-lg-2 text-center'>
-					<button type='button' class='disabled btn btn-default btn-xs'>
-						<span class='glyphicon glyphicon-chevron-up' aria-hidden='true'></span>
-					</button>
-					<button type='button' class='disabled btn btn-default btn-xs'>
-						<span class='glyphicon glyphicon-chevron-down' aria-hidden='true'></span>
-					</button>
-					<button type='button' class='disabled btn btn-default btn-xs'>
-						<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>
-					</button>
+			<div class="modal fade" id="alertModal" role="dialog">
+				<div class="modal-dialog">
+    
+				<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header bg-primary">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Confirm Delete</h4>
+						</div>
+						<div class="modal-body">
+							<p>Are you sure you want to delete this simulation?</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="button" id = "confirmDelete" class="btn btn-default" data-dismiss="modal">Delete</button>
+						</div>
+					</div>
+      
 				</div>
 			</div>
-		</div>
-");
-
-      }
-	  echo "</ul>";
-      $stmt->close();
-  }
-	*/
-?>
 <script>
-	generateSimulationsList();
+	$(function(){
+		$('#confirmDelete').click(function(){
+			deleteSim(this.name[this.name.length-1],<?php echo "\"".$status."\""; ?>)
+		})
+	})
+	generateSimulationsList(<?php echo "\"".$status."\""; ?>);
 </script>
 </div>
 <!--Something is wrong with the XAMPP installation :-(-->
 
 
 	</div>
-	<div class="container-fluid footer">
+	<!--<div class="container-fluid footer">
 		<div class="row">
 			<div class="col-lg-12 text-center">
 				<p>Copyright &copy; Programming Eagles 2017
 				</p>
 			</div>
 		</div>
-</div>
+	</div>-->
 </body>
 </html>
