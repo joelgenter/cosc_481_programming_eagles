@@ -173,7 +173,6 @@ $email = $user->getEmail($oauth_uid);
 </div>
 
 <script>
-	// console.log("Test");
 	var admin = 'admin';
 	var standard = 'standard';
 	var pending = 'pending';
@@ -186,7 +185,7 @@ $email = $user->getEmail($oauth_uid);
             users = JSON.parse(users);
 			for (var i = 0; i < users.length; i++) {
 				var html =
-					'<div class="list-group-item list-group-item-action userList">' +
+					'<div id="row'+userCount+'" class="list-group-item list-group-item-action userList">' +
 						'<div class = "row">' +
 							'<div class = "col-lg-6" id = "username' + userCount + '">' +
 								users[i].username +
@@ -203,7 +202,7 @@ $email = $user->getEmail($oauth_uid);
 									'</div>' +
 								'</div>' +
 							'<div class = "col-lg-2">' +
-								'<i class="fa fa-remove"></i>' +
+								'<i id="remove'+userCount+'" onclick="remUser('+userCount+')" class="fa fa-remove"></i>' +
 							'</div>' +
 						'</div>' +
 					'</div>';
@@ -213,9 +212,35 @@ $email = $user->getEmail($oauth_uid);
 			}
 		});
 
-		function updateType(dropType,idLi){
-			// console.log(dropType+','+idLi);
+//------------------------------------------------------------------------------
+// Removes the user that the selected is next to from Users in ProteinSim, then
+// removes the user from the userList HTML object.
 
+    function remUser(idLi){
+      // Get username
+      var username = nodeToString(document.getElementById('username'+idLi));
+					username = username.replace('<div class="col-lg-6" id="username'+idLi+'">','');
+					username = username.replace('</div>','');
+					console.log(username);
+      // Remove from database
+			$.ajax({
+				data: 'username=' + username,
+				url: 'removeUser.php',
+				method: 'POST',
+				// If successful, standard message
+				success: function(message) {
+					console.log(message);
+				}
+			});
+      // Remove user from the userList
+      document.getElementById('row'+idLi).remove();
+    }
+
+//------------------------------------------------------------------------------
+// Updates the user type with option selected in dropdown menu, then change
+// the HTML code to reflect said change.
+
+		function updateType(dropType,idLi){
 			// Get username
 			var username = nodeToString(document.getElementById('username'+idLi));
 					username = username.replace('<div class="col-lg-6" id="username'+idLi+'">','');
@@ -237,15 +262,18 @@ $email = $user->getEmail($oauth_uid);
 						'<span class="caret"></span>';
 		}
 
-		function nodeToString ( node ) {
-			// Fuction is used to convert node into string
+//------------------------------------------------------------------------------
+// Fuction is used to convert node into string.
 
+		function nodeToString ( node ) {
 			var tmpNode = document.createElement( "div" );
 			tmpNode.appendChild( node.cloneNode( true ) );
 			var str = tmpNode.innerHTML;
 			tmpNode = node = null; // prevent memory leaks in IE
 			return str;
 		}
+
+//------------------------------------------------------------------------------
 </script>
 </body>
 </html>
