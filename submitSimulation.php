@@ -4,8 +4,8 @@ require 'db_connection.php';        //$conn (mysqli connection) is now available
 //Form data
 $pdbFileName = filter_var ($_POST["pdbFileName"], FILTER_SANITIZE_STRING);
 $pdbFile;
-if (pathinfo($pdbFileName)['extension'] == "pdb"){
-  $pdbFile= $_POST["pdbFile"];
+if (pathinfo($pdbFileName)['extension'] == "pdb" && filesize ( $pdbFile ) <= 10000000){
+$pdbFile =  file_get_contents ($_POST["pdbFile"]);
 }
 $mutationList = filter_var ($_POST["mutationList"], FILTER_SANITIZE_STRING);
 $username = filter_var ($_POST["username"], FILTER_SANITIZE_STRING);
