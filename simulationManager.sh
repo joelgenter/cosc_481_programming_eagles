@@ -32,7 +32,7 @@ EOF
 )
 
 while true; do
-  query_result=$(mysql ProteinSim -u root -p$DB_PASSWORD -se "$select_query")
+  query_result=$(mysql ProteinSim -u proteinSim -p$DB_PASSWORD -se "$select_query")
 
   if [ ! -z "$query_result" ]; then    #if result not empty
     #read query_result into vars
@@ -44,8 +44,11 @@ while true; do
     cp -rf /home/gromacs/simulations/default/* $current_sim_path
     cd /home/gromacs/simulations/current_simulation
 
+    #place pdb_file from blob into file (protein.pdb)
+    echo $pdb_file > protein.pdb
+
     #give the simulation data to gromacs
-    gmx pdb2gmx -f $pdbFile -o protein.gro -water spc -ter -missing
+    gmx pdb2gmx -f protein.pdb -o protein.gro -water spc -ter -missing
     #select '1' for force field selection
     echo | 1
     #select '1' for all -ter options, there is 1 for each terminus. 10 just to be safe.
@@ -101,7 +104,7 @@ while true; do
     gmx rms -s em.tpr -f md_0_1_noPBC.xtc -o rmsd_xtal.xvg -tu ns
 
     #decrement queue position of incomplete simulations
-    mysql ProteinSim -u root -p$DB_PASSWORD -se "$update_query"
+    mysql ProteinSim -u proteinSim -p$DB_PASSWORD -se "$update_query"
 
     #copy bar.xvg to new dir
     result_folder_path="/var/www/html/ProteinSimulations/results/sim$id"
