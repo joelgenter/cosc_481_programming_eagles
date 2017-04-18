@@ -37,25 +37,21 @@ $email = $user->getEmail($oauth_uid);
 			$output = '<h3 style="color:red">Some problem occurred, please try again.</h3>';
 	}
 
-// require 'db_connection.php';        //$conn (mysqli connection) is now available
-//
-// $query = "SELECT * FROM ProteinSim.Users";
-//
-//
-// if ($stmt = $con->prepare($query)) {
-//     $stmt->execute();
-//     $stmt->bind_result($username, $fName, $lName, $email, $type);
-//     while ($stmt->fetch()) {
-//         printf("%s, %s\n", $username, $fName, $lName, $email, $type);
-//     }
-//     $stmt->close();
-// }
+	// Turn off caching for this page
+	header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1.
+	header("Pragma: no-cache"); // HTTP 1.0.
+	header("Expires: 0"); // Proxies.
 ?>
 
 
 <!DOCTYPE html>
 <html>
 <head>
+<!-- Set Cache-control to not cache this page -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Admin</title>
 <meta charset="UTF-8">
