@@ -39,13 +39,13 @@ while true; do
     read mutations pdb_file_name pdb_file simulation_name temperature, id <<< $query_result
 
     #copy default gromacs files to current simulation folder
-    current_sim_path='/home/gromacs/simulations/current_simulation/'
+    current_sim_path='/home/gromacs/simulations/current_simulation'
     mkdir $current_sim_path
     cp -rf /home/gromacs/simulations/default/* $current_sim_path
     cd /home/gromacs/simulations/current_simulation
 
     #place pdb_file from blob into file (protein.pdb)
-    echo $pdb_file > protein.pdb
+    cp -f $pdb_file "$current_sim_path/protein.pdb"
 
     #give the simulation data to gromacs
     gmx pdb2gmx -f protein.pdb -o protein.gro -water spc -ter -missing
@@ -115,6 +115,7 @@ while true; do
     zip -rj "$result_folder_path/simulation_data.zip" . -i '*.xvg' '*.gro' '*.trr' '*.pdb'
 
     #remove simulation configuration files
+    rm $pdb_file
     cd ..;
     rm -rf -- current_simulation
   else
