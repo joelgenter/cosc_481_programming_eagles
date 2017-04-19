@@ -51,4 +51,13 @@ class User {
       $userData = $result->fetch_assoc();
       return $userData;
     }
+
+    function getUsername($oauth_uid)
+    {
+      $sql = "SELECT username FROM " .$this->userTbl." WHERE oauth_uid = '" .$oauth_uid."'";
+      $result = $this->db->query($sql);
+
+      $userData = $result->fetch_assoc();
+      return $userData;
+    }
 }

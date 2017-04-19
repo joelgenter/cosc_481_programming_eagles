@@ -129,6 +129,27 @@ $email = $user->getEmail($oauth_uid);
 							<button id="addMutantButton" class="btn btn-default" type="button" onclick="addMutantField()">+ Add Mutant</button>
 							<br><br>
 							<div class="form-group">
+						    <label for="exampleSelect1">Example select</label>
+						    <select class="form-control" id="exampleSelect1" name="forceField" value ="1">
+						      <option value="1">GROMOS96 54a7 (custom)</option>
+						      <option value="2">AMBER03</option>
+						      <option value="3">AMBER94</option>
+						      <option value="4">AMBER96</option>
+						      <option value="5">AMBER99</option>
+									<option value="6">AMBER99SB</option>
+									<option value="7">AMBER99SB-ILDN</option>
+									<option value="8">AMBERGS</option>
+									<option value="9">CHARMM27 all-atom</option>
+									<option value="10">GROMOS96 43a1</option>
+									<option value="11">GROMOS96 43a2</option>
+									<option value="12">GROMOS96 45a3</option>
+									<option value="13">GROMOS96 53a5</option>
+									<option value="14">GROMOS96 53a6</option>
+									<option value="15">GROMOS96 54a7</option>
+									<option value="16">OPLS-AA/L all-atom</option>
+						    </select>
+						  </div>
+							<div class="form-group">
 								<label for="duration">Duration (ns)</label>
 								<input type="number" class="form-control" id="duration" name="duration" value="1" min="1" max="40">
 							</div>
@@ -140,10 +161,6 @@ $email = $user->getEmail($oauth_uid);
 					<fieldset class="form-group">
 						<legend>Additional Information</legend>
 						<div class="form-group">
-							<label for="username">Username</label>
-							<input type="text" class="form-control" id="username" name="username" required>
-						</div>
-						<div class="form-group">
 							<label for="simulationName">Simulation Name</label>
 							<input type="text" class="form-control" id="simulationName" name="simulationName" required>
 						</div>
@@ -152,6 +169,7 @@ $email = $user->getEmail($oauth_uid);
 							<textarea class="form-control" id="description" name="description" rows="3"></textarea>
 						</div>
 					</fieldset>
+					<input type="hidden"id="username" name="oauth_uid" value=<?php echo "\"".$oauth_uid."\""?>></input>
 					<input type="hidden" id="mutationList" name="mutationList"></input>
 					<input type="hidden" id="pdbFileName" name="pdbFileName"></input>
 					<button type="submit" class="btn btn-primary">Submit</button>
