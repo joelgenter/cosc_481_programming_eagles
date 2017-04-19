@@ -39,11 +39,24 @@ while true; do
     #read query_result into vars
     read mutations pdb_file_name duration simulation_name temperature id force_field<<< $query_result
 
+    #FOR TESTING PURPOSES- REMOVE AFTER TESTING
+    echo "mutations: $mutations"
+    echo "pdb_file_name: $pdb_file_name"
+    echo "duration: $duration"
+    echo "simulation_name: $simulation_name"
+    echo "temperature: $temperature"
+    echo "id: $id"
+    echo "force_field: $force_field"
+    #FOR TESTING PURPOSES- REMOVE AFTER TESTING
+
     #copy default gromacs files to current simulation folder
     current_sim_path='/home/gromacs/simulations/current_simulation'
     mkdir $current_sim_path
     cp -rf /home/gromacs/simulations/default/* $current_sim_path
     cd /home/gromacs/simulations/current_simulation
+
+    #add duration to md.mdp file copied from default folder
+    echo "nsteps      = $((500000 * $duration))" >> md.mdp
 
     #place pdb_file from blob into file (protein.pdb)
     path_to_protein_file="/var/www/html/ProteinSimulations/uploads/$pdb_file_name"
