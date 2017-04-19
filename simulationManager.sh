@@ -39,14 +39,14 @@ while true; do
     read mutations pdb_file_name duration simulation_name temperature id <<< $query_result
 
     #FOR TESTING PURPOSES- REMOVE AFTER TESTING
-        echo "mutations: $mutations"
-        echo "pdb_file_name: $pdb_file_name"
-        echo "duration: $duration"
-        echo "simulation_name: $simulation_name"
-        echo "temperature: $temperature"
-        echo "id: $id"
-        echo "force_field: $force_field"
-        #FOR TESTING PURPOSES- REMOVE AFTER TESTING
+    echo "mutations: $mutations"
+    echo "pdb_file_name: $pdb_file_name"
+    echo "duration: $duration"
+    echo "simulation_name: $simulation_name"
+    echo "temperature: $temperature"
+    echo "id: $id"
+    echo "force_field: $force_field"
+    #FOR TESTING PURPOSES- REMOVE AFTER TESTING
 
     #copy default gromacs files to current simulation folder
     current_sim_path='/home/gromacs/simulations/current_simulation'
