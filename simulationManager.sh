@@ -49,34 +49,21 @@ while true; do
     cp -f $path_to_protein_file "$current_sim_path/protein.pdb"
 
     #give the simulation data to gromacs
-    gmx pdb2gmx -f protein.pdb -o protein.gro -water spc -ter -missing
+    echo -e "9\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n" | gmx pdb2gmx -f protein.pdb -o protein.gro -water spc -ter -missing
     #select '1' for force field selection
-    echo | 1
     #select '1' for all -ter options, there is 1 for each terminus. 10 just to be safe.
-    echo | 1
-    echo | 1
-    echo | 1
-    echo | 1
-    echo | 1
-    echo | 1
-    echo | 1
-    echo | 1
-    echo | 1
-    echo | 1
+    
     gmx editconf -f protein.gro -o newbox.gro -bt dodecahedron -d 1.5
     gmx solvate -cp newbox.gro -cs spc216.gro -p topol.top -o solv.gro
     gmx grompp -f em.mdp -c solv.gro -p topol.top -o ions.tpr
-    gmx genion -s ions.tpr -o solv_ions.gro -p topol.top -pname ZN -np 3
+    echo -e "13" | gmx genion -s ions.tpr -o solv_ions.gro -p topol.top -pname ZN -np 3
     #enter '13' SOL  Replaces Solvent molecules with 3 ZN molecules
     gmx grompp -f em_real.mdp -c solv_ions.gro -p topol.top -o em.tpr
     gmx mdrun -v -deffnm em -ntmpi 8 -gpu_id 00000000 -nb gpu_cpu
-    gmx make_ndx -f em.gro -o index.ndx
+    echo -e "1\n11\nq" | gmx make_ndx -f em.gro -o index.ndx
     #enter '1' Protein
-    echo | 1
     #enter '11' non-Protein
-    echo | 11
     #enter 'q' quit
-    echo | q
     gmx grompp -f nvt.mdp -c em.gro -p topol.top -n index.ndx -o nvt.tpr
     gmx mdrun -deffnm nvt -ntmpi 8 -gpu_id 00000000 -nb gpu_cpu
     gmx grompp -f npt.mdp -c nvt.gro -t nvt.cpt -p topol.top -n index.ndx -o npt.tpr
@@ -116,9 +103,9 @@ while true; do
     zip -rj "$result_folder_path/simulation_data.zip" . -i '*.xvg' '*.gro' '*.trr' '*.pdb'
 
     #remove simulation configuration files
-    rm $path_to_protein_file
-    cd ..;
-    rm -rf -- current_simulation
+#    rm $path_to_protein_file
+ #   cd ..;
+  #  rm -rf -- current_simulation
   else
     break   #no more incomplete simulations
   fi
