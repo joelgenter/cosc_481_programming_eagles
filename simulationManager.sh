@@ -18,7 +18,8 @@ SELECT
   duration,
   simulationName,
   temperature,
-  id
+  id,
+  forceField
 FROM Simulations
 WHERE queuePosition = 1
 EOF
@@ -36,7 +37,7 @@ while true; do
 
   if [ ! -z "$query_result" ]; then    #if result not empty
     #read query_result into vars
-    read mutations pdb_file_name duration simulation_name temperature id <<< $query_result
+    read mutations pdb_file_name duration simulation_name temperature id force_field<<< $query_result
 
     #copy default gromacs files to current simulation folder
     current_sim_path='/home/gromacs/simulations/current_simulation'
@@ -49,7 +50,7 @@ while true; do
     cp -f $path_to_protein_file "$current_sim_path/protein.pdb"
 
     #give the simulation data to gromacs
-    echo -e "9\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n" | gmx pdb2gmx -f protein.pdb -o protein.gro -water spc -ter -missing
+    echo -e "$force_field\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n" | gmx pdb2gmx -f protein.pdb -o protein.gro -water spc -ter -missing
     #select '1' for force field selection
     #select '1' for all -ter options, there is 1 for each terminus. 10 just to be safe.
     
