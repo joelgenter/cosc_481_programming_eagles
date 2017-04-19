@@ -37,20 +37,21 @@ $email = $user->getEmail($oauth_uid);
 			$output = '<h3 style="color:red">Some problem occurred, please try again.</h3>';
 	}
 
-	// Turn off caching for this page
-	header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1.
-	header("Pragma: no-cache"); // HTTP 1.0.
-	header("Expires: 0"); // Proxies.
+	//Turn off caching for this page
+	header("Cache-control: no-store, no-cache, must-revalidate");
+	header("Expires: Mon, 26 Jun 1997 05:00:00 GMT");
+	header("Pragma: no-cache");
+	header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
 ?>
 
 
 <!DOCTYPE html>
-<html>
+<html manifest="manifest.appcache">
 <head>
 <!-- Set Cache-control to not cache this page -->
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-<meta http-equiv="Pragma" content="no-cache" />
-<meta http-equiv="Expires" content="0" />
+<!-- <meta http-equiv="Expires" CONTENT="0">
+<meta http-equiv="Cache-Control" CONTENT="no-cache">
+<meta http-equiv="Pragma" CONTENT="no-cache"> -->
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Admin</title>

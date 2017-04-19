@@ -26,7 +26,6 @@ CREATE TABLE `Simulations` (
   `mutations` varchar(500) NOT NULL,
   `pdbFileName` varchar(45) NOT NULL,
   `username` varchar(45) NOT NULL,
-  `pdbFile` mediumblob,
   `simulationName` varchar(45) NOT NULL,
   `description` text,
   `startTime` datetime DEFAULT NULL,
@@ -36,11 +35,12 @@ CREATE TABLE `Simulations` (
   `queuePosition` int(11) DEFAULT NULL,
   `duration` decimal(20,5) DEFAULT NULL,
   `temperature` decimal(20,5) DEFAULT NULL,
-  `folderPath` varchar(80) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`mutations`,`pdbFileName`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `username_idx` (`username`),
   CONSTRAINT `username` FOREIGN KEY (`username`) REFERENCES `Users` (`username`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -49,7 +49,7 @@ CREATE TABLE `Simulations` (
 
 LOCK TABLES `Simulations` WRITE;
 /*!40000 ALTER TABLE `Simulations` DISABLE KEYS */;
-INSERT INTO `Simulations` VALUES ('A123B','UHRF1_TTD-PHD_No_Zinc.pdb','jginnard','','Sim3','123',NULL,NULL,NULL,NULL,-1,NULL,NULL,NULL),('Y100B, Y200B, Y300B','UHRF1_TTD-PHD_Unmodified_H3.pdb','jginnard','UHRF1_TTD-PHD_Unmodified_H3.pdb','4/5/2017','Test',NULL,NULL,NULL,NULL,2,2.00000,40.00000,NULL),('Y200A','nvt.mdp','jginnard','','Name','123',NULL,NULL,NULL,NULL,-1,NULL,NULL,NULL);
+INSERT INTO `Simulations` VALUES ('1234','1aki.pdb','jginnard','File Test 2','Test',NULL,NULL,NULL,NULL,0,2.00000,30.00000,10);
 /*!40000 ALTER TABLE `Simulations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -70,8 +70,8 @@ CREATE TABLE `Users` (
   `oauth_provider` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`email`),
   UNIQUE KEY `email_UNIQUE` (`email`),
-  UNIQUE KEY `username_UNIQUE` (`username`),
-  UNIQUE KEY `googleId_UNIQUE` (`oauth_uid`)
+  UNIQUE KEY `googleId_UNIQUE` (`oauth_uid`),
+  UNIQUE KEY `username_UNIQUE` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -81,7 +81,7 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-INSERT INTO `Users` VALUES ('','','','','pending',NULL,NULL),('bginnard','Brendan','Ginnard','bginnard@emich.edu','Standard',NULL,NULL),(NULL,NULL,NULL,'jeremyginnard@gmail.com','pending','117755420049357968206','google'),('jginnard','Jeremy','Ginnard','jginnard@emich.edu','Admin',NULL,NULL),('sginnard','Shane','Ginnard','sginnard@emich.edu','Admin',NULL,NULL);
+INSERT INTO `Users` VALUES ('admin','GLR-MI-655','Admin','admin@a2cap.org','admin','108122486812011989499','google'),('dclarke1','Daniel','Clarke','dclarke1@emich.edu','standard','106175315101862413998','google'),('ikane','Isaac','Kane','ikane@emich.edu','admin','118317439164359735169','google'),('jeremyginnard','Jeremy','Ginnard','jeremyginnard@gmail.com','admin','117755420049357968206','google'),('jginnard','Jeremy','Ginnard','jginnard@emich.edu','admin','114609478627172520366','google'),('ssotok','Steven','Sotok','ssotok@emich.edu','admin','113857894688739323277','google');
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -94,4 +94,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-15 13:12:59
+-- Dump completed on 2017-04-18 22:24:20
