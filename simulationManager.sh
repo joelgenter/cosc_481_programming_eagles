@@ -4,7 +4,7 @@
 # execute this file when it knows there is a new simulation and there are
 # no simulations currently running. This script will execute all incomplete
 # simulations in the db
-#   
+#
 # SHELL DEPENDENCIES:
 #   zip
 #   gromacs
@@ -38,11 +38,24 @@ while true; do
     #read query_result into vars
     read mutations pdb_file_name duration simulation_name temperature id <<< $query_result
 
+    #FOR TESTING PURPOSES- REMOVE AFTER TESTING
+        echo "mutations: $mutations"
+        echo "pdb_file_name: $pdb_file_name"
+        echo "duration: $duration"
+        echo "simulation_name: $simulation_name"
+        echo "temperature: $temperature"
+        echo "id: $id"
+        echo "force_field: $force_field"
+        #FOR TESTING PURPOSES- REMOVE AFTER TESTING
+
     #copy default gromacs files to current simulation folder
     current_sim_path='/home/gromacs/simulations/current_simulation'
     mkdir $current_sim_path
     cp -rf /home/gromacs/simulations/default/* $current_sim_path
     cd /home/gromacs/simulations/current_simulation
+
+    #add duration to md.mdp file copied from default folder
+    echo "nsteps      = $((500000 * $duration))" >> md.mdp
 
     #place pdb_file from blob into file (protein.pdb)
     path_to_protein_file="/var/www/html/ProteinSimulations/uploads/$pdb_file_name"
@@ -52,7 +65,7 @@ while true; do
     echo -e "9\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n" | gmx pdb2gmx -f protein.pdb -o protein.gro -water spc -ter -missing
     #select '1' for force field selection
     #select '1' for all -ter options, there is 1 for each terminus. 10 just to be safe.
-    
+
     gmx editconf -f protein.gro -o newbox.gro -bt dodecahedron -d 1.5
     gmx solvate -cp newbox.gro -cs spc216.gro -p topol.top -o solv.gro
     gmx grompp -f em.mdp -c solv.gro -p topol.top -o ions.tpr
