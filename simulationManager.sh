@@ -98,6 +98,8 @@ while true; do
     echo -e "14 0\n" | gmx energy -f md_0_1.edr -o md_temperature.xvg
     echo -e "16 0\n" | gmx energy -f md_0_1.edr -o md_pressure.xvg
     echo -e "22 0\n" | gmx energy -f md_0_1.edr -o md_density.xvg
+    echo -e "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 0\n" | gmx energy -f md_0_1.edr -o md_all_data.xvg
+
 
     echo -e "1 0\n" | gmx gyrate -s md_0_1.tpr -f md_0_1_noPBC.xtc -o gyrate.xvg
     echo -e "0 0\n" | gmx trjconv -s md_0_1.tpr -f md_0_1.xtc -o md_0_1_noPBC.xtc -pbc mol -ur compact
