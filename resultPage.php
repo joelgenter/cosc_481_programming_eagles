@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 include_once 'gpConfig.php';
 include_once 'User.php';
@@ -36,28 +37,27 @@ $email = $user->getEmail($oauth_uid);
 	{
 			$output = '<h3 style="color:red">Some problem occurred, please try again.</h3>';
 	}
-
+$results = $_GET['results'];
 ?>
-
-<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Results List</title>
+<title>Result Page</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="resultsList.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
+<script src="resultsPage.js"></script>
 <link rel="stylesheet" href="custom.css">
 </head>
 <body>
@@ -74,7 +74,6 @@ $email = $user->getEmail($oauth_uid);
 	      </button>
 	    </div>
 
-
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
@@ -90,117 +89,44 @@ $email = $user->getEmail($oauth_uid);
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
-
-<style>
-.form-control-inline {
-    min-width: 0;
-    width: auto;
-    display: inline;
-}
-.thumbnail {
-  padding: 30px;
-}
-.container-body{
-  padding: 10%;
-}</style>
 	<!-- Page Content -->
 	<div class="container-fluid container-body"style="padding-top: 20px;">
 		<div class="row">
 				<div class="col-lg-12">
 					<div class="title">
-						<h2>Completed Simulations</h2>
-
+						<h2>Results</h2>
 					</div>
 				</div>
 		</div>
-		<div id="resultsList" class="panel panel-default">
-			<!-- Default panel contents -->
-			<div class="panel-heading">
-				<div class = "row">
-					<div class = "col-sm-6 col-sm-6 col-xs-12">
-						<h4>Simulation Name</h4>
-					</div>
-					<div class = "col-lg-4 col-sm-4 col-xs-12">
-						<h4>Requested By</h4>
-					</div>
-					<div class = "col-lg-2 col-sm-2 col-xs-12">
-						<h4>Date Completed</h4>
-					</div>
-				</div>
-			</div>
-			<!-- <!-- List group
-			<ul class="list-group">
-				<a href = "sampleResult.html" class="list-group-item list-group-item-action">
-					<div class = "row">
-						<div class = "col-lg-6 col-sm-6 col-xs-12">
-							Test Simulation1
-						</div>
-						<div class = "col-lg-4 col-sm-4 col-xs-12">
-							Jeremy Ginnard
-						</div>
-						<div class = "col-lg-2 col-sm-2 col-xs-12">
-							02-13-2017,00:52
-						</div>
-					</div>
-				</a>
-				<a href = "sampleResult.html" class="list-group-item list-group-item-action">
-					<div class = "row">
-						<div class = "col-lg-6 col-sm-6 col-xs-12">
-							UHFRC-2 Histone Binding Levels
-						</div>
-						<div class = "col-lg-4 col-sm-4 col-xs-12">
-							Dr. Albaugh
-						</div>
-						<div class = "col-lg-2 col-sm-2 col-xs-12">
-							02-14-2017,15:22
-						</div>
-					</div>
-				</a>
-				<a href = "sampleResult.html" class="list-group-item list-group-item-action">
-					<div class = "row">
-						<div class = "col-lg-6 col-sm-6 col-xs-12">
-							UHFRC-1 Histone Binding Levels
-						</div>
-						<div class = "col-lg-4 col-sm-4 col-xs-12">
-							Dr. Albaugh
-						</div>
-						<div class = "col-lg-2 col-sm-2 col-xs-12">
-							02-14-2017,17:16
-						</div>
-					</div>
-				</a>
-				<a href = "sampleResult.html" class="list-group-item list-group-item-action">
-					<div class = "row">
-						<div class = "col-lg-6 col-sm-6 col-xs-12">
-							Test Simulation Please Ignore
-						</div>
-						<div class = "col-lg-4 col-sm-4 col-xs-12">
-							Isaac Kane
-						</div>
-						<div class = "col-lg-2 col-sm-2 col-xs-12">
-							02-16-2017,02:00
-						</div>
-					</div>
-				</a>
-				<a href = "sampleResult.html" class="list-group-item list-group-item-action">
-					<div class = "row">
-						<div class = "col-lg-6 col-sm-6 col-xs-12">
-							A Simulation Test Run
-						</div>
-						<div class = "col-lg-4 col-sm-4 col-xs-12">
-							Daniel Clarke
-						</div>
-						<div class = "col-lg-2 col-sm-2 col-xs-12">
-							02-18-2017,22:25
-						</div>
-					</div>
-				</a>
-			</ul> -->
+		<div>
+			<legend>
+				<h3 id = 'title'>Test Simulation1</h3>
+				<h4 id = 'user'>Submitted by: Jeremy Ginnard</h4>
+			</legend>
+		<div>
+		<div>
+			<canvas id="myChart" width="400" height="400"></canvas>
 		</div>
+		<p>
+			<legend>Description</legend>
+			<span id='description'>This was a test of the simulation. The graph represents the difference in free energy
+			from the base protein to the mutations requested. The 23 bars show the positive or
+			negative difference between the new mutated protein an the original protein.</span>
+		</p>
+			</br>
+		</div>
+		<div>
+			<!--<legend>Data</legend>-->
+		
+		</div>
+		</br>
+		</br>
 	</div>
-	<script>
-		generateResultsList()
-	</script>
+</div>
+<script>
+   generateResults(<?php echo "'".$results."\'" ?>)
+</script>
+</div>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-lg-12 text-center">

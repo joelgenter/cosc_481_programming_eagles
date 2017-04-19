@@ -41,7 +41,10 @@ if ($uploadOk == 0) {
 $pdbFileName = filter_var ($_POST["pdbFileName"], FILTER_SANITIZE_STRING);
 $mutationList = filter_var ($_POST["mutationList"], FILTER_SANITIZE_STRING);
 $oAuthId = filter_var ($_POST["oauth_uid"], FILTER_SANITIZE_STRING);
-$username = getUsername($oAuthId);
+$user = new User();
+$username = $user->getUsername($oAuthId);
+$username = $username['username'];
+echo "username = ".$username;
 $simulationName = filter_var ($_POST["simulationName"], FILTER_SANITIZE_STRING);
 $description = filter_var ($_POST["description"], FILTER_SANITIZE_STRING);
 $duration = filter_var ($_POST["duration"], FILTER_SANITIZE_STRING);
@@ -77,7 +80,6 @@ if (mysqli_multi_query($conn, $query)) {
 } else {
     echo "Error: " . $query . "<br>" . mysqli_error($conn);
 }
-
 
 mysqli_close($conn);
 header("Location: queue.php");

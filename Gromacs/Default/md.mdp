@@ -1,7 +1,7 @@
 title       = Protein-ligand complex MD simulation 
 ; Run parameters
 integrator  = md        ; leap-frog integrator
-nsteps      = 500000    ; 2 * 500000 = 1000 ps (1 ns)
+;nsteps      = 500000    ; 2 * 500000 = 1000 ps (1 ns)
 dt          = 0.002     ; 2 fs
 
 ; Output control
@@ -54,3 +54,5 @@ DispCorr    = EnerPres  ; account for cut-off vdW scheme
 
 ; Velocity generation
 gen_vel     = no        ; assign velocities from Maxwell distribution
+
+;Number of Steps = duration x 500000

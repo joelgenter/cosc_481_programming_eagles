@@ -1,9 +1,9 @@
 
-function createResultsList(results){
+function createResultsList(results, status){
 	//generates list group
 	$('#resultsList').append("<!-- List group --> <ul class='list-group'>")
 	for(var simulation of results){
-		$('#resultsList').append("<a href='sampleResult.html' class='list-group-item list-group-item-action'> 		\
+		$('#resultsList').append("<a href='resultPage.php?fileLoc='"+simulation[6]+" class='list-group-item list-group-item-action'> 		\
 			<div class = 'row'>   															\
 				<div class = 'col-lg-6'>  													\
 					"+simulation[0]+"		   												\
@@ -17,6 +17,11 @@ function createResultsList(results){
 			</div>")
 	}
 	$('#resultsList').append("</ul>");
+}
+//possible not needed function goToDatabse(user){
+	$.ajax({data: 'db=user', 
+			url: 'interact_with_database.php?command=delete&userName='+user.name,
+			method: 'POST', success: function(msg){ console.log(msg);}});	
 }
 
 function generateResultsList(){
