@@ -57,6 +57,13 @@ while true; do
     #add duration to md.mdp file copied from default folder
     echo "nsteps      = $((500000 * $duration))" >> md.mdp
 
+    #add temperature to nvt.mdp, md.mdp and fec.mdp file copied from default folder
+    echo "\ngen_temp       = $((273.15 + $duration))\n" >> nvt.mdp
+    echo "\nref_t       = $((273.15 + $duration))    $((273.15 + $duration))\n" >> nvt.mdp
+    echo "\nref_t       = $((273.15 + $duration))    $((273.15 + $duration))\n" >> md.mdp
+    echo "\nref_t       = $((273.15 + $duration))    $((273.15 + $duration))\n" >> fec.mdp
+
+
     #place pdb_file from blob into file (protein.pdb)
     path_to_protein_file="/var/www/html/ProteinSimulations/uploads/$pdb_file_name"
     cp -f $path_to_protein_file "$current_sim_path/protein.pdb"
@@ -66,6 +73,7 @@ while true; do
     #select '1' for force field selection
     #select '1' for all -ter options, there is 1 for each terminus. 10 just to be safe.
 
+    #Generate all the output FILTER_SANITIZE_URL
     gmx editconf -f protein.gro -o newbox.gro -bt dodecahedron -d 1.5
     gmx solvate -cp newbox.gro -cs spc216.gro -p topol.top -o solv.gro
     gmx grompp -f em.mdp -c solv.gro -p topol.top -o ions.tpr
@@ -105,6 +113,7 @@ while true; do
     echo -e "0 0\n" | gmx trjconv -s md_0_1.tpr -f md_0_1.xtc -o md_0_1_noPBC.xtc -pbc mol -ur compact
     echo -e "4\n4\n" | gmx rms -s md_0_1.tpr -f md_0_1_noPBC.xtc -o rmsd_backbone.xvg -tu ns
     echo -e "4\n4\n" | gmx rms -s em.tpr -f md_0_1_noPBC.xtc -o rmsd_backbone_crystal.xvg -tu ns
+     gmx bar -g md_0_1.edr -o -oi -oh
 
     #decrement queue position of incomplete simulations
     mysql ProteinSim -u proteinSim -p$DB_PASSWORD -se "$update_query"

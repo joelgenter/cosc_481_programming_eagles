@@ -1,11 +1,11 @@
-title       = Protein-ligand complex MD simulation 
+title       = Protein-ligand complex MD simulation
 ; Run parameters
 integrator  = md        ; leap-frog integrator
 ;nsteps      = 500000    ; 2 * 500000 = 1000 ps (1 ns)
 dt          = 0.002     ; 2 fs
 
 ; Output control
-nstxout             = 0         ; suppress .trr output 
+nstxout             = 0         ; suppress .trr output
 nstvout             = 0         ; suppress .trr output
 nstenergy           = 5000      ; save energies every 10.0 ps
 nstlog              = 5000      ; update log file every 10.0 ps
@@ -15,7 +15,7 @@ energygrps          = Protein
 
 ; Bond parameters
 continuation    = yes           ; first dynamics run
-constraint_algorithm = lincs    ; holonomic constraints 
+constraint_algorithm = lincs    ; holonomic constraints
 constraints     = all-bonds     ; all bonds (even heavy atom-H bonds) constrained
 lincs_iter      = 1             ; accuracy of LINCS
 lincs_order     = 4             ; also related to accuracy
@@ -36,7 +36,7 @@ fourierspacing  = 0.16      ; grid spacing for FFT
 tcoupl      = V-rescale                     ; modified Berendsen thermostat
 tc-grps     = Protein non-Protein		    ; two coupling groups - more accurate
 tau_t       = 0.1   0.1                     ; time constant, in ps
-ref_t       = 300   300                     ; reference temperature, one for each group, in K
+;ref_t       = 300   300                     ; reference temperature, one for each group, in K
 
 ; Pressure coupling
 pcoupl      = Parrinello-Rahman             ; pressure coupling is on for NPT
@@ -56,3 +56,4 @@ DispCorr    = EnerPres  ; account for cut-off vdW scheme
 gen_vel     = no        ; assign velocities from Maxwell distribution
 
 ;Number of Steps = duration x 500000
+;ref_t       = 300   300                     ; reference temperature, one for each group, in K

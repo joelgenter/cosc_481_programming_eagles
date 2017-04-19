@@ -1,4 +1,4 @@
-title       = Protein-ligand complex NVT equilibration 
+title       = Protein-ligand complex NVT equilibration
 define      = -DPOSRES  ; position restrain the protein and ligand
 ; Run parameters
 integrator  = sd        ; leap-frog integrator
@@ -14,7 +14,7 @@ energygrps  = Protein
 
 ; Bond parameters
 continuation    = no            ; first dynamics run
-constraint_algorithm = lincs    ; holonomic constraints 
+constraint_algorithm = lincs    ; holonomic constraints
 constraints     = all-bonds     ; all bonds (even heavy atom-H bonds) constrained
 lincs_iter      = 1             ; accuracy of LINCS
 ; lincs_order     = 4             ; also related to accuracy
@@ -35,7 +35,7 @@ fourierspacing  = 0.16      ; grid spacing for FFT
 tcoupl      = V-rescale                 ; modified Berendsen thermostat
 tc-grps     = Protein non-Protein		; two coupling groups - more accurate
 tau_t       = 0.1    0.1                ; time constant, in ps
-ref_t       = 300    300                ; reference temperature, one for each group, in K
+;ref_t       = 300    300                ; reference temperature, one for each group, in K
 
 ; Pressure coupling
 pcoupl      = no        ; no pressure coupling in NVT
@@ -48,5 +48,9 @@ DispCorr    = EnerPres  ; account for cut-off vdW scheme
 
 ; Velocity generation
 gen_vel     = yes       ; assign velocities from Maxwell distribution
-gen_temp    = 300       ; temperature for Maxwell distribution
+;gen_temp    = 300       ; temperature for Maxwell distribution
 gen_seed    = -1        ; generate a random seed
+
+
+;ref_t       = 300    300                ; reference temperature, one for each group, in K
+;gen_temp    = 300       ; temperature for Maxwell distribution
