@@ -79,7 +79,7 @@ function decrementSim(simNumber, data){
 function deleteSim(simNumber, data){
 	$.ajax({url: 'modifyQueue.php', method: 'POST', 
 	  data: {functionName:'delete', arguments: (parseInt(simNumber))},
-	  success: function(mesg){ updateList(data);}});					
+	  success: function(mesg){ console.log(mesg); updateList(data);}});					
 }
 
 /** 'updates' list by deleting the list and creating a new one.
