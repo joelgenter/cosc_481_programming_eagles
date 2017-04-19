@@ -129,8 +129,8 @@ $email = $user->getEmail($oauth_uid);
 							<button id="addMutantButton" class="btn btn-default" type="button" onclick="addMutantField()">+ Add Mutant</button>
 							<br><br>
 							<div class="form-group">
-						    <label for="exampleSelect1">Example select</label>
-						    <select class="form-control" id="exampleSelect1" name="forceField" value ="1">
+						    <label for="forceField">Force Field</label>
+						    <select class="form-control" id="forceField" name="forceField" value ="1">
 						      <option value="1">GROMOS96 54a7 (custom)</option>
 						      <option value="2">AMBER03</option>
 						      <option value="3">AMBER94</option>
