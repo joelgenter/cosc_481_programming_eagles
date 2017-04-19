@@ -18,8 +18,7 @@ SELECT
   duration,
   simulationName,
   temperature,
-  id,
-  forceField
+  id
 FROM Simulations
 WHERE queuePosition = 1
 EOF
@@ -37,17 +36,7 @@ while true; do
 
   if [ ! -z "$query_result" ]; then    #if result not empty
     #read query_result into vars
-    read mutations pdb_file_name duration simulation_name temperature id force_field<<< $query_result
-
-    #FOR TESTING PURPOSES- REMOVE AFTER TESTING
-    echo "mutations: $mutations"
-    echo "pdb_file_name: $pdb_file_name"
-    echo "duration: $duration"
-    echo "simulation_name: $simulation_name"
-    echo "temperature: $temperature"
-    echo "id: $id"
-    echo "force_field: $force_field"
-    #FOR TESTING PURPOSES- REMOVE AFTER TESTING
+    read mutations pdb_file_name duration simulation_name temperature id <<< $query_result
 
     #copy default gromacs files to current simulation folder
     current_sim_path='/home/gromacs/simulations/current_simulation'
@@ -55,15 +44,12 @@ while true; do
     cp -rf /home/gromacs/simulations/default/* $current_sim_path
     cd /home/gromacs/simulations/current_simulation
 
-    #add duration to md.mdp file copied from default folder
-    echo "nsteps      = $((500000 * $duration))" >> md.mdp
-
     #place pdb_file from blob into file (protein.pdb)
     path_to_protein_file="/var/www/html/ProteinSimulations/uploads/$pdb_file_name"
     cp -f $path_to_protein_file "$current_sim_path/protein.pdb"
 
     #give the simulation data to gromacs
-    echo -e "$force_field\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n" | gmx pdb2gmx -f protein.pdb -o protein.gro -water spc -ter -missing
+    echo -e "9\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n" | gmx pdb2gmx -f protein.pdb -o protein.gro -water spc -ter -missing
     #select '1' for force field selection
     #select '1' for all -ter options, there is 1 for each terminus. 10 just to be safe.
     
@@ -90,20 +76,20 @@ while true; do
     gmx grompp -f fec.mdp -c md_0_1.gro -t md_0_1.cpt -p topol.top -n index.ndx -o fec.tpr
     gmx mdrun -deffnm fec -ntmpi 8 -gpu_id 00000000 -nb gpu_cpu
 
-    gmx energy -f em.edr -o em_potential.xvg
-    gmx energy -f em.edr -o em_temperature.xvg
-    gmx energy -f em.edr -o em_pressure.xvg
-    gmx energy -f em.edr -o em_density.xvg
+    echo -e "11 0\n" | gmx energy -f em.edr -o em_potential.xvg
+    echo -e "15 0\n" | gmx energy -f nvt.edr -o nvt_temperature.xvg
+    echo -e "17 0\n" | gmx energy -f npt.edr -o npt_pressure.xvg
+    echo -e "23 0\n" | gmx energy -f npt.edr -o npt_density.xvg
 
-    gmx energy -f md_0_1.edr -o md_potential.xvg
-    gmx energy -f md_0_1.edr -o md_temperature.xvg
-    gmx energy -f md_0_1.edr -o md_pressure.xvg
-    gmx energy -f md_0_1.edr -o md_density.xvg
+    echo -e "11 0\n" | gmx energy -f md_0_1.edr -o md_potential.xvg
+    echo -e "14 0\n" | gmx energy -f md_0_1.edr -o md_temperature.xvg
+    echo -e "16 0\n" | gmx energy -f md_0_1.edr -o md_pressure.xvg
+    echo -e "22 0\n" | gmx energy -f md_0_1.edr -o md_density.xvg
 
-    gmx gyrate -s md_0_1.tpr -f md_0_1_noPBC.xtc -o gyrate.xvg
-    gmx trjconv -s md_0_1.tpr -f md_0_1.xtc -o md_0_1_noPBC.xtc -pbc mol -ur compact
-    gmx rms -s md_0_1.tpr -f md_0_1_noPBC.xtc -o rmsd.xvg -tu ns
-    gmx rms -s em.tpr -f md_0_1_noPBC.xtc -o rmsd_xtal.xvg -tu ns
+    echo -e "1 0\n" | gmx gyrate -s md_0_1.tpr -f md_0_1_noPBC.xtc -o gyrate.xvg
+    echo -e "0 0\n" | gmx trjconv -s md_0_1.tpr -f md_0_1.xtc -o md_0_1_noPBC.xtc -pbc mol -ur compact
+    echo -e "4\n4\n" | gmx rms -s md_0_1.tpr -f md_0_1_noPBC.xtc -o rmsd_backbone.xvg -tu ns
+    echo -e "4\n4\n" | gmx rms -s em.tpr -f md_0_1_noPBC.xtc -o rmsd_backbone_crystal.xvg -tu ns
 
     #decrement queue position of incomplete simulations
     mysql ProteinSim -u proteinSim -p$DB_PASSWORD -se "$update_query"
