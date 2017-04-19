@@ -18,11 +18,11 @@ wget http://www.bevanlab.biochem.vt.edu/Pages/Personal/justin/gmx-tutorials/comp
 wget http://www.bevanlab.biochem.vt.edu/Pages/Personal/justin/gmx-tutorials/complex/Files/md.mdp
 
 
-gmx pdb2gmx -f UHRF1_TTD-PHD_No_Zinc.pdb -o UHRF1.gro -water spc -ter -missing
+gmx pdb2gmx -f protein.pdb -o protein.gro -water spc -ter -missing
 select '1' for force field selection
 select '1' for all -ter options
 
-gmx editconf -f UHRF1.gro -o newbox.gro -bt dodecahedron -d 1.5
+gmx editconf -f protein.gro -o newbox.gro -bt dodecahedron -d 1.5
 
 gmx solvate -cp newbox.gro -cs spc216.gro -p topol.top -o solv.gro
  

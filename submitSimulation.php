@@ -1,4 +1,6 @@
 <?php
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
 require 'db_connection.php';        //$conn (mysqli connection) is now available
 
 //File Upload
@@ -37,7 +39,6 @@ if ($uploadOk == 0) {
 
 //Form data
 $pdbFileName = filter_var ($_POST["pdbFileName"], FILTER_SANITIZE_STRING);
-$pdbFile = $target_file;
 $mutationList = filter_var ($_POST["mutationList"], FILTER_SANITIZE_STRING);
 $username = filter_var ($_POST["username"], FILTER_SANITIZE_STRING);
 $simulationName = filter_var ($_POST["simulationName"], FILTER_SANITIZE_STRING);
@@ -60,7 +61,7 @@ $query="";
 $simulationList = explode(";", $mutationList);
 
 foreach ($simulationList as $mutation){
-  $query .= "INSERT INTO ProteinSim.Simulations (mutations, pdbFileName, pdbFile, username, simulationName, description, duration, temperature, queuePosition) VALUES (\"".$mutation."\",\"".$pdbFileName."\",\"".$pdbFile."\",\"".$username."\",\"".$simulationName."\",\"".$description."\",\"".$duration."\",\"".$temperature."\",\"".$currentQueue."\");";
+  $query .= "INSERT INTO ProteinSim.Simulations (mutations, pdbFileName, username, simulationName, description, duration, temperature, queuePosition) VALUES (\"".$mutation."\",\"".$pdbFileName."\",\"".$username."\",\"".$simulationName."\",\"".$description."\",\"".$duration."\",\"".$temperature."\",\"".$currentQueue."\");";
   $currentQueue += 1;
 }
 
@@ -77,5 +78,5 @@ if (mysqli_multi_query($conn, $query)) {
 
 
 mysqli_close($conn);
-// header("Location: queue.php");
-// die();
+header("Location: queue.php");
+die();
