@@ -64,7 +64,7 @@ while true; do
     echo "\nref_t       = $((273.15 + $duration))    $((273.15 + $duration))\n" >> fec.mdp
 
 
-    #place pdb_file from blob into file (protein.pdb)
+    #copy protein file (protein.pdb)
     path_to_protein_file="/var/www/html/ProteinSimulations/uploads/$pdb_file_name"
     cp -f $path_to_protein_file "$current_sim_path/protein.pdb"
 
@@ -97,6 +97,7 @@ while true; do
     gmx grompp -f fec.mdp -c md_0_1.gro -t md_0_1.cpt -p topol.top -n index.ndx -o fec.tpr
     gmx mdrun -deffnm fec -ntmpi 8 -gpu_id 00000000 -nb gpu_cpu
 
+    #Generate all the output files
     echo -e "11 0\n" | gmx energy -f em.edr -o em_potential.xvg
     echo -e "15 0\n" | gmx energy -f nvt.edr -o nvt_temperature.xvg
     echo -e "17 0\n" | gmx energy -f npt.edr -o npt_pressure.xvg
@@ -113,7 +114,7 @@ while true; do
     echo -e "0 0\n" | gmx trjconv -s md_0_1.tpr -f md_0_1.xtc -o md_0_1_noPBC.xtc -pbc mol -ur compact
     echo -e "4\n4\n" | gmx rms -s md_0_1.tpr -f md_0_1_noPBC.xtc -o rmsd_backbone.xvg -tu ns
     echo -e "4\n4\n" | gmx rms -s em.tpr -f md_0_1_noPBC.xtc -o rmsd_backbone_crystal.xvg -tu ns
-     gmx bar -g md_0_1.edr -o -oi -oh
+    gmx bar -g md_0_1.edr -o -oi -oh
 
     #decrement queue position of incomplete simulations
     mysql ProteinSim -u proteinSim -p$DB_PASSWORD -se "$update_query"
