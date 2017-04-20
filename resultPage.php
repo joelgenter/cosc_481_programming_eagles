@@ -49,13 +49,14 @@ $id = $_GET['id'];
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
 <script src="resultsPage.js"></script>
 <link rel="stylesheet" href="custom.css">
@@ -94,38 +95,73 @@ $id = $_GET['id'];
 		<div class="row">
 				<div class="col-lg-12">
 					<div class="title">
-						<h2 style="text-align: center;">Simulation Results</h2>
+						<h2>Results</h2>
 					</div>
 				</div>
 		</div>
 		<div>
 			<legend>
 				<h3 id = 'title'>Simulation title.</h3>
-				<h4 id = 'user'>Submitted by: Username</h4>
+				<div class = 'row'>
+					<div class = 'col-sm-6'>
+						<h4 id = 'user'>Submitted by: Username</h4>
+					</div>
+					<div class = 'col-sm-6 pull-right'>
+						<button type="button" class="pull-right btn btn-success" onclick="window.open('var/www/html/ProteinSimulations/results/sim<?php echo $id ?>/simulation_data.zip')">Download Results</button>
+					</div>
+				</div>
 			</legend>
-			<button type="button" class="btn btn-success" onclick="window.open('results/sim<?php echo $id ?>/simulation_data.zip')">Download Results</button>
+			
 		<div>
 		<div>
+		<div class = 'row row-eq-height'>
+			<div class = 'col-sm-4'>
+				<h4 id = 'type'>Simulation type.</h3>
+			</div>
+			<div class = 'col-sm-4'>
+				<div class="dropdown allign-middle">
+					<button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Chart Type
+						<span class="caret"></span></button>
+					<ul class="dropdown-menu">
+						<li name ='dropdown' class='active' id ='pressure' onclick='changeGraph(pressure)'><a href='#'>Pressure</a></li>
+						<li name ='dropdown' class ='' id ='potential' onclick='changeGraph(potential)'><a href='#' >Potential Energy</a></li>
+						<li name ='dropdown' class ='' id ='temperature' onclick='changeGraph(temperature)'><a href='#'>Temperature</a></li>
+						<li name ='dropdown' class ='' id ='density' onclick='changeGraph(density)'><a href='#'>Density</a></li>
+						<li name ='dropdown' class ='' id ='backBone' onclick='changeGraph(backBone)'><a href='#'>Backbone</a></li>
+						<li name ='dropdown' class ='' id ='crystalBackBone' onclick='changeGraph(crystalBackBone)'><a href='#'>Crystal Backbone</a></li>
+						<li name ='dropdown' class ='' id ='freeEnergy' onclick='changeGraph(freeEnergy)'><a href='#'>Free Energy</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		</br>
+		</br>
 			<canvas id="myChart" width="400" height="400"></canvas>
 		</div>
 		<p>
 			<legend>Description</legend>
-			<span id='description'>This was a test of the simulation. The graph represents the difference in free energy
-			from the base protein to the mutations requested. The 23 bars show the positive or
-			negative difference between the new mutated protein an the original protein.</span>
+			<span id='description'>Simulation Discription</span>
 		</p>
 			</br>
 		</div>
 		<div>
 			<!--<legend>Data</legend>-->
-
+		
 		</div>
 		</br>
 		</br>
 	</div>
 </div>
 <script>
-   generateResults(<?php echo "'".$id."'" ?>)
+   generateResults(<?php echo "'".$id."'" ?>,'pressure')
+   
+   function changeGraph(stuff){
+	   for(var child of $('[name="dropdown"]')){
+		   $(child).attr('class','');
+	   }
+	   $(stuff).attr('class','active');
+	   generateResults(<?php echo "'".$id."'" ?>,$(stuff).attr('id'))
+   }
 </script>
 </div>
 	<div class="container-fluid">

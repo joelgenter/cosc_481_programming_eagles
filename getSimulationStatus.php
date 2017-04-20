@@ -21,7 +21,7 @@ fec        1000ps
 */
 $currentPercent = 0;
 $multiplier = 1;
-$fileName = $_POST['fileLocation'];
+$fileName = '/home/gromacs/simulations/current_simulation/'
 if(file_exists($fileName.'fec.log')){
 	$fileName.= 'fec.log';
 	$currentPercent = 80;
