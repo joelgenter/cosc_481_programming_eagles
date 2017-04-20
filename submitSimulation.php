@@ -58,7 +58,7 @@ if ($stmt = $conn->prepare($query)) {
     $stmt->execute();
     $stmt->bind_result($position);
     $stmt->fetch();
-    $currentQueue = $position + 1;
+    $currentQueue = ($position == -1)? 1 : $position + 1;
     $stmt->close();
 }
 
@@ -82,5 +82,10 @@ if (mysqli_multi_query($conn, $query)) {
 }
 
 mysqli_close($conn);
+
+//Run Simulation
+shell_exec('/home/gromacs/simulations/simulationManager.sh');
+
+
 header("Location: queue.php");
 die();
