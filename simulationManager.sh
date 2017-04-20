@@ -55,13 +55,13 @@ while true; do
     cd /home/gromacs/simulations/current_simulation
 
     #add duration to md.mdp file copied from default folder
-    echo "nsteps      = $((500000 * $duration))" >> md.mdp
+    echo -e "\nnsteps      = $((500000 * $duration))\n" >> md.mdp
 
     #add temperature to nvt.mdp, md.mdp and fec.mdp file copied from default folder
-    echo "\ngen_temp       = $((273.15 + $duration))\n" >> nvt.mdp
-    echo "\nref_t       = $((273.15 + $duration))    $((273.15 + $duration))\n" >> nvt.mdp
-    echo "\nref_t       = $((273.15 + $duration))    $((273.15 + $duration))\n" >> md.mdp
-    echo "\nref_t       = $((273.15 + $duration))    $((273.15 + $duration))\n" >> fec.mdp
+    echo -e "\ngen_temp       = $((273 + $duration))\n" >> nvt.mdp
+    echo -e "\nref_t       = $((273 + $duration))    $((273 + $duration))\n" >> nvt.mdp
+    echo -e "\nref_t       = $((273 + $duration))    $((273 + $duration))\n" >> md.mdp
+    echo -e "\nref_t       = $((273 + $duration))    $((273 + $duration))\n" >> fec.mdp
 
 
     #copy protein file (protein.pdb)
