@@ -115,7 +115,7 @@ while true; do
     echo -e "0 0\n" | gmx trjconv -s md_0_1.tpr -f md_0_1.xtc -o md_0_1_noPBC.xtc -pbc mol -ur compact
     echo -e "4\n4\n" | gmx rms -s md_0_1.tpr -f md_0_1_noPBC.xtc -o rmsd_backbone.xvg -tu ns
     echo -e "4\n4\n" | gmx rms -s em.tpr -f md_0_1_noPBC.xtc -o rmsd_backbone_crystal.xvg -tu ns
-    gmx bar -g md_0_1.edr -o -oi -oh
+    gmx bar -g fec.edr -o -oi -oh
 
     #capture simulation end time
     sim_end=$(date +"%Y/%m/%e %H:%M:%S")
