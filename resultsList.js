@@ -1,7 +1,6 @@
 
 function createResultsList(results, status){
 	//generates list group
-	console.log(results[0])
 	$('#resultsList').append("<!-- List group --> <ul class='list-group'>")
 	for(var simulation of results){
 		$('#resultsList').append("<a href='resultPage.php?id="+simulation[6]+"' class='list-group-item list-group-item-action'> 		\

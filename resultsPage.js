@@ -2,6 +2,8 @@ var myChart = 'empty'
 
 function createBarChart(chartData){
 	var ctx = $("#myChart");
+	ctx.height = 100;
+	console.log(ctx)
 	var colour=[];
 	var theLabels =[]
 	for(i =0; i<20; i++){
@@ -22,6 +24,7 @@ function createBarChart(chartData){
         }]
     },
     options: {
+		AspectRatio: 1,
 		responsive: true,
 		maintainAspectRatio: true,
         scales: {
@@ -46,7 +49,9 @@ function createBarChart(chartData){
             }]
         }
     }
+	
 });
+
 }
 
 function determineYAxis(data){
@@ -117,7 +122,6 @@ function createChart(chartPoints,chartData,dataType){
 	var ctx = $("#myChart");
 	myChart = new Chart(ctx, {
     type: 'line',
-	maintainAspectRatio: false,
     data: {
         labels: chartPoints,
         datasets: [{
@@ -129,8 +133,8 @@ function createChart(chartPoints,chartData,dataType){
         }]
     },
     options: {
-		responsive: false,
-		maintainAspectRatio: false,
+		responsive: true,
+		maintainAspectRatio: true,
         scales: {
 			xAxes: [{
 			ticks: {
