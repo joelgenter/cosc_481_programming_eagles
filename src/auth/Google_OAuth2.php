@@ -33,7 +33,7 @@ class Google_OAuth2 extends Google_Auth {
   public $token;
   public $redirectUri;
   public $state;
-  public $accessType = 'online';
+  public $accessType = 'offline';
   public $approvalPrompt = 'auto';
 
   /** @var Google_AssertionCredentials $assertionCredentials */
