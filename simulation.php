@@ -130,7 +130,7 @@ $email = $user->getEmail($oauth_uid);
 							<br><br>
 							<div class="form-group">
 						    <label for="forceField">Force Field</label>
-						    <select class="form-control" id="forceField" name="forceField" value ="1">
+						    <select class="form-control" id="forceField" name="forceField">
 						      <option value="1">GROMOS96 54a7 (custom)</option>
 						      <option value="2">AMBER03</option>
 						      <option value="3">AMBER94</option>

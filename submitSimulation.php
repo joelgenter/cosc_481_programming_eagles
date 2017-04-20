@@ -1,6 +1,6 @@
 <?php
-// error_reporting(E_ALL);
-// ini_set('display_errors', 1);
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 require 'db_connection.php';        //$conn (mysqli connection) is now available
 include_once 'User.php';
 
@@ -67,7 +67,8 @@ $query="";
 $simulationList = explode(";", $mutationList);
 
 foreach ($simulationList as $mutation){
-  $query .= "INSERT INTO ProteinSim.Simulations (mutations, pdbFileName, username, simulationName, description, duration, temperature, queuePosition) VALUES (\"".$mutation."\",\"".$pdbFileName."\",\"".$username."\",\"".$simulationName."\",\"".$description."\",\"".$duration."\",\"".$temperature."\",\"".$currentQueue."\");";
+  echo "queue position: ".$currentQueue;
+  $query .= "INSERT INTO ProteinSim.Simulations (mutations, pdbFileName, username, simulationName, description, duration, temperature, queuePosition, forceField) VALUES (\"".$mutation."\",\"".$pdbFileName."\",\"".$username."\",\"".$simulationName."\",\"".$description."\",\"".$duration."\",\"".$temperature."\",\"".$currentQueue."\",\"".$forceField."\");";
   $currentQueue += 1;
 }
 
@@ -84,8 +85,8 @@ if (mysqli_multi_query($conn, $query)) {
 mysqli_close($conn);
 
 //Run Simulation
-shell_exec('/home/gromacs/simulations/simulationManager.sh');
+$log = shell_exec('/home/gromacs/simulations/simulationManager.sh');
+echo $log;
 
-
-header("Location: queue.php");
-die();
+// header("Location: queue.php");
+// die();
