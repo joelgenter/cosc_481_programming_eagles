@@ -111,8 +111,10 @@ function updateBar(folderPath, simDuration){
 				if(percent<$('#progressBar').parent().children()[0].style.width.substring(0,$('#progressBar').parent().children()[0].style.width.length-1))
 					alert('a mistake might have occured');
 				var message ="";
+				if(percent<=1)
+					message = "Initializing"
 				if(percent<5)
-					message = "Initializing: "+Math.round(100-(20*(5 - percent))) +"%"
+					message = "Performing energy minimization: "+Math.round(100-(20*(5 - percent))) +"%"
 				else if(percent<25)
 					message = "Performing equilibrium: "+Math.round(100-5*(25 - percent)) +"%"
 				else if(percent<80)

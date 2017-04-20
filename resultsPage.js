@@ -115,8 +115,6 @@ function createChart(chartPoints,chartData,dataType){
 	var yAxis = determineYAxis(dataType);
 	var xAxis = (chartPoints[chartPoints.length-1]<41) ? 'ns':'ps' 
 	var ctx = $("#myChart");
-	ctx.width = 300;
-	ctx.height = 300;
 	myChart = new Chart(ctx, {
     type: 'line',
 	maintainAspectRatio: false,
@@ -154,8 +152,7 @@ function createChart(chartPoints,chartData,dataType){
     }
 	
 });
-	//ctx.height = 100;
-	//myChart.resize()
+
 }
 
 function updateHtml(userData){
