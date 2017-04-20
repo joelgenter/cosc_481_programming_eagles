@@ -8,7 +8,7 @@ function createBarChart(chartData){
 									  'rgba(54, 162, 235, 1)';
 		theLabels[i] = "Lambda_"+i/20
 	}
-	
+	$('#type').text = 'Free Energy Bar Graph';
 	var ctx = document.getElementById("myChart");
 	
 	var myChart = new Chart(ctx, {
