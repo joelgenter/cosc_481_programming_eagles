@@ -45,7 +45,7 @@ $email = $user->getEmail($oauth_uid);
 ?>
 
 
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html manifest="manifest.appcache">
 <head>
 <!-- Set Cache-control to not cache this page -->

@@ -103,7 +103,7 @@ $id = $_GET['id'];
 				<h3 id = 'title'>Simulation title.</h3>
 				<h4 id = 'user'>Submitted by: Username</h4>
 			</legend>
-			<button type="button" class="btn btn-success" onclick="window.open('var/www/html/ProteinSimulations/results/sim<?php echo $id ?>/simulation_data.zip')">Download Results</button>
+			<button type="button" class="btn btn-success" onclick="window.open('results/sim<?php echo $id ?>/simulation_data.zip')">Download Results</button>
 		<div>
 		<div>
 			<canvas id="myChart" width="400" height="400"></canvas>
