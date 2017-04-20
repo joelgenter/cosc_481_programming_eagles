@@ -1,3 +1,4 @@
+var myChart = 'empty'
 
 function createBarChart(chartData){
 	var ctx = $("#myChart");
@@ -9,9 +10,7 @@ function createBarChart(chartData){
 		theLabels[i] = "Lambda_"+i/20
 	}
 	$('#type').text = 'Free Energy Bar Graph';
-	var ctx = document.getElementById("myChart");
-	
-	var myChart = new Chart(ctx, {
+	myChart = new Chart(ctx, {
     type: 'bar',
     data: {
         labels: theLabels,
@@ -23,6 +22,8 @@ function createBarChart(chartData){
         }]
     },
     options: {
+		responsive: true,
+		maintainAspectRatio: true,
         scales: {
 			xAxes: [{
 			ticks: {
@@ -113,11 +114,12 @@ function determineFile(data){
 function createChart(chartPoints,chartData,dataType){
 	var yAxis = determineYAxis(dataType);
 	var xAxis = (chartPoints[chartPoints.length-1]<41) ? 'ns':'ps' 
-	
 	var ctx = $("#myChart");
-	
-	var myChart = new Chart(ctx, {
+	ctx.width = 300;
+	ctx.height = 300;
+	myChart = new Chart(ctx, {
     type: 'line',
+	maintainAspectRatio: false,
     data: {
         labels: chartPoints,
         datasets: [{
@@ -129,6 +131,8 @@ function createChart(chartPoints,chartData,dataType){
         }]
     },
     options: {
+		responsive: false,
+		maintainAspectRatio: false,
         scales: {
 			xAxes: [{
 			ticks: {
@@ -148,7 +152,10 @@ function createChart(chartPoints,chartData,dataType){
             }]
         }
     }
+	
 });
+	//ctx.height = 100;
+	//myChart.resize()
 }
 
 function updateHtml(userData){
@@ -160,7 +167,8 @@ function updateHtml(userData){
 
 function generateResults(simId,data){
 	//fixes html in tree
-	
+	if(myChart != 'empty')
+		myChart.destroy();
 	$.ajax({url: 'getResultInfo.php', method: 'POST', 
 			data: {id: simId},
 			success: function(userData){updateHtml(JSON.parse(userData)[0]);}});
