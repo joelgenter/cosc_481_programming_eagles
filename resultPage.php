@@ -91,7 +91,7 @@ $id = $_GET['id'];
 	  </div><!-- /.container-fluid -->
 	</nav>
 	<!-- Page Content -->
-	<div id ='body' class="container-fluid container-body"style="padding-top: 20px;">
+	<div class="container-fluid container-body"style="padding-top: 20px;">
 		<div class="row">
 				<div class="col-lg-12">
 					<div class="title">
@@ -115,6 +115,8 @@ $id = $_GET['id'];
 					</div>
 				</div>
 			</legend>
+			
+		<div>
 		<div>
 		<div class = 'row row-eq-height'>
 			<div class = 'col-sm-4'>
@@ -138,7 +140,7 @@ $id = $_GET['id'];
 		</div>
 		</br>
 		</br>
-		<canvas id="myChart" height = '100px'></canvas>
+			<canvas id="myChart" width="1027px" height="500px"></canvas>
 		</div>
 		<p>
 			<legend>Description</legend>
@@ -155,14 +157,15 @@ $id = $_GET['id'];
 	</div>
 </div>
 <script>
-      function changeGraph(stuff){
+   generateResults(<?php echo "'".$id."'" ?>,'freeEnergy')
+   
+   function changeGraph(stuff){
 	   for(var child of $('[name="dropdown"]')){
 		   $(child).attr('class','');
 	   }
 	   $(stuff).attr('class','active');
 	   generateResults(<?php echo "'".$id."'" ?>,$(stuff).attr('id'))
    }
-   generateResults(<?php echo "'".$id."'" ?>,'freeEnergy')
 </script>
 </div>
 	<div class="container-fluid">
