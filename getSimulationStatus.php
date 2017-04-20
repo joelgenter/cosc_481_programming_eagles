@@ -25,7 +25,7 @@ $fileName = '/home/gromacs/simulations/current_simulation/';
 if(file_exists($fileName.'fec.log')){
 	$fileName.= 'fec.log';
 	$currentPercent = 80;
-	$multiplier = 0.2;
+	$multiplier = 0.02;
 }
 else if(file_exists($fileName.'md_0_1.log')){
 	$fileName.= 'md_0_1.log';

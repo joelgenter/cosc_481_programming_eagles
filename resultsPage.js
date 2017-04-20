@@ -35,7 +35,7 @@ function createBarChart(chartData){
 					},
 			scaleLabel: {
 				display: true,
-				labelString: 'Lamba Values'
+				labelString: 'Lambda Values'
 					}
 			}],
             yAxes: [{
