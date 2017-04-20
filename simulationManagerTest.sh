@@ -129,7 +129,7 @@ while true; do
     mysql ProteinSim -u proteinSim -p$DB_PASSWORD -se "$update_sim_time_query"
 
     #decrement queue position of incomplete simulations
-    mysql ProteinSim -u proteinSim -p$DB_PASSWORD -se "UPDATE Simulations SET startTime=STR_TO_DATE('$sim_start', '%Y/%m/%d %k:%i:%s'), endTime=STR_TO_DATE('$sim_end', '%Y/%m/%d %k:%i:%s') WHERE id=$id"
+    mysql ProteinSim -u proteinSim -p$DB_PASSWORD -se "UPDATE Simulations SET startTime=STR_TO_DATE(\"$sim_start\", '%Y/%m/%d %k:%i:%s'), endTime=STR_TO_DATE(\"$sim_end\", '%Y/%m/%d %k:%i:%s') WHERE id=$id"
 
     #copy bar.xvg to new dir
     result_folder_path="/var/www/html/ProteinSimulations/results/sim$id"
