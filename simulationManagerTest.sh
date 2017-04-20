@@ -38,10 +38,8 @@ while true; do
     read pdb_file_name duration temperature id force_field <<< $query_result
 
     #FOR TESTING PURPOSES- REMOVE AFTER TESTING
-    echo "mutations: $mutations"
     echo "pdb_file_name: $pdb_file_name"
     echo "duration: $duration"
-    echo "simulation_name: $simulation_name"
     echo "temperature: $temperature"
     echo "id: $id"
     echo "force_field: $force_field"
@@ -68,7 +66,7 @@ while true; do
     cp -f $path_to_protein_file "$current_sim_path/protein.pdb"
 
     #capture simulation start time
-    sim_start=date +"%Y/%m/%e %H:%M:%S"
+    sim_start=$(date +"%Y/%m/%e %H:%M:%S")
 
     #give the simulation data to gromacs
     # echo -e "$force_field\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n" | gmx pdb2gmx -f protein.pdb -o protein.gro -water spc -ter -missing
@@ -123,7 +121,7 @@ while true; do
     echo "different from end"
 
     #capture simulation end time
-    sim_end=date +"%Y/%m/%e %H:%M:%S"
+    sim_end=$(date +"%Y/%m/%e %H:%M:%S")
 
     #add sim start and end time to db
     mysql ProteinSim -u proteinSim -p$DB_PASSWORD -se "$update_sim_time_query"
