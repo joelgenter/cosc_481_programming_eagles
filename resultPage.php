@@ -111,11 +111,11 @@ $id = $_GET['id'];
 						<h4 id = 'user'>Submitted by: Username</h4>
 					</div>
 					<div class = 'col-sm-6 pull-right'>
-						<button type="button" class="pull-right btn btn-success" onclick="window.open('var/www/html/ProteinSimulations/results/sim<?php echo $id ?>/simulation_data.zip')">Download Results</button>
+						<button type="button" class="pull-right btn btn-success" onclick="window.open('results/sim<?php echo $id ?>/simulation_data.zip')">Download Results</button>
 					</div>
 				</div>
 			</legend>
-			
+
 		<div>
 		<div>
 		<div class = 'row row-eq-height'>
@@ -150,7 +150,7 @@ $id = $_GET['id'];
 		</div>
 		<div>
 			<!--<legend>Data</legend>-->
-		
+
 		</div>
 		</br>
 		</br>
@@ -158,7 +158,7 @@ $id = $_GET['id'];
 </div>
 <script>
    generateResults(<?php echo "'".$id."'" ?>,'freeEnergy')
-   
+
    function changeGraph(stuff){
 	   for(var child of $('[name="dropdown"]')){
 		   $(child).attr('class','');
