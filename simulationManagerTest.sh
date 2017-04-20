@@ -13,10 +13,8 @@ readonly DB_PASSWORD="Gromacs#2017"
 
 select_query=$(cat <<EOF
 SELECT
-  mutations,
   pdbFileName,
   duration,
-  simulationName,
   temperature,
   id
 FROM Simulations
@@ -36,7 +34,7 @@ while true; do
 
   if [ ! -z "$query_result" ]; then    #if result not empty
     #read query_result into vars
-    read mutations pdb_file_name duration simulation_name temperature id <<< $query_result
+    read pdb_file_name duration temperature id <<< $query_result
 
     #FOR TESTING PURPOSES- REMOVE AFTER TESTING
     echo "mutations: $mutations"
