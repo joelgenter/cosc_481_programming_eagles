@@ -53,7 +53,7 @@ while true; do
     cd /home/gromacs/simulations/current_simulation
 
     #add duration to md.mdp file copied from default folder
-    echo -e "\nnsteps      = $(echo "500000 * $duration" | bc)\n" >> md.mdp
+    echo -e "\nnsteps      = $(printf "%.0f" $(echo "500000 * $duration" | bc))\n" >> md.mdp
 
     #add temperature to nvt.mdp, md.mdp and fec.mdp file copied from default folder
     temp_in_kelvin=$(echo "273.15 + $temperature" | bc)
