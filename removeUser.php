@@ -10,5 +10,3 @@ if ($stmt = $conn->prepare($query)) {
 } else {
   echo("Not working");
 }
-
-?>

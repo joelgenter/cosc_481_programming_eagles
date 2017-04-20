@@ -49,9 +49,9 @@ $id = $_GET['id'];
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <!-- Latest compiled JavaScript -->
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -111,7 +111,7 @@ $id = $_GET['id'];
 					</div>
 				</div>
 			</legend>
-			
+
 		<div>
 		<div>
 		<div class = 'row row-eq-height'>
@@ -146,7 +146,7 @@ $id = $_GET['id'];
 		</div>
 		<div>
 			<!--<legend>Data</legend>-->
-		
+
 		</div>
 		</br>
 		</br>
@@ -154,7 +154,7 @@ $id = $_GET['id'];
 </div>
 <script>
    generateResults(<?php echo "'".$id."'" ?>,'pressure')
-   
+
    function changeGraph(stuff){
 	   for(var child of $('[name="dropdown"]')){
 		   $(child).attr('class','');

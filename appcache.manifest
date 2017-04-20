@@ -6,5 +6,4 @@ FALLBACK:
 
 # no cache
 NETWORK:
-https://jeremyginnard.com/ProteinSimulations/admin.php
 *

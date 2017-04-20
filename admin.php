@@ -46,12 +46,12 @@ $email = $user->getEmail($oauth_uid);
 
 
 <!DOCTYPE HTML>
-<html manifest="manifest.appcache">
+<html>
 <head>
 <!-- Set Cache-control to not cache this page -->
-<!-- <meta http-equiv="Expires" CONTENT="0">
+<meta http-equiv="Expires" CONTENT="0">
 <meta http-equiv="Cache-Control" CONTENT="no-cache">
-<meta http-equiv="Pragma" CONTENT="no-cache"> -->
+<meta http-equiv="Pragma" CONTENT="no-cache">
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Admin</title>
@@ -214,6 +214,11 @@ $email = $user->getEmail($oauth_uid);
 // removes the user from the userList HTML object.
 
     function remUser(idLi){
+			// var appCache = window.applicationCache;
+			// appCache.update(); //this will attempt to update the users cache and changes the application cache status to 'UPDATEREADY'.
+			// if (appCache.status == window.applicationCache.UPDATEREADY) {
+			// 	appCache.swapCache(); //replaces the old cache with the new one.
+			// }
       // Get username
       var username = nodeToString(document.getElementById('username'+idLi));
 					username = username.replace('<div class="col-lg-6" id="username'+idLi+'">','');
@@ -238,6 +243,11 @@ $email = $user->getEmail($oauth_uid);
 // the HTML code to reflect said change.
 
 		function updateType(dropType,idLi){
+			// var appCache = window.applicationCache;
+			// appCache.update(); //this will attempt to update the users cache and changes the application cache status to 'UPDATEREADY'.
+			// if (appCache.status == window.applicationCache.UPDATEREADY) {
+			//   appCache.swapCache(); //replaces the old cache with the new one.
+			// }
 			// Get username
 			var username = nodeToString(document.getElementById('username'+idLi));
 					username = username.replace('<div class="col-lg-6" id="username'+idLi+'">','');

@@ -1,0 +1,3 @@
+Header merge Cache-Control no-cache env=CGI
+Header merge Cache-Control no-cache env=NO_CACHE
+Header merge Cache-Control no-store env=NO_STORE
