@@ -19,8 +19,7 @@ npt        100ps
 md_0_1        1000ps - 40000ps, (whatever the user chooses
 fec        1000ps
 */
-//$fileName = $_POST['results'];
-$fileName = 'Gromacs/test_bar.xvg';
+$fileName = $_POST['results'];
 
 if( ! file_exists($fileName)){
 	die();
@@ -51,6 +50,7 @@ for ($x_position = 0, $new_line = ''; fseek($file, $x_position, SEEK_END) !== -1
 				$count = $count +1;
 				//echo '-->'.$energy.'<--';
 				//$nextResult = [$energy];
+				if($count>1)
 				array_unshift($data,floatval($energy));
 				if($count > 20){
 					break;      //Breaks for loop. We have our precentage. No need to continue.

@@ -1,6 +1,22 @@
 <?php
+	include_once 'gpConfig.php';
+	include_once 'User.php';
 	require 'db_connection.php';
-  
+	//makes sure l33t h4x0rs can't edit queue too easily
+	$cookie_name = "oauth_uid";
+	$oauth_uid = $_COOKIE[$cookie_name];
+	$user = new User();
+	$status = $user->getStatus($oauth_uid);
+	$status = $status['type'];
+	//echo($status);
+	if ($status == "admin"){
+		//do nothing
+	}
+	else {
+		header("Location: index.php");
+		exit();
+	}
+	
     if( !isset($_POST['functionName']) ) { echo 'No function name!'; }
     if( !isset($_POST['arguments']) ) { echo 'No function arguments!'; }
 

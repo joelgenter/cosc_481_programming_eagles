@@ -2,11 +2,11 @@
 	require 'db_connection.php';
   
 	$arrayOfData = array();
-	$results = $_POST['results'];
+	$id = $_POST['id'];
 	//echo("\'".$results."\'");
     $query = "SELECT Simulations.simulationName, Simulations.mutations, Simulations.startTime, 
-			  Simulations.endTime, Simulations.username, Simulations.queuePosition, Simulations.results, 
-			  Simulations.duration FROM Simulations WHERE Simulations.results = '".$results."\\'";
+			  Simulations.endTime, Simulations.username, Simulations.queuePosition, Simulations.id, 
+			  Simulations.duration FROM Simulations WHERE Simulations.id = '".$id."'";
 	if ($stmt = $conn->prepare($query)) {
 		$stmt->execute();
 		$stmt->bind_result($simulationName,$mutations, $startTime, $endTime, $username, $queuePosition, $results, $duration);

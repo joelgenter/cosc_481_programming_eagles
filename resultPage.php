@@ -37,7 +37,7 @@ $email = $user->getEmail($oauth_uid);
 	{
 			$output = '<h3 style="color:red">Some problem occurred, please try again.</h3>';
 	}
-$results = $_GET['results'];
+$id = $_GET['id'];
 ?>
 <html>
 <head>
@@ -100,8 +100,8 @@ $results = $_GET['results'];
 		</div>
 		<div>
 			<legend>
-				<h3 id = 'title'>Test Simulation1</h3>
-				<h4 id = 'user'>Submitted by: Jeremy Ginnard</h4>
+				<h3 id = 'title'>Simulation title.</h3>
+				<h4 id = 'user'>Submitted by: Username</h4>
 			</legend>
 		<div>
 		<div>
@@ -124,7 +124,7 @@ $results = $_GET['results'];
 	</div>
 </div>
 <script>
-   generateResults(<?php echo "'".$results."\'" ?>)
+   generateResults(<?php echo "'".$id."'" ?>)
 </script>
 </div>
 	<div class="container-fluid">
