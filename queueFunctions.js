@@ -105,19 +105,20 @@ function updateList(status){
 }
 
 function updateBar(folderPath, simDuration){
-	//console.log($('#progressBar').parent().children()[0].style.width)
 	$.ajax({url: 'getSimulationStatus.php', method: 'POST', 
 			data: {fileLocation: folderPath, duration: simDuration },
 			success: function(percent){
+				if(percent<$('#progressBar').parent().children()[0].style.width)
+					alert('a mistake might have occured');
 				var message ="";
 				if(percent<5)
-					message = "Initializing: "+20*(5 - percent) +"%"
+					message = "Initializing: "+Math.round(100-20*(5 - percent)) +"%"
 				else if(percent<25)
-					message = "Performing equilibrium: "+5*(25 - percent) +"%"
+					message = "Performing equilibrium: "+Math.round(100-5*(25 - percent)) +"%"
 				else if(percent<80)
-					message = "Simulating molecule: "+100*(80 - percent)/55 +"%"
+					message = "Simulating molecule: "+Math.round(100-100*(80 - percent)/55) +"%"
 				else if(percent<100)
-					message = "Performing free energy calculations: "+5*(100 - percent) +"%"
+					message = "Performing free energy calculations: "+Math.round(100-5*(100 - percent)) +"%"
 				else
 					message ="Error: Reticulating Splines"
 				updateBarValues(percent,message)

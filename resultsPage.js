@@ -9,7 +9,7 @@ function createBarChart(chartData){
 									  'rgba(54, 162, 235, 1)';
 		theLabels[i] = "Lambda_"+i/20
 	}
-	$('#type').text = 'Free Energy Bar Graph';
+	$('#type').text('Free Energy Bar Graph');
 	myChart = new Chart(ctx, {
     type: 'bar',
     data: {
