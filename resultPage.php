@@ -49,9 +49,9 @@ $id = $_GET['id'];
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -111,7 +111,7 @@ $id = $_GET['id'];
 					</div>
 				</div>
 			</legend>
-
+			
 		<div>
 		<div>
 		<div class = 'row row-eq-height'>
@@ -123,20 +123,20 @@ $id = $_GET['id'];
 					<button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Chart Type
 						<span class="caret"></span></button>
 					<ul class="dropdown-menu">
-						<li name ='dropdown' class='active' id ='pressure' onclick='changeGraph(pressure)'><a href='#'>Pressure</a></li>
+						<li name ='dropdown' class='' id ='pressure' onclick='changeGraph(pressure)'><a href='#'>Pressure</a></li>
 						<li name ='dropdown' class ='' id ='potential' onclick='changeGraph(potential)'><a href='#' >Potential Energy</a></li>
 						<li name ='dropdown' class ='' id ='temperature' onclick='changeGraph(temperature)'><a href='#'>Temperature</a></li>
 						<li name ='dropdown' class ='' id ='density' onclick='changeGraph(density)'><a href='#'>Density</a></li>
 						<li name ='dropdown' class ='' id ='backBone' onclick='changeGraph(backBone)'><a href='#'>Backbone</a></li>
 						<li name ='dropdown' class ='' id ='crystalBackBone' onclick='changeGraph(crystalBackBone)'><a href='#'>Crystal Backbone</a></li>
-						<li name ='dropdown' class ='' id ='freeEnergy' onclick='changeGraph(freeEnergy)'><a href='#'>Free Energy</a></li>
+						<li name ='dropdown' class ='active' id ='freeEnergy' onclick='changeGraph(freeEnergy)'><a href='#'>Free Energy</a></li>
 					</ul>
 				</div>
 			</div>
 		</div>
 		</br>
 		</br>
-			<canvas id="myChart" width="400" height="400"></canvas>
+			<canvas id="myChart" width="1027px" height="500px"></canvas>
 		</div>
 		<p>
 			<legend>Description</legend>
@@ -146,15 +146,15 @@ $id = $_GET['id'];
 		</div>
 		<div>
 			<!--<legend>Data</legend>-->
-
+		
 		</div>
 		</br>
 		</br>
 	</div>
 </div>
 <script>
-   generateResults(<?php echo "'".$id."'" ?>,'pressure')
-
+   generateResults(<?php echo "'".$id."'" ?>,'freeEnergy')
+   
    function changeGraph(stuff){
 	   for(var child of $('[name="dropdown"]')){
 		   $(child).attr('class','');

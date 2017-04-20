@@ -46,16 +46,28 @@ function createSimulationsList(queue, status){
 				incrementSim(this.id[this.id.length-1],status)
 		});
 		$('[name="simDown"]').click(function(){
-			if(!$(this).hasClass('disabled'))
+			
+			if(this.id[this.id.length-1]==0){
+				$('#alertModal').modal('show')
+				$('#modalTitle').text('Confirm Move')
+				$('#modalText').text('If this simulation is moved, all progress will be lost!')
+				$('#confirmMove').attr('class','btn btn-default')
+				$('#confirmDelete').attr('class','btn btn-default hide')
+			}
+			else if(!$(this).hasClass('disabled'))
 				decrementSim(this.id[this.id.length-1],status)
 		});
 		$('[name="simDelete"]').click(function(){
 			$('#confirmDelete').attr('name',(this.id));
 			$('#alertModal').modal('show')
+			$('#modalTitle').text('Confirm Delete')
+			$('#modalText').text('Are you sure you want to delete this simulation?')
+			$('#confirmDelete').attr('class','btn btn-default')
+			$('#confirmMove').attr('class','btn btn-default hide')
 		});
 	});
-	updateBar(queue[0][7],queue[0][8])
-	barUpdater=setInterval(function(){updateBar(queue[0][7],queue[0][8])},10000);
+	updateBar(queue[0][6],queue[0][7])
+	barUpdater=setInterval(function(){updateBar(queue[0][6],queue[0][7])},10000);
 }
 
 function incrementSim(simNumber, data){		
@@ -67,8 +79,9 @@ function incrementSim(simNumber, data){
 }
 
 function decrementSim(simNumber, data){
-	if (simNumber==data.length-1)
-		alert("Cannot decrement the last item in the queue")
+	if (simNumber==data.length-1){
+		
+	}
 	else{
 			$.ajax({url: 'modifyQueue.php', method: 'POST', 
 			data: {functionName:'increment', arguments: [(parseInt(simNumber)+1), parseInt(simNumber)]},
@@ -79,7 +92,7 @@ function decrementSim(simNumber, data){
 function deleteSim(simNumber, data){
 	$.ajax({url: 'modifyQueue.php', method: 'POST', 
 	  data: {functionName:'delete', arguments: (parseInt(simNumber))},
-	  success: function(mesg){ console.log(mesg); updateList(data);}});					
+	  success: function(mesg){updateList(data);}});					
 }
 
 /** 'updates' list by deleting the list and creating a new one.
