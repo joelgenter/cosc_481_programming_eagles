@@ -125,7 +125,7 @@ while true; do
     find . -name "bar.xvg" -exec cp {} $result_folder_path \;
 
     #put all .xvg, .gro, .pdb, .trr files into a zipped file in new dir
-    zip -rj "$result_folder_path/simulation_data.zip" . -i '*.xvg' '*.gro' '*.trr' '*.pdb'
+    zip -rj "$result_folder_path/simulation_data.zip" . -i '*.xvg' '*.gro' '*.trr' '*.pdb' '*.log'
 
     #remove simulation configuration files
 #    rm $path_to_protein_file
