@@ -120,10 +120,12 @@ function updateBar(folderPath, simDuration){
 					message = "Performing equilibrium: "+Math.round(100-5*(25 - percent)) +"%"
 				else if(percent<80)
 					message = "Simulating molecule: "+Math.round(100-100*(80 - percent)/55) +"%"
-				else if(percent<100)
+				else if(percent<=100)
 					message = "Performing free energy calculations: "+Math.round(100-5*(100 - percent)) +"%"
-				else
+				else{
 					message ="Error: Reticulating Splines"
+					console.log(percent)
+				}
 				updateBarValues(percent,message)
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown){
