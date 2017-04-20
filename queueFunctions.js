@@ -108,8 +108,9 @@ function updateBar(folderPath, simDuration){
 	$.ajax({url: 'getSimulationStatus.php', method: 'POST', 
 			data: {fileLocation: folderPath, duration: simDuration },
 			success: function(percent){
-				if(percent<$('#progressBar').parent().children()[0].style.width.substring(0,$('#progressBar').parent().children()[0].style.width.length-1))
+				if(Math.round(percent)<$('#progressBar').parent().children()[0].style.width.substring(0,$('#progressBar').parent().children()[0].style.width.length-1)){
 					alert('a mistake might have occured');
+				}
 				var message ="";
 				if(percent<=1)
 					message = "Initializing"
