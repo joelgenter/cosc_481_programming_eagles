@@ -122,7 +122,9 @@ while true; do
     #copy bar.xvg to new dir
     result_folder_path="/var/www/html/ProteinSimulations/results/sim$id"
     mkdir $result_folder_path
-    find . -name "bar.xvg" -exec cp {} $result_folder_path \;
+
+    #move non-zipped .xvg files to result folder
+    cp ./{bar.xvg,md_potential.xvg,md_temperature.xvg,md_pressure.xvg,md_density.xvg} $result_folder_path
 
     #put all .xvg, .gro, .pdb, .trr files into a zipped file in new dir
     zip -rj "$result_folder_path/simulation_data.zip" . -i '*.xvg' '*.gro' '*.trr' '*.pdb' '*.log'
