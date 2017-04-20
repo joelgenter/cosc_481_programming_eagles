@@ -181,6 +181,7 @@ $email = $user->getEmail($oauth_uid);
 		.done(function(users) {
             users = JSON.parse(users);
 			for (var i = 0; i < users.length; i++) {
+				if(users[i].email != <?php echo("'".$email['email']."'"); ?>){
 				var html =
 					'<div id="row'+userCount+'" class="list-group-item list-group-item-action userList">' +
 						'<div class = "row">' +
@@ -206,6 +207,7 @@ $email = $user->getEmail($oauth_uid);
 
 				$usersList.append(html);
 				userCount++;
+				}
 			}
 		});
 
