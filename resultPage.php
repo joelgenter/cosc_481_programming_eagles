@@ -95,13 +95,17 @@ $id = $_GET['id'];
 		<div class="row">
 				<div class="col-lg-12">
 					<div class="title">
-						<h2>Results</h2>
+						<h2>Simulation Results</h2>
 					</div>
 				</div>
 		</div>
 		<div>
 			<legend>
-				<h3 id = 'title'>Simulation title.</h3>
+				<div class ='row'>
+					<div class = 'col-sm-12'>
+						<h3 id = 'title'>Simulation title.</h3>
+					</div>
+				</div>
 				<div class = 'row'>
 					<div class = 'col-sm-6'>
 						<h4 id = 'user'>Submitted by: Username</h4>

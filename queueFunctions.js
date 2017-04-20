@@ -111,13 +111,13 @@ function updateBar(folderPath, simDuration){
 			success: function(percent){
 				var message ="";
 				if(percent<5)
-					message = "Initializing"
+					message = "Initializing: "+20*(5 - percent) +"%"
 				else if(percent<25)
-					message = "Performing equilibrium"
+					message = "Performing equilibrium: "+5*(25 - percent) +"%"
 				else if(percent<80)
-					message = "Simulating molecule"
+					message = "Simulating molecule: "+100*(80 - percent)/55 +"%"
 				else if(percent<100)
-					message = "Performing free energy calculations"
+					message = "Performing free energy calculations: "+5*(100 - percent) +"%"
 				else
 					message ="Error: Reticulating Splines"
 				updateBarValues(percent,message)
