@@ -120,10 +120,10 @@ while true; do
     #capture simulation end time
     sim_end=$(date +"%Y/%m/%e %H:%M:%S")
 
-    #add sim start and end time to db
-    mysql ProteinSim -u proteinSim -p$DB_PASSWORD -se "$update_sim_time_query"
-
     #decrement queue position of incomplete simulations 
+    mysql ProteinSim -u proteinSim -p$DB_PASSWORD -se "$update_queue_query"
+
+    #add sim start and end time to db
     mysql ProteinSim -u proteinSim -p$DB_PASSWORD -se "UPDATE Simulations SET startTime=STR_TO_DATE(\"$sim_start\", '%Y/%m/%d %k:%i:%s'), endTime=STR_TO_DATE(\"$sim_end\", '%Y/%m/%d %k:%i:%s') WHERE id=$id"
 
     #copy bar.xvg to new dir
