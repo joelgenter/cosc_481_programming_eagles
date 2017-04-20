@@ -151,6 +151,8 @@ while true; do
  #   cd ..;
   #  rm -rf -- current_simulation
   else
+    #decrement the queue position of the last executed simulation
+    mysql ProteinSim -u proteinSim -p$DB_PASSWORD -se "$update_queue_query"
     break   #no more incomplete simulations
   fi
 done
