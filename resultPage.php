@@ -136,7 +136,7 @@ $id = $_GET['id'];
 		</div>
 		</br>
 		</br>
-			<canvas id="myChart" width="400" height="400"></canvas>
+			<canvas id="myChart" width="1027px" height="500px"></canvas>
 		</div>
 		<p>
 			<legend>Description</legend>
