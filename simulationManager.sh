@@ -8,6 +8,7 @@
 # SHELL DEPENDENCIES:
 #   zip
 #   gromacs
+#   bc
 
 readonly DB_PASSWORD="Gromacs#2017"
 
@@ -16,7 +17,8 @@ SELECT
   pdbFileName,
   duration,
   temperature,
-  id
+  id,
+  forceField
 FROM Simulations
 WHERE queuePosition = 1
 EOF
@@ -34,7 +36,7 @@ while true; do
 
   if [ ! -z "$query_result" ]; then    #if result not empty
     #read query_result into vars
-    read pdb_file_name duration temperature id <<< $query_result
+    read pdb_file_name duration temperature id force_field<<< $query_result
 
     #FOR TESTING PURPOSES- REMOVE AFTER TESTING
     echo "mutations: $mutations"
@@ -53,13 +55,14 @@ while true; do
     cd /home/gromacs/simulations/current_simulation
 
     #add duration to md.mdp file copied from default folder
-    echo -e "\nnsteps      = $(echo '500000 * $duration' | bc)\n" >> md.mdp
+    echo -e "\nnsteps      = $(echo "500000 * $duration" | bc)\n" >> md.mdp
 
     #add temperature to nvt.mdp, md.mdp and fec.mdp file copied from default folder
-    echo -e "\ngen_temp       = $(echo '273.15 + $temperature' | bc)\n" >> nvt.mdp
-    echo -e "\nref_t       = $(echo '273.15 + $temperature' | bc)    $(echo '273.15 + $temperature' | bc)\n" >> nvt.mdp
-    echo -e "\nref_t       = $(echo '273.15 + $temperature' | bc)    $(echo '273.15 + $temperature' | bc)\n" >> md.mdp
-    echo -e "\nref_t       = $(echo '273.15 + $temperature' | bc)    $(echo '273.15 + $temperature' | bc)\n" >> fec.mdp
+    temp_in_kelvin=$(echo "273.15 + $temperature" | bc)
+    echo -e "\ngen_temp       = $temp_in_kelvin\n" >> nvt.mdp
+    echo -e "\nref_t       = $temp_in_kelvin    $temp_in_kelvin\n" >> nvt.mdp
+    echo -e "\nref_t       = $temp_in_kelvin    $temp_in_kelvin\n" >> md.mdp
+    echo -e "\nref_t       = $temp_in_kelvin    $temp_in_kelvin\n" >> fec.mdp
 
 
     #copy protein file (protein.pdb)
@@ -70,7 +73,7 @@ while true; do
     sim_start=date +"%Y/%m/%e %H:%M:%S"
 
     #give the simulation data to gromacs
-    echo -e "9\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n" | gmx pdb2gmx -f protein.pdb -o protein.gro -water spc -ter -missing
+    echo -e "$force_field\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n" | gmx pdb2gmx -f protein.pdb -o protein.gro -water spc -ter -missing
     #select '1' for force field selection
     #select '1' for all -ter options, there is 1 for each terminus. 10 just to be safe.
 
@@ -137,8 +140,8 @@ while true; do
 
     #remove simulation configuration files
 #    rm $path_to_protein_file
- #   cd ..;
-  #  rm -rf -- current_simulation
+     cd ..;
+     rm -rf -- current_simulation
   else
     break   #no more incomplete simulations
   fi
