@@ -1,6 +1,6 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
 require 'db_connection.php';        //$conn (mysqli connection) is now available
 include_once 'User.php';
 
@@ -86,8 +86,7 @@ if (mysqli_multi_query($conn, $query)) {
 mysqli_close($conn);
 
 //Run Simulation
-$log = shell_exec("/home/gromacs/simulations/simulationManager.sh");
-echo $log;
+shell_exec("/home/gromacs/simulations/simulationManager.sh");
 
-// header("Location: queue.php");
+header("Location: queue.php");
 // die();
