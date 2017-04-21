@@ -182,7 +182,7 @@ setCookie("oauth_uid", username, 365);
 					continue their research.</p>
 				<h3>About The Team</h3>
 				<p>This system is developed by Jeremy Ginnard, Steven Sotok, Joel Genter,
-					Issac Kane, and Daniel Clarke as part of our capstone project.</p>
+					Isaac Kane, and Daniel Clarke as part of our capstone project.</p>
 				<h3>About This System</h3>
 				<p>This system uses only open source software. The protein simulations are
 				performed using GROMACS. Protein structures are obtained from the Protein Data Bank.</p>
