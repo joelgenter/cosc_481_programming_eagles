@@ -58,7 +58,7 @@ if ($stmt = $conn->prepare($query)) {
     $stmt->execute();
     $stmt->bind_result($position);
     $stmt->fetch();
-    $currentQueue = $position + 1;
+    $currentQueue = ($position == -1)? 1 : $position + 1;
     $stmt->close();
 }
 
@@ -68,6 +68,7 @@ $simulationList = explode(";", $mutationList);
 
 foreach ($simulationList as $mutation){
   echo "queue position: ".$currentQueue;
+  echo "forcefield: ".$forceField;
   $query .= "INSERT INTO ProteinSim.Simulations (mutations, pdbFileName, username, simulationName, description, duration, temperature, queuePosition, forceField) VALUES (\"".$mutation."\",\"".$pdbFileName."\",\"".$username."\",\"".$simulationName."\",\"".$description."\",\"".$duration."\",\"".$temperature."\",\"".$currentQueue."\",\"".$forceField."\");";
   $currentQueue += 1;
 }
@@ -83,15 +84,10 @@ if (mysqli_multi_query($conn, $query)) {
 }
 
 mysqli_close($conn);
-<<<<<<< HEAD
 
 //Run Simulation
-$log = shell_exec('/home/gromacs/simulations/simulationManager.sh');
+$log = shell_exec("/home/gromacs/simulations/simulationManager.sh");
 echo $log;
 
 // header("Location: queue.php");
 // die();
-=======
-header("Location: queue.php");
-die();
->>>>>>> origin/master
