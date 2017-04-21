@@ -73,6 +73,10 @@ while true; do
     #capture simulation start time
     sim_start=$(date +"%Y/%m/%e %H:%M:%S")
 
+    #add sim start time to db
+    mysql ProteinSim -u proteinSim -p$DB_PASSWORD -se "UPDATE Simulations SET startTime=STR_TO_DATE(\"$sim_start\", '%Y/%m/%d %k:%i:%s') WHERE id=$id"
+
+
     #give the simulation data to gromacs
     echo -e "$force_field\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n" | $gmx pdb2gmx -f protein.pdb -o protein.gro -water spc -ter -missing
     #select '1' for force field selection
@@ -131,7 +135,7 @@ while true; do
     mysql ProteinSim -u proteinSim -p$DB_PASSWORD -se "$update_queue_query"
 
     #add sim start and end time to db
-    mysql ProteinSim -u proteinSim -p$DB_PASSWORD -se "UPDATE Simulations SET startTime=STR_TO_DATE(\"$sim_start\", '%Y/%m/%d %k:%i:%s'), endTime=STR_TO_DATE(\"$sim_end\", '%Y/%m/%d %k:%i:%s') WHERE id=$id"
+    mysql ProteinSim -u proteinSim -p$DB_PASSWORD -se "UPDATE Simulations SET endTime=STR_TO_DATE(\"$sim_end\", '%Y/%m/%d %k:%i:%s') WHERE id=$id"
 
     #copy bar.xvg to new dir
     result_folder_path="/var/www/html/ProteinSimulations/results/sim$id"
