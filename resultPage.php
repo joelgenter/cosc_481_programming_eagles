@@ -116,9 +116,22 @@ $id = $_GET['id'];
 				</div>
 			</legend>
 		<div>
+			<legend>
+			<div class="row">
+				<div class="col-md-6 col-sm-12">
+					<h3>Pre-Simulation</h3>
+					<script type="text/javascript" src="https://chemapps.stolaf.edu/jmol/jmol.php?source=https://jeremyginnard.com/ProteinSimulations/results/sim<?php echo $id ?>/protein.pdb&inline&escriptvar='spin=true'"></script>
+				</div>
+				<div class="col-md-6 col-sm-12">
+					<h3>Post-Simulation</h3>
+					<script type="text/javascript" src="https://chemapps.stolaf.edu/jmol/jmol.php?source=https://jeremyginnard.com/ProteinSimulations/results/sim<?php echo $id ?>/protein_after.pdb&inline&isfirst=false"></script>
+				</div>
+
+			</div>
+		</legend>
 		<div class = 'row row-eq-height'>
 			<div class = 'col-sm-4'>
-				<h4 id = 'type'>Simulation type.</h3>
+				<h4 id = 'type'>Simulation type.</h4>
 			</div>
 			<div class = 'col-sm-4'>
 				<div class="dropdown allign-middle">
