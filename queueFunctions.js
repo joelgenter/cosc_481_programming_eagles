@@ -2,6 +2,7 @@ var barUpdater;
 function createSimulationsList(queue, status){
 	//generates list group
 	$('#simulationsList').append("<!-- List group --> <ul class='list-group'>");
+	if(queue.length>0){
 	for(var num in queue){
 		$('#simulationsList').append("<div name='simulationRow' class=' panel-body list-group-item'> 			\
 			<div class = 'row'>   																\
@@ -66,8 +67,9 @@ function createSimulationsList(queue, status){
 			$('#confirmMove').attr('class','btn btn-default hide')
 		});
 	});
-	updateBar(queue[0][6],queue[0][7])
-	barUpdater=setInterval(function(){updateBar(queue[0][6],queue[0][7])},10000);
+	updateBar(queue[0][6],queue[0][7],status)
+	barUpdater=setInterval(function(){updateBar(queue[0][6],queue[0][7],status)},10000);
+	}
 }
 
 function incrementSim(simNumber, data){		
@@ -104,12 +106,14 @@ function updateList(status){
 	generateSimulationsList(status);
 }
 
-function updateBar(folderPath, simDuration){
+function updateBar(folderPath, simDuration,status){
+	var oldPercent = parseInt($('#progressBar').parent().children()[0].style.width.substring(0,$('#progressBar').parent().children()[0].style.width.length-1))-1
 	$.ajax({url: 'getSimulationStatus.php', method: 'POST', 
 			data: {fileLocation: folderPath, duration: simDuration },
 			success: function(percent){
-				if(Math.round(percent)<$('#progressBar').parent().children()[0].style.width.substring(0,$('#progressBar').parent().children()[0].style.width.length-1)){
-					alert('a mistake might have occured');
+				if(Math.round(percent)<oldPercent){
+					console.log("An error has occured: New Percentage: "+percent+"  Old Percentage: "+prevPerc)
+					updateList(status)
 				}
 				var message ="";
 				if(percent<=1)
