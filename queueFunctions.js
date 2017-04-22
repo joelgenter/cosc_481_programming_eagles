@@ -32,7 +32,7 @@ function createSimulationsList(queue, status){
 					</button>																	\
 				</div>" : "") + "																\
 			</div>		\
-			"+((num==0)? '<div class = "progress"><div id = "partProgress" 						\
+			"+((num==0)? '</br><div class = "progress"><div id = "partProgress" 						\
 								class = "progress-bar progress-bar-info progress-bar-striped active" \
 								style="width:1%"><span class="text-black" id="barMessage"> </span> </div>  </div>\
 							<div class = "progress"><div id = "fullProgress" \
@@ -121,22 +121,23 @@ function updateBar(folderPath, simDuration,status){
 				var message ="";
 				if(percent<=1){
 					partial = 0
+					percent = 0
 					message = "Initializing"
 				}
-				if(percent<5){
-					partial = Math.round(100-(20*(5 - percent)))
+				else if(percent<5){
+					partial = Math.round(1000-(200*(5 - percent)))/10
 					message = "Performing energy minimization: "+ partial +"%"
 				}
 				else if(percent<25){
-					partial =   Math.round(100-5*(25 - percent))
+					partial =   Math.round(1000-50*(25 - percent)/10)
 					message = "Performing equilibrium: "+ partial +"%"
 				}
 				else if(percent<80){
-					partial = Math.round(100-100*(80* percent)/55)
+					partial = Math.round(1000-1000*(80 - percent)/55)/10
 					message = "Simulating molecule: "+partial+"%"
 				}
 				else if(percent<=100){
-					partial = Math.round(100-5*(100 - percent))
+					partial = Math.round(1000-50*(100 - percent)/10)
 					message = "Performing free energy calculations: "+ partial +"%"
 				}
 				else{
@@ -161,7 +162,7 @@ function updateBarValues(amount1, amount2, string){
 	$('#partProgress').css("width",amount2+'%');
 	$('#barMessage').text(string);
 	//$('#fullMessage').css("color",'black');
-	$('#fullMessage').text(amount1+"% complete");
+	$('#fullMessage').text("Overall Completion: "+Math.round(amount1*10)/10+"%");
 }
 
 /** Calls getSimulations and passes it a created function that parses the data.
