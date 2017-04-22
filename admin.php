@@ -138,7 +138,7 @@ $email = $user->getEmail($oauth_uid);
 				<div class = "row">
 					<div class = "col-lg-2 col-sm-4"><h4>Username</h4></div>
 					<div class = "col-lg-2 col-sm-4"><h4>Name</h4></div>
-					<div class = "col-lg-2 col-sm-4"><h4>Email</h4></div>
+					<div class = "col-lg-3 col-sm-4"><h4>Email</h4></div>
 					<div class = "col-lg-2 col-sm-4"><h4>Admin Toggle</h4></div>
 					<div class = "col-lg-2 col-sm-4"><h4>Remove User</h4></div>
 				</div>

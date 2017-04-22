@@ -79,7 +79,7 @@ function updateHtml(userData, email){
 								user.username +
 							'</div>' +
                 '<div class="col-lg-2 col-sm-4" id = "'+user.email+'">' + user.firstName + " " + user.lastName + '</div>'+
-                '<div class="col-lg-2 col-sm-4" id = "'+user.email+'">' + user.email + '</div>'+
+                '<div class="col-lg-3 col-sm-4" id = "'+user.email+'">' + user.email + '</div>'+
 
                 '<div class = "col-lg-2 col-sm-4">' +
 									'<div class="dropdown">'+

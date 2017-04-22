@@ -138,13 +138,13 @@ $id = $_GET['id'];
 					<button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Chart Type
 						<span class="caret"></span></button>
 					<ul class="dropdown-menu">
-						<li name ='dropdown' class='' id ='pressure' onclick='changeGraph(pressure)'><a href='#'>Pressure</a></li>
-						<li name ='dropdown' class ='' id ='potential' onclick='changeGraph(potential)'><a href='#' >Potential Energy</a></li>
-						<li name ='dropdown' class ='' id ='temperature' onclick='changeGraph(temperature)'><a href='#'>Temperature</a></li>
-						<li name ='dropdown' class ='' id ='density' onclick='changeGraph(density)'><a href='#'>Density</a></li>
-						<li name ='dropdown' class ='' id ='backBone' onclick='changeGraph(backBone)'><a href='#'>Backbone</a></li>
-						<li name ='dropdown' class ='' id ='crystalBackBone' onclick='changeGraph(crystalBackBone)'><a href='#'>Crystal Backbone</a></li>
-						<li name ='dropdown' class ='active' id ='freeEnergy' onclick='changeGraph(freeEnergy)'><a href='#'>Free Energy</a></li>
+						<li name ='dropdown' class='' id ='pressure' onclick='changeGraph(pressure)'><a>Pressure</a></li>
+						<li name ='dropdown' class ='' id ='potential' onclick='changeGraph(potential)'><a>Potential Energy</a></li>
+						<li name ='dropdown' class ='' id ='temperature' onclick='changeGraph(temperature)'><a>Temperature</a></li>
+						<li name ='dropdown' class ='' id ='density' onclick='changeGraph(density)'><a>Density</a></li>
+						<li name ='dropdown' class ='' id ='backBone' onclick='changeGraph(backBone)'><a>Backbone</a></li>
+						<li name ='dropdown' class ='' id ='crystalBackBone' onclick='changeGraph(crystalBackBone)'><a>Crystal Backbone</a></li>
+						<li name ='dropdown' class ='active' id ='freeEnergy' onclick='changeGraph(freeEnergy)'><a>Free Energy</a></li>
 					</ul>
 				</div>
 			</div>
