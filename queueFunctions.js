@@ -32,12 +32,12 @@ function createSimulationsList(queue, status){
 					</button>																	\
 				</div>" : "") + "																\
 			</div>		\
-			"+((num==0)? '<div class = "progress"><div id = "fullProgress" 						\
-								class = "progress-bar progress-bar-success progress-bar-striped active" \
-								style="width:1%"><span class="text-black" id="barMessage"> </span> </div> \
-							<div id = "partProgress" \
-								class = "progress-bar progress-bar-primary progress-bar-striped active"  \
-								style=width:1%>  \
+			"+((num==0)? '<div class = "progress"><div id = "partProgress" 						\
+								class = "progress-bar progress-bar-info progress-bar-striped active" \
+								style="width:1%"><span class="text-black" id="barMessage"> </span> </div>  </div>\
+							<div class = "progress"><div id = "fullProgress" \
+								class = "progress-bar progress-bar-success progress-bar-striped active"  \
+								style="width:1%"><span class="text-black" id="fullMessage"> </span> </div>\
 							</div> \
 						  </div>' : '' )+ "\
 		</div>");
@@ -124,20 +124,20 @@ function updateBar(folderPath, simDuration,status){
 					message = "Initializing"
 				}
 				if(percent<5){
-					partial = 5 - percent
-					message = "Performing energy minimization: "+Math.round(100-(20*(partial))) +"%"
+					partial = Math.round(100-(20*(5 - percent)))
+					message = "Performing energy minimization: "+ partial +"%"
 				}
 				else if(percent<25){
-					partial = 25 - percent  
-					message = "Performing equilibrium: "+Math.round(100-5*(partial)) +"%"
+					partial =   Math.round(100-5*(25 - percent))
+					message = "Performing equilibrium: "+ partial +"%"
 				}
 				else if(percent<80){
-					partial = 80 - percent;
-					message = "Simulating molecule: "+Math.round(100-100*(partial)/55)+"%"
+					partial = Math.round(100-100*(80* percent)/55)
+					message = "Simulating molecule: "+partial+"%"
 				}
 				else if(percent<=100){
-					partial = 100 - percent
-					message = "Performing free energy calculations: "+ Math.round(100-5*(partial)) +"%"
+					partial = Math.round(100-5*(100 - percent))
+					message = "Performing free energy calculations: "+ partial +"%"
 				}
 				else{
 					message ="Error: Reticulating Splines"
@@ -159,8 +159,9 @@ function updateBar(folderPath, simDuration,status){
 function updateBarValues(amount1, amount2, string){
 	$('#fullProgress').css("width",amount1+'%');
 	$('#partProgress').css("width",amount2+'%');
-	$('#barMessage').css("color",'black');
 	$('#barMessage').text(string);
+	//$('#fullMessage').css("color",'black');
+	$('#fullMessage').text(amount1+"% complete");
 }
 
 /** Calls getSimulations and passes it a created function that parses the data.
