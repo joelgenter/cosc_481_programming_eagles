@@ -136,15 +136,11 @@ $email = $user->getEmail($oauth_uid);
 			<!-- Default panel contents -->
 			<div class="panel-heading">
 				<div class = "row">
-					<div class = "col-lg-6">
-						<h4>Emich User</h4>
-					</div>
-					<div class = "col-lg-4">
-						<h4>Admin Toggle</h4>
-					</div>
-					<div class = "col-lg-2">
-						<h4>Remove User</h4>
-					</div>
+					<div class = "col-lg-2 col-sm-4"><h4>Username</h4></div>
+					<div class = "col-lg-2 col-sm-4"><h4>Name</h4></div>
+					<div class = "col-lg-2 col-sm-4"><h4>Email</h4></div>
+					<div class = "col-lg-2 col-sm-4"><h4>Admin Toggle</h4></div>
+					<div class = "col-lg-2 col-sm-4"><h4>Remove User</h4></div>
 				</div>
 			</div>
 
@@ -171,7 +167,7 @@ $email = $user->getEmail($oauth_uid);
 </div>
 
 <script>
-generateUsers(<?php echo("'".$email['email']."'"); ?>);	
+generateUsers(<?php echo("'".$email['email']."'"); ?>);
 
 </script>
 </body>

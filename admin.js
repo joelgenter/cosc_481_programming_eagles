@@ -77,14 +77,18 @@ var userCount = 0;
 
 function updateHtml(userData, email){
 	for(var user of userData){
+    console.log(user);
 		console.log((user.email+"  "+email))
 		{$(usersList).append(
 					'<div id="row'+userCount+'" class="list-group-item list-group-item-action userList">' +
 						'<div class = "row">' +
-							'<div class = "col-lg-6" id = "username' + userCount + '">' +
+							'<div class = "col-lg-2 col-sm-4" id = "username' + userCount + '">' +
 								user.username +
 							'</div>' +
-								'<div class = "col-lg-4">' +
+                '<div class="col-lg-2 col-sm-4" id = "username' + userCount + '">' + user.firstName + " " + user.lastName + '</div>'+
+                '<div class="col-lg-2 col-sm-4" id = "username' + userCount + '">' + user.email + '</div>'+
+
+                '<div class = "col-lg-2 col-sm-4">' +
 									'<div class="dropdown">'+
 										'<button style="width: 8em;" '+
 										'class="'+((email== user.email)? 'disabled': '')+' btn btn-secondary dropdown-toggle" '+
@@ -97,7 +101,7 @@ function updateHtml(userData, email){
 											'</ul>' +
 									'</div>' +
 								'</div>' +
-							'<div class = "col-lg-2">' +
+							'<div class = "col-lg-2 col-sm-4">' +
 								'<i id="remove'+userCount+'" '+
 								'onclick="'+((email== user.email)? 'cantDelete()': 'remUser('+userCount+')')+'" '+
 								'class="'+((email== user.email)? 'disabled': '')+' fa fa-remove"></i>' +
@@ -105,7 +109,7 @@ function updateHtml(userData, email){
 						'</div>' +
 					'</div>');
 
-				
+
 				userCount++;
 		}
 	}
@@ -117,6 +121,6 @@ function cantDelete(){
 
 function generateUsers(email){
 	//fixes html in tree
-	$.ajax({url: 'getUsers.php', method: 'POST', 
+	$.ajax({url: 'getUsers.php', method: 'POST',
 			success: function(userData){updateHtml(JSON.parse(userData),email);}});
 }
