@@ -119,7 +119,7 @@ $email = $user->getEmail($oauth_uid);
 	<!-- Default panel contents -->
 			<div  class='panel-heading'>
 				<div class = 'row'>
-					<div class = 'col-lg-2'>
+					<div class = 'col-lg-3'>
 						<h4>Simulation Name</h4>
 					</div>
 					<div class = 'col-lg-2'>
@@ -128,11 +128,8 @@ $email = $user->getEmail($oauth_uid);
 					<div class = 'col-lg-2'>
 						<h4>Requested By</h4>
 					</div>
-					<div class = 'col-lg-2'>
+					<div class = 'col-lg-3'>
 						<h4>Simulation Started</h4>
-					</div>
-					<div class = 'col-lg-2'>
-						<h4>Esitmated End Time</h4>
 					</div>
 					<div class = 'col-lg-2 text-center'>
 						<h4>Admin tools</h4>
