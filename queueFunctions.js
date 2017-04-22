@@ -112,7 +112,7 @@ function updateBar(folderPath, simDuration,status){
 			data: {fileLocation: folderPath, duration: simDuration },
 			success: function(percent){
 				if(Math.round(percent)<oldPercent){
-					console.log("An error has occured: New Percentage: "+percent+"  Old Percentage: "+prevPerc)
+					console.log("An error has occured: New Percentage: "+percent+"  Old Percentage: "+oldPercent)
 					updateList(status)
 				}
 				var message ="";

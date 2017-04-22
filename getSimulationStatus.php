@@ -30,7 +30,7 @@ if(file_exists($fileName.'fec.log')){
 else if(file_exists($fileName.'md_0_1.log')){
 	$fileName.= 'md_0_1.log';
 	$currentPercent = 25;
-	$multiplier = (100/$_POST['duration'])*0.55;
+	$multiplier = (1/(10*($_POST['duration'])))*0.55;
 }
 else if(file_exists($fileName.'npt.log')){
 	$fileName.= 'npt.log';
@@ -94,6 +94,7 @@ if($currentPercent>1){
 	if (empty($percentage)) {
 		$percentage = 100;
 	}
+	//echo($percentage);
 	$currentPercent += ($percentage*$multiplier);
 }
 echo floatval($currentPercent);
