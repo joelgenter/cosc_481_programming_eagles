@@ -168,14 +168,16 @@ $id = $_GET['id'];
 	</div>
 </div>
 <script>
-      function changeGraph(stuff){
-	   for(var child of $('[name="dropdown"]')){
-		   $(child).attr('class','');
-	   }
-	   $(stuff).attr('class','active');
-	   generateResults(<?php echo "'".$id."'" ?>,$(stuff).attr('id'))
-   }
-   generateResults(<?php echo "'".$id."'" ?>,'freeEnergy')
+function changeGraph(stuff){
+
+	var fields = document.getElementsByName("dropdown");
+	for(var i = 0; i < fields.length; i++) {
+		fields[i].className ='';
+	}
+	(stuff).className = 'active';
+	generateResults(<?php echo "'".$id."'" ?>,stuff.id)
+}
+generateResults(<?php echo "'".$id."'" ?>,'freeEnergy')
 </script>
 </div>
 	<div class="container-fluid">
