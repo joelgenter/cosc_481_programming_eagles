@@ -6,7 +6,7 @@ function createSimulationsList(queue, status){
 	for(var num in queue){
 		$('#simulationsList').append("<div name='simulationRow' class=' panel-body list-group-item'> 			\
 			<div class = 'row'>   																\
-				<div class = 'col-lg-2'>  														\
+				<div class = 'col-lg-3'>  														\
 					"+queue[num][0]+"		   													\
 				</div>  																		\
 				<div class = 'col-lg-2'>														\
@@ -15,11 +15,8 @@ function createSimulationsList(queue, status){
 				<div class = 'col-lg-2'>														\
 					"+queue[num][4]+"															\
 				</div>																			\
-				<div class = 'col-lg-2'>														\
-					"+queue[num][2]+"															\
-				</div>																			\
-				<div class = 'col-lg-2'>														\
-					"+queue[num][3]+"															\
+				<div class = 'col-lg-3'>														\
+					"+queue[num][2]+"															\																		\															\
 				</div>"	+ ((status == "admin")?
 				"<div class = 'col-lg-2 text-center'>											\
 					<button type='button' id='simUp"+num+"' name='simUp'						\
@@ -33,11 +30,16 @@ function createSimulationsList(queue, status){
 					<button type='button' name = 'simDelete' id='simDelete"+num+"' class='btn btn-default btn-xs'>	\
 						<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>		\
 					</button>																	\
-				</div>" : "") + "																		\
+				</div>" : "") + "																\
 			</div>		\
-			"+((num==0)? '<div class = "progress"><div id = "progressBar" 						\
-							   class = "progress-bar progress-bar-success progress-bar-striped active" \
-							   style="width:1%"><span class="text-black" id="barMessage"> </span> </div></div>':'' )+" \
+			"+((num==0)? '<div class = "progress"><div id = "fullProgress" 						\
+								class = "progress-bar progress-bar-success progress-bar-striped active" \
+								style="width:1%"><span class="text-black" id="barMessage"> </span> </div> \
+							<div id = "partProgress" \
+								class = "progress-bar progress-bar-primary progress-bar-striped active"  \
+								style=width:1%>  \
+							</div> \
+						  </div>' : '' )+ "\
 		</div>");
 	}
 	$('#simulationsList').append("</div></ul>");
@@ -107,7 +109,7 @@ function updateList(status){
 }
 
 function updateBar(folderPath, simDuration,status){
-	var oldPercent = parseInt($('#progressBar').parent().children()[0].style.width.substring(0,$('#progressBar').parent().children()[0].style.width.length-1))-1
+	var oldPercent = parseInt($('#fullProgress').parent().children()[0].style.width.substring(0,$('#fullProgress').parent().children()[0].style.width.length-1))-1
 	$.ajax({url: 'getSimulationStatus.php', method: 'POST', 
 			data: {fileLocation: folderPath, duration: simDuration },
 			success: function(percent){
@@ -115,22 +117,33 @@ function updateBar(folderPath, simDuration,status){
 					console.log("An error has occured: New Percentage: "+percent+"  Old Percentage: "+oldPercent)
 					updateList(status)
 				}
+				var partial =1
 				var message ="";
-				if(percent<=1)
+				if(percent<=1){
+					partial = 0
 					message = "Initializing"
-				if(percent<5)
-					message = "Performing energy minimization: "+Math.round(100-(20*(5 - percent))) +"%"
-				else if(percent<25)
-					message = "Performing equilibrium: "+Math.round(100-5*(25 - percent)) +"%"
-				else if(percent<80)
-					message = "Simulating molecule: "+Math.round(100-100*(80 - percent)/55) +"%"
-				else if(percent<=100)
-					message = "Performing free energy calculations: "+Math.round(100-5*(100 - percent)) +"%"
+				}
+				if(percent<5){
+					partial = 5 - percent
+					message = "Performing energy minimization: "+Math.round(100-(20*(partial))) +"%"
+				}
+				else if(percent<25){
+					partial = 25 - percent  
+					message = "Performing equilibrium: "+Math.round(100-5*(partial)) +"%"
+				}
+				else if(percent<80){
+					partial = 80 - percent;
+					message = "Simulating molecule: "+Math.round(100-100*(partial)/55)+"%"
+				}
+				else if(percent<=100){
+					partial = 100 - percent
+					message = "Performing free energy calculations: "+ Math.round(100-5*(partial)) +"%"
+				}
 				else{
 					message ="Error: Reticulating Splines"
 					console.log(percent)
 				}
-				updateBarValues(percent,message)
+				updateBarValues(percent, partial, message)
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown){
 				 //alert("Status: " + textStatus);
@@ -143,8 +156,9 @@ function updateBar(folderPath, simDuration,status){
 /** Changes the progress bar completion percent to the passed amount
   *  	and the message to the passed string.
   */
-function updateBarValues(amount, string){
-	$('#progressBar').css("width",amount+'%');
+function updateBarValues(amount1, amount2, string){
+	$('#fullProgress').css("width",amount1+'%');
+	$('#partProgress').css("width",amount2+'%');
 	$('#barMessage').css("color",'black');
 	$('#barMessage').text(string);
 }
