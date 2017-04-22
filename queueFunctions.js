@@ -162,7 +162,7 @@ function updateBarValues(amount1, amount2, string){
 	$('#partProgress').css("width",amount2+'%');
 	$('#barMessage').text(string);
 	//$('#fullMessage').css("color",'black');
-	$('#fullMessage').text("Overall Completion: "+Math.round(amount1*10)/10+"%");
+	$('#fullMessage').text("Overall: "+Math.round(amount1*10)/10+"%");
 }
 
 /** Calls getSimulations and passes it a created function that parses the data.
