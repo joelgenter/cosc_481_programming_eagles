@@ -126,12 +126,13 @@ while true; do
     #$gmx bar -g fec.edr -o -oi -oh
 
     #convert md_0_1.gro to pdb
-    $gmx editconf -f md_0_1.gro -o md_0_1.pdb
-
+    $gmx editconf -f md_0_1.gro -o protein_after.pdb
+    #Remove all solvent from pdb file
+    grep -v "SOL" protein_after.pdb > temp && mv temp protein_after.pdb
     #capture simulation end time
     sim_end=$(date +"%Y/%m/%e %H:%M:%S")
 
-    #decrement queue position of incomplete simulations 
+    #decrement queue position of incomplete simulations
     mysql ProteinSim -u proteinSim -p$DB_PASSWORD -se "$update_queue_query"
 
     #add sim start and end time to db
@@ -142,7 +143,7 @@ while true; do
     mkdir $result_folder_path
 
     #move non-zipped .xvg files to result folder
-    cp ./{bar.xvg,md_potential.xvg,md_temperature.xvg,md_pressure.xvg,md_density.xvg} $result_folder_path
+    cp ./{bar.xvg,md_potential.xvg,md_temperature.xvg,md_pressure.xvg,md_density.xvg,protein.pdb,protein_after.pdb} $result_folder_path
 
     #put all .xvg, .gro, .pdb, .trr, .log  files into a zipped file in new dir
     zip -rj "$result_folder_path/simulation_data.zip" . -i '*.xvg' '*.gro' '*.trr' '*.pdb' '*.log'
