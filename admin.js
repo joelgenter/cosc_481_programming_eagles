@@ -7,17 +7,13 @@ var userCount = 0;
 // Removes the user that the selected is next to from Users in ProteinSim, then
 // removes the user from the userList HTML object.
 
-    function remUser(idLi){
+    function remUser(username){
 			// var appCache = window.applicationCache;
 			// appCache.update(); //this will attempt to update the users cache and changes the application cache status to 'UPDATEREADY'.
 			// if (appCache.status == window.applicationCache.UPDATEREADY) {
 			// 	appCache.swapCache(); //replaces the old cache with the new one.
 			// }
       // Get username
-      var username = nodeToString(document.getElementById('username'+idLi));
-					username = username.replace('<div class="col-lg-6" id="username'+idLi+'">','');
-					username = username.replace('</div>','');
-					console.log(username);
       // Remove from database
 			$.ajax({
 				data: 'username=' + username,
@@ -29,24 +25,21 @@ var userCount = 0;
 				}
 			});
       // Remove user from the userList
-      document.getElementById('row'+idLi).remove();
+      document.getElementById('row'+username).remove();
     }
 
 //------------------------------------------------------------------------------
 // Updates the user type with option selected in dropdown menu, then change
 // the HTML code to reflect said change.
 
-		function updateType(dropType,idLi){
+		function updateType(dropType,username){
 			// var appCache = window.applicationCache;
 			// appCache.update(); //this will attempt to update the users cache and changes the application cache status to 'UPDATEREADY'.
 			// if (appCache.status == window.applicationCache.UPDATEREADY) {
 			//   appCache.swapCache(); //replaces the old cache with the new one.
 			// }
 			// Get username
-			var username = nodeToString(document.getElementById('username'+idLi));
-					username = username.replace('<div class="col-lg-6" id="username'+idLi+'">','');
-					username = username.replace('</div>','');
-					console.log(username);
+			console.log(username)
 			// Update the database
 			$.ajax({
 				data: 'username=' + username + '&userType=' + dropType,
@@ -58,7 +51,7 @@ var userCount = 0;
 				}
 			});
 			// Update HTML to show new dropType value for said username
-			document.getElementById('typeButton'+idLi).innerHTML =
+			document.getElementById('typeButton'+username).innerHTML =
 						dropType +
 						'<span class="caret"></span>';
 		}
@@ -80,30 +73,30 @@ function updateHtml(userData, email){
     console.log(user);
 		console.log((user.email+"  "+email))
 		{$(usersList).append(
-					'<div id="row'+userCount+'" class="list-group-item list-group-item-action userList">' +
+					'<div id="row'+user.username+'" class="list-group-item list-group-item-action userList">' +
 						'<div class = "row">' +
 							'<div class = "col-lg-2 col-sm-4" id = "username' + userCount + '">' +
 								user.username +
 							'</div>' +
-                '<div class="col-lg-2 col-sm-4" id = "username' + userCount + '">' + user.firstName + " " + user.lastName + '</div>'+
-                '<div class="col-lg-2 col-sm-4" id = "username' + userCount + '">' + user.email + '</div>'+
+                '<div class="col-lg-2 col-sm-4" id = "'+user.email+'">' + user.firstName + " " + user.lastName + '</div>'+
+                '<div class="col-lg-2 col-sm-4" id = "'+user.email+'">' + user.email + '</div>'+
 
                 '<div class = "col-lg-2 col-sm-4">' +
 									'<div class="dropdown">'+
 										'<button style="width: 8em;" '+
 										'class="'+((email== user.email)? 'disabled': '')+' btn btn-secondary dropdown-toggle" '+
-										'id="typeButton'+userCount+'" type="button" data-toggle="dropdown">' + user.type +
+										'id="typeButton'+user.username+'" type="button" data-toggle="dropdown">' + user.type +
 										'<span class="caret"></span></button>' +
 										'<ul id="typelist'+userCount+'" class="dropdown-menu">' +
-											'<li><a href="#" id="A'+userCount+'" onclick="updateType(admin,'+userCount+')">admin</a></li>'+
-											'<li><a href="#" id="S'+userCount+'" onclick="updateType(standard,'+userCount+')">standard</a></li>'+
-											'<li><a href="#" id="P'+userCount+'" onclick="updateType(pending,'+userCount+')">pending</a></li>'+
+											'<li><a href="#" id="A'+userCount+'" onclick="updateType(admin,\''+user.username+'\')">admin</a></li>'+
+											'<li><a href="#" id="S'+userCount+'" onclick="updateType(standard,\''+user.username+'\')">standard</a></li>'+
+											'<li><a href="#" id="P'+userCount+'" onclick="updateType(pending,\''+user.username+'\')">pending</a></li>'+
 											'</ul>' +
 									'</div>' +
 								'</div>' +
 							'<div class = "col-lg-2 col-sm-4">' +
-								'<i id="remove'+userCount+'" '+
-								'onclick="'+((email== user.email)? 'cantDelete()': 'remUser('+userCount+')')+'" '+
+								'<i id="remove'+user.username+'" '+
+								'onclick="'+((email== user.email)? 'cantDelete()': 'remUser(\''+user.username+'\') ')+'" '+
 								'class="'+((email== user.email)? 'disabled': '')+' fa fa-remove"></i>' +
 							'</div>' +
 						'</div>' +
