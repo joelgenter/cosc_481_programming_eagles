@@ -1,6 +1,6 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
 //Include GP config file && User class
 include_once 'gpConfig.php';
 include_once 'User.php';

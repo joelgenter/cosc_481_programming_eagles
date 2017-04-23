@@ -86,7 +86,7 @@ if (mysqli_multi_query($conn, $query)) {
 mysqli_close($conn);
 
 //Run Simulation
+shell_exec("/home/gromacs/simulations/simulationManager.sh");
 shell_exec("/home/gromacs/simulations/simulationManager.sh > /dev/null &");
-
 header("Location: queue.php");
 die();
