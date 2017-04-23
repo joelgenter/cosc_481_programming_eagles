@@ -37,7 +37,7 @@ $email = $user->getEmail($oauth_uid);
 	{
 			$output = '<h3 style="color:red">Some problem occurred, please try again.</h3>';
 	}
-$id = $_GET['id'];
+$id = filter_var ($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
 ?>
 <html>
 <head>
