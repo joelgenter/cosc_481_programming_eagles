@@ -131,7 +131,7 @@ $id = $_GET['id'];
 		</legend>
 		<div class = 'row row-eq-height'>
 			<div class = 'col-sm-4'>
-				<h4 id = 'type'>Simulation type.</h4>
+				<h4 id = 'type'>Free Energy (kJ/mol)</h4>
 			</div>
 			<div class = 'col-sm-4'>
 				<div class="dropdown allign-middle">
