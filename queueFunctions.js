@@ -45,7 +45,14 @@ function createSimulationsList(queue, status){
 	$('#simulationsList').append("</div></ul>");
 	$(function(){
 		$('[name="simUp"]').click(function(){
-			if(!$(this).hasClass('disabled'))
+			if(this.id[this.id.length-1]==1){
+				$('#alertModal').modal('show')
+				$('#modalTitle').text('Confirm Move')
+				$('#modalText').text('If this simulation is moved, all progress will be lost!')
+				$('#confirmMove').attr('class','btn btn-default')
+				$('#confirmDelete').attr('class','btn btn-default hide')
+			}
+			else if(!$(this).hasClass('disabled'))
 				incrementSim(this.id[this.id.length-1],status)
 		});
 		$('[name="simDown"]').click(function(){
