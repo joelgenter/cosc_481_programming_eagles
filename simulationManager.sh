@@ -128,7 +128,7 @@ while true; do
     #convert md_0_1.gro to pdb
     $gmx editconf -f md_0_1.gro -o protein_after.pdb
     #Remove all solvent from pdb file
-    grep -v "SOL" protein_after.pdb > temp && mv temp protein_after.pdb
+    grep -v "SOL\|ZN" protein_after.pdb > temp && mv temp protein_after.pdb
     #capture simulation end time
     sim_end=$(date +"%Y/%m/%e %H:%M:%S")
 
@@ -148,9 +148,25 @@ while true; do
     #put all .xvg, .gro, .pdb, .trr, .log  files into a zipped file in new dir
     zip -rj "$result_folder_path/simulation_data.zip" . -i '*.xvg' '*.gro' '*.trr' '*.pdb' '*.log'
 
+
+    #Notify user the simulation is complete
+    email_query="SELECT Users.firstName, Users.lastName, Users.email, Simulations.simulationName FROM Users INNER JOIN Simulations ON Users.username=Simulations.username WHERE Simulations.id=$id"
+    query_result=$(mysql ProteinSim -u proteinSim -p$DB_PASSWORD -se "$email_query")
+    #read query_result into vars
+    read firstName lastName email simulationName<<< $query_result
+
+    subject="Simulation Complete: $simulationName"
+    link="https://jeremyginnard.com/resultPage.php?id=$id"
+    message="Greetings $firstName $lastName,"$'\n\n'"Your simulation titled \"$simulationName\" is complete. You can view the results at the following link:"$'\n'"$link"
+    #Send the email
+    java -jar /home/gromacs/simulations/sendEmail.jar "$email" "$subject" "$message"
+    echo "Email parameters = "
+    echo $email $subject $message
+
     #remove simulation configuration files
     rm $path_to_protein_file
     rm -rf $current_sim_path
+
   else
     #decrement the queue position of the last executed simulation
     mysql ProteinSim -u proteinSim -p$DB_PASSWORD -se "$update_queue_query"

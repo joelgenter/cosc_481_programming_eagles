@@ -11,7 +11,7 @@ function createBarChart(chartData){
 									  'rgba(54, 162, 235, 1)';
 		theLabels[i] = "Lambda_"+i/20
 	}
-	$('#type').text('Free Energy Bar Graph');
+	$('#type').text('Free Energy (kJ/mol)');
 	myChart = new Chart(ctx, {
     type: 'bar',
     data: {
@@ -49,7 +49,7 @@ function createBarChart(chartData){
             }]
         }
     }
-	
+
 });
 
 }
@@ -59,27 +59,27 @@ function determineYAxis(data){
 	switch (data){
 		case 'pressure':
 			yAxis = 'bar'
-			$('#type').text('Pressure(bar) of Molecule')
+			$('#type').text('Pressure (bar)')
 			break;
 		case 'density':
 			yAxis = 'kg/m^3'
-			$('#type').text('Density(kg/m^3) of Molecule')
+			$('#type').text('Density (kg/m^3)')
 			break;
 		case 'potential':
 			yAxis = 'kJ/mol'
-			$('#type').text('Potetial Energy(kJ/mol) of Molecule')
+			$('#type').text('Potential Energy (kJ/mol)')
 			break;
 		case 'temperature':
 			yAxis = 'K'
-			$('#type').text('Temperture(K) of Molecule')
+			$('#type').text('Temperature (K)')
 			break;
 		case 'backBone':
 			yAxis = 'nm'
-			$('#type').text('Backbone(nm) of Molecule')
+			$('#type').text('Backbone (nm)')
 			break;
 		case 'crystalBackBone':
 			yAxis = 'nm'
-			$('#type').text('Crystal Backbone(nm) of Molecule')
+			$('#type').text('Crystal Backbone(nm)')
 			break;
 		default:
 			yAxis = ''
@@ -118,7 +118,7 @@ function determineFile(data){
 
 function createChart(chartPoints,chartData,dataType){
 	var yAxis = determineYAxis(dataType);
-	var xAxis = (chartPoints[chartPoints.length-1]<41) ? 'ns':'ps' 
+	var xAxis = (chartPoints[chartPoints.length-1]<41) ? 'ns':'ps'
 	var ctx = $("#myChart");
 	myChart = new Chart(ctx, {
     type: 'line',
@@ -154,13 +154,13 @@ function createChart(chartPoints,chartData,dataType){
             }]
         }
     }
-	
+
 });
 
 }
 
 function updateHtml(userData){
-	
+
 	$('#title').text(userData[0])
 	$('#user').text("Submitted by: "+userData[4])
 	$('#description').text(userData[8])
@@ -170,26 +170,26 @@ function generateResults(simId,data){
 	//fixes html in tree
 	if(myChart != 'empty')
 		myChart.destroy();
-	$.ajax({url: 'getResultInfo.php', method: 'POST', 
+	$.ajax({url: 'getResultInfo.php', method: 'POST',
 			data: {id: simId},
 			success: function(userData){updateHtml(JSON.parse(userData)[0]);}});
 	//determines graph
 	if(data == 'freeEnergy'){
-		
+
 		var resultsFile = 'results/sim'+simId+'/bar.xvg'
-		$.ajax({url: 'getResults.php', method: 'POST', 
+		$.ajax({url: 'getResults.php', method: 'POST',
 			data: {results: resultsFile } ,
 			success: function(simData){createBarChart(JSON.parse(simData))}
-			});	
+			});
 	}
-	
+
 	else{
 		var resultsFile = 'results/sim'+simId+'/'+determineFile(data);
-		$.ajax({url: 'getMDData.php', method: 'POST', 
+		$.ajax({url: 'getMDData.php', method: 'POST',
 			data: {results: resultsFile } ,
 			success: function(simData){
 				createChart(JSON.parse(simData)['dataPoints'],JSON.parse(simData)['data'],data)
 				}
-			});	
+			});
 	}
 }
