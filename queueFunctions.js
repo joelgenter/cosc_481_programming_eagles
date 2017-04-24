@@ -129,7 +129,7 @@ function updateBar(folderPath, simDuration,status){
 					message = "Performing energy minimization: "+ partial +"%"
 				}
 				else if(percent<25){
-					partial =   Math.round(1000-50*(25 - percent)/10)
+					partial =   Math.round(1000-50*(25 - percent))/10
 					message = "Performing equilibrium: "+ partial +"%"
 				}
 				else if(percent<80){
@@ -137,7 +137,7 @@ function updateBar(folderPath, simDuration,status){
 					message = "Simulating molecule: "+partial+"%"
 				}
 				else if(percent<=100){
-					partial = Math.round(1000-50*(100 - percent)/10)
+					partial = Math.round(1000-50*(100 - percent))/10
 					message = "Performing free energy calculations: "+ partial +"%"
 				}
 				else{
