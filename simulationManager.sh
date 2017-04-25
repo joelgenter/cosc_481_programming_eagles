@@ -113,10 +113,10 @@ while true; do
     echo -e "17 0\n" | $gmx energy -f npt.edr -o npt_pressure.xvg
     echo -e "23 0\n" | $gmx energy -f npt.edr -o npt_density.xvg
 
-    echo -e "11 0\n" | $gmx energy -f md_0_1.edr -o md_potential.xvg
-    echo -e "14 0\n" | $gmx energy -f md_0_1.edr -o md_temperature.xvg
-    echo -e "16 0\n" | $gmx energy -f md_0_1.edr -o md_pressure.xvg
-    echo -e "22 0\n" | $gmx energy -f md_0_1.edr -o md_density.xvg
+    echo -e "10 0\n" | $gmx energy -f md_0_1.edr -o md_potential.xvg
+    echo -e "13 0\n" | $gmx energy -f md_0_1.edr -o md_temperature.xvg
+    echo -e "15 0\n" | $gmx energy -f md_0_1.edr -o md_pressure.xvg
+    echo -e "21 0\n" | $gmx energy -f md_0_1.edr -o md_density.xvg
     echo -e "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 0\n" | $gmx energy -f md_0_1.edr -o md_all_data.xvg
 
     echo -e "1 0\n" | $gmx gyrate -s md_0_1.tpr -f md_0_1_noPBC.xtc -o gyrate.xvg
@@ -156,7 +156,7 @@ while true; do
     read firstName lastName email simulationName<<< $query_result
 
     subject="Simulation Complete: $simulationName"
-    link="https://jeremyginnard.com/resultPage.php?id=$id"
+    link="https://jeremyginnard.com/ProteinSimulations/resultPage.php?id=$id"
     message="Greetings $firstName $lastName,"$'\n\n'"Your simulation titled \"$simulationName\" is complete. You can view the results at the following link:"$'\n'"$link"
     #Send the email
     java -jar /home/gromacs/simulations/sendEmail.jar "$email" "$subject" "$message"
