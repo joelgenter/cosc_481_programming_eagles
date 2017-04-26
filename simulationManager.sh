@@ -38,6 +38,10 @@ while true; do
   query_result=$(mysql ProteinSim -u proteinSim -p$DB_PASSWORD -se "$select_query")
 
   if [ ! -z "$query_result" ]; then    #if result not empty
+
+    #decrement queue positions
+    mysql ProteinSim -u proteinSim -p$DB_PASSWORD -se "$update_queue_query"
+
     #read query_result into vars
     read pdb_file_name duration temperature id force_field<<< $query_result
 
@@ -131,9 +135,6 @@ while true; do
     grep -v "SOL\|ZN" protein_after.pdb > temp && mv temp protein_after.pdb
     #capture simulation end time
     sim_end=$(date +"%Y/%m/%e %H:%M:%S")
-
-    #decrement queue position of incomplete simulations
-    mysql ProteinSim -u proteinSim -p$DB_PASSWORD -se "$update_queue_query"
 
     #add sim start and end time to db
     mysql ProteinSim -u proteinSim -p$DB_PASSWORD -se "UPDATE Simulations SET endTime=STR_TO_DATE(\"$sim_end\", '%Y/%m/%d %k:%i:%s') WHERE id=$id"
