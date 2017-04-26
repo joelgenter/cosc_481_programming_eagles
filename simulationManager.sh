@@ -21,29 +21,39 @@ SELECT
   duration,
   temperature,
   id,
-  forceField
+  forceField,
+  queuePosition
 FROM Simulations
-WHERE queuePosition = 1
+WHERE queuePosition = 1 OR queuePosition = 0
+ORDER BY queuePosition ASC
 EOF
 )
 
 update_queue_query=$(cat <<EOF
 UPDATE Simulations
 SET queuePosition = (queuePosition - 1)
-WHERE queuePosition >= 0
+WHERE queuePosition > 0
+EOF
+)
+
+complete_current_sim_query=$(cat <<EOF
+UPDATE Simulations
+SET queuePosition = -1
+WHERE queuePosition = 0
 EOF
 )
 
 while true; do
   query_result=$(mysql ProteinSim -u proteinSim -p$DB_PASSWORD -se "$select_query")
 
-  if [ ! -z "$query_result" ]; then    #if result not empty
+  #read query_result into vars
+  read pdb_file_name duration temperature id force_field queue_position <<< $query_result
+
+  #if result not empty and there isn't a simulation running
+  if [ ! -z "$query_result" ] && [$queue_position -ne 0]; then
 
     #decrement queue positions
     mysql ProteinSim -u proteinSim -p$DB_PASSWORD -se "$update_queue_query"
-
-    #read query_result into vars
-    read pdb_file_name duration temperature id force_field<<< $query_result
 
     #FOR TESTING PURPOSES- REMOVE AFTER TESTING
     echo "pdb_file_name: $pdb_file_name"
@@ -136,8 +146,11 @@ while true; do
     #capture simulation end time
     sim_end=$(date +"%Y/%m/%e %H:%M:%S")
 
-    #add sim start and end time to db
+    #add sim end time to db
     mysql ProteinSim -u proteinSim -p$DB_PASSWORD -se "UPDATE Simulations SET endTime=STR_TO_DATE(\"$sim_end\", '%Y/%m/%d %k:%i:%s') WHERE id=$id"
+
+    #mark current simulation as complete
+    mysql ProteinSim -u proteinSim -p$DB_PASSWORD -se "$complete_current_sim_query"
 
     #copy bar.xvg to new dir
     result_folder_path="/var/www/html/ProteinSimulations/results/sim$id"
@@ -148,7 +161,6 @@ while true; do
 
     #put all .xvg, .gro, .pdb, .trr, .log  files into a zipped file in new dir
     zip -rj "$result_folder_path/simulation_data.zip" . -i '*.xvg' '*.gro' '*.trr' '*.pdb' '*.log'
-
 
     #Notify user the simulation is complete
     email_query="SELECT Users.firstName, Users.lastName, Users.email, Simulations.simulationName FROM Users INNER JOIN Simulations ON Users.username=Simulations.username WHERE Simulations.id=$id"
@@ -169,8 +181,6 @@ while true; do
     rm -rf $current_sim_path
 
   else
-    #decrement the queue position of the last executed simulation
-    mysql ProteinSim -u proteinSim -p$DB_PASSWORD -se "$update_queue_query"
-    break   #no more incomplete simulations
+    break   #no more incomplete simulations OR a sim is already running
   fi
 done
