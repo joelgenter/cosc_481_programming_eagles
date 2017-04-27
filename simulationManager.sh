@@ -50,7 +50,7 @@ while true; do
   read pdb_file_name duration temperature id force_field queue_position <<< $query_result
 
   #if result not empty and there isn't a simulation running
-  if [ ! -z "$query_result" ] && [$queue_position -ne 0]; then
+  if [ ! -z "$query_result" ] && [ $queue_position -ne 0 ]; then
 
     #decrement queue positions
     mysql ProteinSim -u proteinSim -p$DB_PASSWORD -se "$update_queue_query"

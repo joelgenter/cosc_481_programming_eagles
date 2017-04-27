@@ -3,7 +3,8 @@
 // ini_set('display_errors', 1);
 require 'db_connection.php';        //$conn (mysqli connection) is now available
 include_once 'User.php';
-
+$num = 0;
+$pdbFileName = filter_var ($_POST["pdbFileName"], FILTER_SANITIZE_STRING);
 //File Upload
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["pdbFile"]["name"]);
@@ -11,9 +12,12 @@ $uploadOk = 1;
 $fileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
 // Check if file already exists
-if (file_exists($target_file)) {
+while (file_exists($target_file)) {
+    $num++;
     echo "Sorry, file already exists.";
-    $uploadOk = 0;
+    $target_file = $target_dir . basename($_FILES["pdbFile"]["name"])."(".$num.")"; //Rename the file
+    $pdbFileName = basename($_FILES["pdbFile"]["name"])."(".$num.")";
+    //$uploadOk = 1;
 }
 // Check file size
 if ($_FILES["pdbFile"]["size"] > 50000000) { //50MB limit
@@ -38,7 +42,7 @@ if ($uploadOk == 0) {
 }
 
 //Form data
-$pdbFileName = filter_var ($_POST["pdbFileName"], FILTER_SANITIZE_STRING);
+
 $mutationList = filter_var ($_POST["mutationList"], FILTER_SANITIZE_STRING);
 $oAuthId = filter_var ($_POST["oauth_uid"], FILTER_SANITIZE_STRING);
 $user = new User();
@@ -86,7 +90,8 @@ if (mysqli_multi_query($conn, $query)) {
 mysqli_close($conn);
 
 //Run Simulation
-// shell_exec("/home/gromacs/simulations/simulationManager.sh");
+// $log = shell_exec("/home/gromacs/simulations/simulationManager.sh");
+// echo $log;
 shell_exec("/home/gromacs/simulations/simulationManager.sh > /dev/null &");
 header("Location: queue.php");
 die();
