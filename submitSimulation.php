@@ -19,6 +19,9 @@ while (file_exists($target_file)) {
     $pdbFileName = basename($_FILES["pdbFile"]["name"])."(".$num.")";
     //$uploadOk = 1;
 }
+//Replace all spaces with "_"
+$target_file = str_replace(" ", "_", $target_file);
+$pdbFileName = str_replace(" ", "_", $pdbFileName);
 // Check file size
 if ($_FILES["pdbFile"]["size"] > 50000000) { //50MB limit
     echo "Sorry, your file is too large.";
@@ -54,6 +57,7 @@ $description = filter_var ($_POST["description"], FILTER_SANITIZE_STRING);
 $duration = filter_var ($_POST["duration"], FILTER_SANITIZE_STRING);
 $temperature = filter_var ($_POST["temperature"], FILTER_SANITIZE_STRING);
 $forceField = filter_var ($_POST["forceField"], FILTER_SANITIZE_STRING);
+$frames = filter_var ($_POST["frames"], FILTER_SANITIZE_STRING);
 
 //Get Current Queue Position
 $currentQueue = 1000;
@@ -73,7 +77,7 @@ $simulationList = explode(";", $mutationList);
 foreach ($simulationList as $mutation){
   echo "queue position: ".$currentQueue;
   echo "forcefield: ".$forceField;
-  $query .= "INSERT INTO ProteinSim.Simulations (mutations, pdbFileName, username, simulationName, description, duration, temperature, queuePosition, forceField) VALUES (\"".$mutation."\",\"".$pdbFileName."\",\"".$username."\",\"".$simulationName."\",\"".$description."\",\"".$duration."\",\"".$temperature."\",\"".$currentQueue."\",\"".$forceField."\");";
+  $query .= "INSERT INTO ProteinSim.Simulations (mutations, pdbFileName, username, simulationName, description, duration, temperature, queuePosition, forceField, frames) VALUES (\"".$mutation."\",\"".$pdbFileName."\",\"".$username."\",\"".$simulationName."\",\"".$description."\",\"".$duration."\",\"".$temperature."\",\"".$currentQueue."\",\"".$forceField."\",\"".$frames."\");";
   $currentQueue += 1;
 }
 

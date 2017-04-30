@@ -22,7 +22,8 @@ SELECT
   temperature,
   id,
   forceField,
-  queuePosition
+  queuePosition,
+  frames
 FROM Simulations
 WHERE queuePosition = 1 OR queuePosition = 0
 ORDER BY queuePosition ASC
@@ -47,7 +48,7 @@ while true; do
   query_result=$(mysql ProteinSim -u proteinSim -p$DB_PASSWORD -se "$select_query")
 
   #read query_result into vars
-  read pdb_file_name duration temperature id force_field queue_position <<< $query_result
+  read pdb_file_name duration temperature id force_field queue_position frames <<< $query_result
 
   #if result not empty and there isn't a simulation running
   if [ ! -z "$query_result" ] && [ $queue_position -ne 0 ]; then
@@ -70,15 +71,23 @@ while true; do
     cd /home/gromacs/simulations/current_simulation
 
     #add duration to md.mdp file copied from default folder
-    echo -e "\nnsteps      = $(printf "%.0f" $(echo "500000 * $duration" | bc))\n" >> md.mdp
+    steps=$(printf "%.0f" $(echo "500000 * $duration" | bc))
+    echo -e "\nnsteps      = $steps\n" >> md.mdp
 
     #add temperature to nvt.mdp, md.mdp and fec.mdp file copied from default folder
     temp_in_kelvin=$(echo "273.15 + $temperature" | bc)
+    if [ "$frames" -eq "0" ]; then
+    frame_interval=0
+    else
+    frame_interval=$(printf "%.0f" $(echo "$steps / $frames" | bc))
+    fi
+
     echo -e "\ngen_temp       = $temp_in_kelvin\n" >> nvt.mdp
     echo -e "\nref_t       = $temp_in_kelvin    $temp_in_kelvin\n" >> nvt.mdp
     echo -e "\nref_t       = $temp_in_kelvin    $temp_in_kelvin\n" >> md.mdp
     echo -e "\nref_t       = $temp_in_kelvin    $temp_in_kelvin\n" >> fec.mdp
-
+    echo -e "\nnstxout       = $frame_interval\n" >> md.mdp
+    echo -e "\nnstvout       = $frame_interval\n" >> md.mdp
 
     #copy protein file (protein.pdb)
     path_to_protein_file="/var/www/html/ProteinSimulations/uploads/$pdb_file_name"

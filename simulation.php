@@ -157,6 +157,18 @@ $email = $user->getEmail($oauth_uid);
 								<label for="temperature">Temperature (Celsius)</label>
 								<input type="number" class="form-control" id="temperature" name="temperature" value="30" min="0">
 							</div>
+							<div class="form-group">
+						    <label for="frames">Dynamic Visualization Frames</label>
+						    <select class="form-control" id="frames" name="frames">
+									<option value="0">Off</option>
+						      <option value="100">100</option>
+						      <option value="200">200</option>
+						      <option value="300">300 (recommended)</option>
+						      <option value="400">400</option>
+						      <option value="500">500</option>
+									<option value="600">600</option>
+						    </select>
+						  </div>
 					</fieldset>
 					<fieldset class="form-group">
 						<legend>Additional Information</legend>
